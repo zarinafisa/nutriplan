@@ -1,281 +1,605 @@
-<!DOCTYPE html>
+
+html_content = '''<!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>NutriPlan | Buat Akun Anda</title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-    <style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        .leaf-float {
-            animation: float 6s ease-in-out infinite;
-        }
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(10deg); }
-        }
-    </style>
-    <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    "colors": {
-                        "primary-fixed": "#b9f1ad",
-                        "primary-container": "#3a6b35",
-                        "on-tertiary-container": "#cae2c0",
-                        "surface-tint": "#386933",
-                        "inverse-on-surface": "#ffeee1",
-                        "on-primary-fixed": "#002202",
-                        "outline": "#72796e",
-                        "secondary": "#924c00",
-                        "on-primary-container": "#b2eaa6",
-                        "inverse-surface": "#3e2d1d",
-                        "tertiary-fixed-dim": "#b5cdac",
-                        "surface-variant": "#fbddc5",
-                        "outline-variant": "#c1c9bb",
-                        "error-container": "#ffdad6",
-                        "on-secondary-fixed": "#2f1500",
-                        "inverse-primary": "#9ed493",
-                        "error": "#ba1a1a",
-                        "primary-fixed-dim": "#9ed493",
-                        "surface-container-lowest": "#ffffff",
-                        "surface-dim": "#f2d5bd",
-                        "on-tertiary-fixed-variant": "#374c32",
-                        "surface-bright": "#fff8f5",
-                        "surface-container-highest": "#fbddc5",
-                        "on-primary": "#ffffff",
-                        "surface-container": "#ffeada",
-                        "secondary-fixed-dim": "#ffb77f",
-                        "on-tertiary-fixed": "#0d200a",
-                        "surface-container-low": "#fff1e8",
-                        "on-primary-fixed-variant": "#20511e",
-                        "on-secondary-container": "#6a3600",
-                        "on-error": "#ffffff",
-                        "tertiary": "#394e34",
-                        "surface-container-high": "#ffe3cd",
-                        "on-secondary": "#ffffff",
-                        "secondary-container": "#fe973c",
-                        "tertiary-fixed": "#d1eac7",
-                        "on-surface-variant": "#42493f",
-                        "secondary-fixed": "#ffdcc4",
-                        "tertiary-container": "#50664a",
-                        "on-background": "#27180a",
-                        "background": "#fff8f5",
-                        "on-surface": "#27180a",
-                        "surface": "#fff8f5",
-                        "on-tertiary": "#ffffff",
-                        "on-secondary-fixed-variant": "#6f3800",
-                        "on-error-container": "#93000a",
-                        "primary": "#22521f"
-                    },
-                    "borderRadius": {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
-                    },
-                    "spacing": {
-                        "sm": "12px",
-                        "xl": "80px",
-                        "md": "24px",
-                        "xs": "4px",
-                        "container-max": "1200px",
-                        "lg": "48px",
-                        "base": "8px",
-                        "gutter": "24px"
-                    },
-                    "fontFamily": {
-                        "headline-lg": ["Playfair Display"],
-                        "data-mono": ["JetBrains Mono"],
-                        "label-caps": ["Plus Jakarta Sans"],
-                        "body-sm": ["Plus Jakarta Sans"],
-                        "body-md": ["Plus Jakarta Sans"],
-                        "body-lg": ["Plus Jakarta Sans"],
-                        "headline-md": ["Playfair Display"],
-                        "display-lg": ["Playfair Display"]
-                    },
-                    "fontSize": {
-                        "headline-lg": ["32px", {"lineHeight": "1.3", "fontWeight": "700"}],
-                        "data-mono": ["14px", {"lineHeight": "1", "fontWeight": "500"}],
-                        "label-caps": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "700"}],
-                        "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
-                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
-                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
-                        "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
-                        "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}]
-                    }
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NutriPlan | Buat Akun Anda</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<style>
+    .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .leaf-float {
+        animation: float 6s ease-in-out infinite;
+    }
+    @keyframes float {
+        0%, 100% { transform: translateY(0) rotate(0deg); }
+        50% { transform: translateY(-20px) rotate(10deg); }
+    }
+    /* Shake animation untuk error */
+    @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
+        20%, 40%, 60%, 80% { transform: translateX(4px); }
+    }
+    .shake-error {
+        animation: shake 0.4s ease-in-out;
+    }
+    /* Error message transition */
+    .error-msg {
+        opacity: 0;
+        transform: translateY(-4px);
+        transition: all 0.2s ease;
+    }
+    .error-msg.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    /* Input error state */
+    .input-error {
+        border-color: #ba1a1a !important;
+        background-color: #ffdad6 !important;
+    }
+    .input-error + .material-symbols-outlined,
+    .input-error ~ .material-symbols-outlined {
+        color: #ba1a1a !important;
+    }
+    /* Success state */
+    .input-success {
+        border-color: #22521f !important;
+    }
+    /* Loading spinner */
+    @keyframes spin {
+        to { transform: rotate(360deg); }
+    }
+    .animate-spin {
+        animation: spin 1s linear infinite;
+    }
+    /* Disabled button */
+    .btn-disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+    /* Password strength indicator */
+    .strength-bar {
+        height: 4px;
+        border-radius: 2px;
+        transition: all 0.3s ease;
+    }
+</style>
+<script id="tailwind-config">
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                "colors": {
+                    "primary-fixed": "#b9f1ad",
+                    "primary-container": "#3a6b35",
+                    "on-tertiary-container": "#cae2c0",
+                    "surface-tint": "#386933",
+                    "inverse-on-surface": "#ffeee1",
+                    "on-primary-fixed": "#002202",
+                    "outline": "#72796e",
+                    "secondary": "#924c00",
+                    "on-primary-container": "#b2eaa6",
+                    "inverse-surface": "#3e2d1d",
+                    "tertiary-fixed-dim": "#b5cdac",
+                    "surface-variant": "#fbddc5",
+                    "outline-variant": "#c1c9bb",
+                    "error-container": "#ffdad6",
+                    "on-secondary-fixed": "#2f1500",
+                    "inverse-primary": "#9ed493",
+                    "error": "#ba1a1a",
+                    "primary-fixed-dim": "#9ed493",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-dim": "#f2d5bd",
+                    "on-tertiary-fixed-variant": "#374c32",
+                    "surface-bright": "#fff8f5",
+                    "surface-container-highest": "#fbddc5",
+                    "on-primary": "#ffffff",
+                    "surface-container": "#ffeada",
+                    "secondary-fixed-dim": "#ffb77f",
+                    "on-tertiary-fixed": "#0d200a",
+                    "surface-container-low": "#fff1e8",
+                    "on-primary-fixed-variant": "#20511e",
+                    "on-secondary-container": "#6a3600",
+                    "on-error": "#ffffff",
+                    "tertiary": "#394e34",
+                    "surface-container-high": "#ffe3cd",
+                    "on-secondary": "#ffffff",
+                    "secondary-container": "#fe973c",
+                    "tertiary-fixed": "#d1eac7",
+                    "on-surface-variant": "#42493f",
+                    "secondary-fixed": "#ffdcc4",
+                    "tertiary-container": "#50664a",
+                    "on-background": "#27180a",
+                    "background": "#fff8f5",
+                    "on-surface": "#27180a",
+                    "surface": "#fff8f5",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-fixed-variant": "#6f3800",
+                    "on-error-container": "#93000a",
+                    "primary": "#22521f"
                 },
+                "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+                },
+                "spacing": {
+                    "sm": "12px",
+                    "xl": "80px",
+                    "md": "24px",
+                    "xs": "4px",
+                    "container-max": "1200px",
+                    "lg": "48px",
+                    "base": "8px",
+                    "gutter": "24px"
+                },
+                "fontFamily": {
+                    "headline-lg": ["Playfair Display"],
+                    "data-mono": ["JetBrains Mono"],
+                    "label-caps": ["Plus Jakarta Sans"],
+                    "body-sm": ["Plus Jakarta Sans"],
+                    "body-md": ["Plus Jakarta Sans"],
+                    "body-lg": ["Plus Jakarta Sans"],
+                    "headline-md": ["Playfair Display"],
+                    "display-lg": ["Playfair Display"]
+                },
+                "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                    "data-mono": ["14px", {"lineHeight": "1", "fontWeight": "500"}],
+                    "label-caps": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                }
             },
-        }
-    </script>
-<base target="_blank">
+        },
+    }
+</script>
 </head>
 <body class="bg-surface font-body-md text-on-surface antialiased overflow-x-hidden">
-    <main class="min-h-screen flex flex-col md:flex-row">
-        <!-- Left Panel (40%) -->
-        <section class="hidden md:flex md:w-[40%] bg-gradient-to-br from-primary-container via-primary to-primary-container relative overflow-hidden flex-col justify-between p-lg lg:p-xl">
-            <!-- Decorative Accents -->
-            <div class="absolute top-0 right-0 w-64 h-64 bg-primary-fixed/10 rounded-full -mr-20 -mt-20 blur-3xl"></div>
-            <div class="absolute bottom-0 left-0 w-96 h-96 bg-secondary/10 rounded-full -ml-32 -mb-32 blur-3xl"></div>
-            <div class="relative z-10">
-                <div class="flex items-center gap-xs">
-                    <span class="material-symbols-outlined text-primary-fixed text-[40px]" data-icon="eco" style="font-variation-settings: 'FILL' 1;">eco</span>
-                    <a href="index.html"><h1 class="font-headline-md text-headline-md italic text-primary-fixed tracking-tight hover:text-white transition-colors">NutriPlan</h1></a>
-                </div>
-                <div class="mt-xl">
-                    <h2 class="font-display-lg text-display-lg text-on-primary-container leading-tight">
-                        Nutrisi yang pas <br/>
-                        <span class="text-primary-fixed">dengan anggaranmu.</span>
-                    </h2>
-                    <p class="font-body-lg text-body-lg text-on-primary-container/80 mt-md max-w-md">
-                        Bergabunglah dengan ribuan mahasiswa dan profesional yang menggunakan perencanaan makan berbasis data untuk tetap sehat tanpa menguras dompet.
-                    </p>
-                </div>
+<main class="min-h-screen flex flex-col md:flex-row">
+<!-- Left Panel (40%) -->
+<section class="hidden md:flex md:w-[40%] bg-gradient-to-br from-primary-container via-primary to-primary-container relative overflow-hidden flex-col justify-between p-lg lg:p-xl">
+    <!-- Decorative Accents -->
+    <div class="absolute top-0 right-0 w-64 h-64 bg-primary-fixed/10 rounded-full -mr-20 -mt-20 blur-3xl"></div>
+    <div class="absolute bottom-0 left-0 w-96 h-96 bg-secondary/10 rounded-full -ml-32 -mb-32 blur-3xl"></div>
+    <div class="relative z-10">
+        <div class="flex items-center gap-xs">
+            <span class="material-symbols-outlined text-primary-fixed text-[40px]" data-icon="eco" style="font-variation-settings: 'FILL' 1;">eco</span>
+            <h1 class="font-headline-md text-headline-md italic text-primary-fixed tracking-tight">NutriPlan</h1>
+        </div>
+        <div class="mt-xl">
+            <h2 class="font-display-lg text-display-lg text-on-primary-container leading-tight">
+                Nutrisi yang pas <br/>
+                <span class="text-primary-fixed">dengan anggaranmu.</span>
+            </h2>
+            <p class="font-body-lg text-body-lg text-on-primary-container/80 mt-md max-w-md">
+                Bergabunglah dengan ribuan mahasiswa dan profesional yang menggunakan perencanaan makan berbasis data untuk tetap sehat tanpa menguras dompet.
+            </p>
+        </div>
+    </div>
+    <!-- Illustration Area -->
+    <div class="relative flex-grow flex items-center justify-center py-lg">
+        <div class="relative w-full max-w-sm aspect-square bg-white/5 rounded-full backdrop-blur-sm border border-white/10 flex items-center justify-center p-md">
+            <img alt="Nutritious Salad Bowl" class="w-full h-full object-cover rounded-full shadow-2xl border-4 border-white/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnNqgVuB7DPOH9pWuY80Qh86PenrwLpUdUpIaKbweryQvPGAJ23BceDD1DlrXb_o2wVTxlAHCKNYHNEj5pjRGGAHbkGvriy81tA69XPWObQ4l0E_EnNdi18AjJ2Ez3WhUsU673didoNWxYBjV0lddGzUDXRu0QKMhyznHX-wXjQNpdxpkNNzld3PHeBdu3cXFgjdi_tb7bCJ5U1LRYvFY6ZgRCbeZvhpSUyhaLASF_7489yJ-gf1rL7I_TQ_lrppo2VHwrEQONMTiq"/>
+            <!-- Floating Leaf Accents -->
+            <div class="absolute top-10 left-0 leaf-float" style="animation-delay: 0s;">
+                <span class="material-symbols-outlined text-primary-fixed/40 text-4xl">energy_savings_leaf</span>
             </div>
-            <!-- Illustration Area -->
-            <div class="relative flex-grow flex items-center justify-center py-lg">
-                <div class="relative w-full max-w-sm aspect-square bg-white/5 rounded-full backdrop-blur-sm border border-white/10 flex items-center justify-center p-md">
-                    <img alt="Nutritious Salad Bowl" class="w-full h-full object-cover rounded-full shadow-2xl border-4 border-white/20" src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&h=600&fit=crop"/>
-                    <!-- Floating Leaf Accents -->
-                    <div class="absolute top-10 left-0 leaf-float" style="animation-delay: 0s;">
-                        <span class="material-symbols-outlined text-primary-fixed/40 text-4xl" data-icon="leaf">energy_savings_leaf</span>
-                    </div>
-                    <div class="absolute bottom-10 right-4 leaf-float" style="animation-delay: 2s;">
-                        <span class="material-symbols-outlined text-primary-fixed/40 text-3xl" data-icon="energy_savings_leaf">energy_savings_leaf</span>
-                    </div>
-                </div>
+            <div class="absolute bottom-10 right-4 leaf-float" style="animation-delay: 2s;">
+                <span class="material-symbols-outlined text-primary-fixed/40 text-3xl">energy_savings_leaf</span>
             </div>
-            <div class="relative z-10 flex items-center gap-sm">
-                <div class="flex -space-x-3">
-                    <img alt="User" class="w-10 h-10 rounded-full border-2 border-primary-container bg-surface-container" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop"/>
-                    <img alt="User" class="w-10 h-10 rounded-full border-2 border-primary-container bg-surface-container" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop"/>
-                    <img alt="User" class="w-10 h-10 rounded-full border-2 border-primary-container bg-surface-container" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop"/>
-                </div>
-                <p class="font-label-caps text-label-caps text-on-primary-container">4rb+ Praktisi Makan Sehat bergabung hari ini</p>
-            </div>
-        </section>
-        <!-- Right Panel (60%) -->
-        <section class="w-full md:w-[60%] bg-surface flex flex-col items-center justify-center p-md lg:p-xl">
-            <!-- Mobile Logo Only -->
-            <div class="md:hidden flex items-center gap-xs mb-lg self-start">
-                <span class="material-symbols-outlined text-primary text-[32px]" data-icon="eco" style="font-variation-settings: 'FILL' 1;">eco</span>
-                <a href="index.html"><span class="font-headline-md text-headline-md italic text-primary">NutriPlan</span></a>
-            </div>
-            <div class="w-full max-w-[480px]">
-                <div class="mb-lg">
-                    <h2 class="font-headline-lg text-headline-lg text-on-surface mb-xs">Buat Akun Anda</h2>
-                    <p class="font-body-md text-body-md text-on-surface-variant">Rencana makan personal hanya beberapa langkah saja.</p>
-                </div>
-                <!-- Registration Form -->
-                <form action="#" class="space-y-base" method="POST" onsubmit="return false;">
-                    <!-- Full Name -->
-                    <div class="space-y-xs">
-                        <label class="font-label-caps text-label-caps text-on-surface-variant ml-xs" for="full_name">Nama Lengkap</label>
-                        <div class="relative">
-                            <span class="absolute left-md top-1/2 -translate-y-1/2 material-symbols-outlined text-outline" data-icon="person">person</span>
-                            <input class="w-full pl-xl pr-md py-sm bg-surface-container-lowest border-[1.5px] border-outline-variant/30 rounded-[10px] focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none text-on-surface font-body-md" id="full_name" name="full_name" placeholder="Zaza Practitioner" required="" type="text"/>
-                        </div>
-                    </div>
-                    <!-- Email -->
-                    <div class="space-y-xs">
-                        <label class="font-label-caps text-label-caps text-on-surface-variant ml-xs" for="email">Alamat Email</label>
-                        <div class="relative">
-                            <span class="absolute left-md top-1/2 -translate-y-1/2 material-symbols-outlined text-outline" data-icon="mail">mail</span>
-                            <input class="w-full pl-xl pr-md py-sm bg-surface-container-lowest border-[1.5px] border-outline-variant/30 rounded-[10px] focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none text-on-surface font-body-md" id="email" name="email" placeholder="zaza@nutriplan.com" required="" type="email"/>
-                        </div>
-                    </div>
-                    <!-- Password Grid -->
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-base">
-                        <div class="space-y-xs">
-                            <label class="font-label-caps text-label-caps text-on-surface-variant ml-xs" for="password">Kata Sandi</label>
-                            <div class="relative">
-                                <span class="absolute left-md top-1/2 -translate-y-1/2 material-symbols-outlined text-outline" data-icon="lock_open">lock_open</span>
-                                <input class="w-full pl-xl pr-md py-sm bg-surface-container-lowest border-[1.5px] border-outline-variant/30 rounded-[10px] focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none text-on-surface font-body-md" id="password" name="password" placeholder="••••••••" required="" type="password"/>
-                            </div>
-                        </div>
-                        <div class="space-y-xs">
-                            <label class="font-label-caps text-label-caps text-on-surface-variant ml-xs" for="confirm_password">Konfirmasi Kata Sandi</label>
-                            <div class="relative">
-                                <span class="absolute left-md top-1/2 -translate-y-1/2 material-symbols-outlined text-outline" data-icon="lock">lock</span>
-                                <input class="w-full pl-xl pr-md py-sm bg-surface-container-lowest border-[1.5px] border-outline-variant/30 rounded-[10px] focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none text-on-surface font-body-md" id="confirm_password" name="confirm_password" placeholder="••••••••" required="" type="password"/>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Terms -->
-                    <div class="flex items-center gap-sm py-xs">
-                        <input class="w-5 h-5 rounded border-outline-variant text-secondary focus:ring-secondary transition-all" id="terms" name="terms" required="" type="checkbox"/>
-                        <label class="font-body-sm text-body-sm text-on-surface-variant" for="terms">
-                            Saya setuju dengan <a class="text-primary font-semibold hover:underline" href="#">Ketentuan Layanan</a> dan <a class="text-primary font-semibold hover:underline" href="#">Kebijakan Privasi</a>.
-                        </label>
-                    </div>
-                    <!-- CTA Button -->
-                    <button class="w-full bg-secondary text-white font-headline-md text-headline-md py-sm rounded-[10px] shadow-lg shadow-secondary/20 hover:bg-secondary/90 active:scale-[0.98] transition-all flex items-center justify-center gap-sm mt-md" type="submit">
-                        Buat Akun
-                        <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
-                    </button>
-                </form>
-                <!-- Divider -->
-                <div class="relative my-lg">
-                    <div class="absolute inset-0 flex items-center">
-                        <span class="w-full border-t border-outline-variant/30"></span>
-                    </div>
-                    <div class="relative flex justify-center text-xs">
-                        <span class="px-md bg-surface text-on-surface-variant font-label-caps">Atau daftar dengan</span>
-                    </div>
-                </div>
-                <!-- Social Grid -->
-                <div class="grid grid-cols-2 gap-base">
-                    <button class="flex items-center justify-center gap-sm px-md py-sm bg-surface-container-lowest border-[1.5px] border-outline-variant/30 rounded-[10px] font-body-md hover:bg-surface-container-low transition-colors">
-                        <img alt="Google" class="w-5 h-5" src="https://www.svgrepo.com/show/475656/google-color.svg"/>
-                        Google
-                    </button>
-                    <button class="flex items-center justify-center gap-sm px-md py-sm bg-surface-container-lowest border-[1.5px] border-outline-variant/30 rounded-[10px] font-body-md hover:bg-surface-container-low transition-colors">
-                        <span class="material-symbols-outlined text-[#1877F2]" data-icon="facebook" style="font-variation-settings: 'FILL' 1;">face_nod</span>
-                        Facebook
-                    </button>
-                </div>
-                <!-- Footer Link -->
-                <p class="text-center mt-xl font-body-md text-on-surface-variant">
-                    Sudah punya akun? 
-                    <a class="text-primary font-bold hover:underline transition-all" href="masuk.html">Masuk</a>
-                </p>
-            </div>
-        </section>
-    </main>
-    <script>
-        // Micro-interaction for input focusing
-        const inputs = document.querySelectorAll('input');
-        inputs.forEach(input => {
-            input.addEventListener('focus', () => {
-                const parent = input.closest('.relative');
-                if (parent) {
-                    const icon = parent.querySelector('.material-symbols-outlined');
-                    if (icon) icon.classList.add('text-primary');
-                }
-            });
-            input.addEventListener('blur', () => {
-                const parent = input.closest('.relative');
-                if (parent) {
-                    const icon = parent.querySelector('.material-symbols-outlined');
-                    if (icon) icon.classList.remove('text-primary');
-                }
-            });
-        });
+        </div>
+    </div>
+    <div class="relative z-10 flex items-center gap-sm">
+        <div class="flex -space-x-3">
+            <img alt="User" class="w-10 h-10 rounded-full border-2 border-primary-container bg-surface-container" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDihOvJmp7LekK48xZRzh4OiFRu4PjK37KDMCiXj58mNNa0jsiE1yHiM0QPUt_s4R3GEWpb2llvpPofUJ3_iy6U1VFl4JyS5YKi9TVNytAbfMgiWtiLtziMz6UnCX05m6P17kKQbFzoCYudIzs6Smy5t9ht9nMAZ0X3_E2Qq3IUYxth-lZIWbNPAnqYH7tB69hrgx4e0h2Qu2Pk3icGsFvxxfxCu9Zbv2ts-LfmT5sbEiLT4iT1mKPA8qqvRTmEUG4fD03HaIbZ72lh"/>
+            <img alt="User" class="w-10 h-10 rounded-full border-2 border-primary-container bg-surface-container" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBk1-jirV55aBjHoLnzSutSSec8q5pwpmainCtjnQGcWTaHeu0REyelYPGuKtnni4sWUcOBD6IkxNDbSI4VXlyjAK0yI3BqU1kQUwlJEHfH8cMcFUiO5SwBKXEDXissPaPWgvPOzXBEB9efqMifFg2C2z26umWUinKA8JgVl4RViMP2pcXb4zBdkX66dVwQAYqC8mTmE1GZcKucQsZy2yoRCXmANEPIQzSWN4g77myCPmZ9o1sQfoBYGgyi2Uzv0Iblc-El00D2Eq2X"/>
+            <img alt="User" class="w-10 h-10 rounded-full border-2 border-primary-container bg-surface-container" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAukluZJtjjOQyBUV7B9T3_FrJl9bi-FvUTpdCO8UaXcRKX5tIL0MiaaId7fxhSdCD9gqTJIjvAzxePlG9bQxqr4B7_ZHZsljfKFNRSMkcRy6LdzdU11cIiVo1nXcO1Ou5T5qTuZgxsDXISLYm5IuiewfNzoGYdEU1XGWYVDWzTZsJspFRtdnKnfarfLNRZhAtdZ_VHSGiVAitcrPwVeV5UYhLg8eBl-6v1LfPaDi5pY3JyrtHNmUPhZ-kFERF9IDpcvxaS-lpGC0D6"/>
+        </div>
+        <p class="font-label-caps text-label-caps text-on-primary-container">4rb+ Praktisi Makan Sehat bergabung hari ini</p>
+    </div>
+</section>
 
-        // Simple button active state feedback + redirect
-        const btn = document.querySelector('button[type="submit"]');
-        btn.addEventListener('click', () => {
-            const originalContent = btn.innerHTML;
-            btn.innerHTML = '<span class="material-symbols-outlined animate-spin" data-icon="progress_activity">progress_activity</span> Membuat...';
+<!-- Right Panel (60%) -->
+<section class="w-full md:w-[60%] bg-surface flex flex-col items-center justify-center p-md lg:p-xl">
+    <!-- Mobile Logo Only -->
+    <div class="md:hidden flex items-center gap-xs mb-lg self-start">
+        <span class="material-symbols-outlined text-primary text-[32px]" style="font-variation-settings: 'FILL' 1;">eco</span>
+        <span class="font-headline-md text-headline-md italic text-primary">NutriPlan</span>
+    </div>
+    <div class="w-full max-w-[480px]">
+        <div class="mb-lg">
+            <h2 class="font-headline-lg text-headline-lg text-on-surface mb-xs">Buat Akun Anda</h2>
+            <p class="font-body-md text-body-md text-on-surface-variant">Rencana makan personal hanya beberapa langkah saja.</p>
+        </div>
+        
+        <!-- Registration Form -->
+        <form id="signupForm" action="#" class="space-y-base" method="POST" novalidate>
+            
+            <!-- Full Name -->
+            <div class="space-y-xs">
+                <label class="font-label-caps text-label-caps text-on-surface-variant ml-xs" for="full_name">Nama Lengkap</label>
+                <div class="relative">
+                    <span class="absolute left-md top-1/2 -translate-y-1/2 material-symbols-outlined text-outline icon-indicator">person</span>
+                    <input class="w-full pl-xl pr-md py-sm bg-surface-container-lowest border-[1.5px] border-outline-variant/30 rounded-[10px] focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none text-on-surface font-body-md" id="full_name" name="full_name" placeholder="Zaza Practitioner" type="text" autocomplete="name"/>
+                </div>
+                <p class="error-msg text-body-sm text-error ml-xs" id="error-full_name">Nama lengkap wajib diisi minimal 3 karakter</p>
+            </div>
+            
+            <!-- Email -->
+            <div class="space-y-xs">
+                <label class="font-label-caps text-label-caps text-on-surface-variant ml-xs" for="email">Alamat Email</label>
+                <div class="relative">
+                    <span class="absolute left-md top-1/2 -translate-y-1/2 material-symbols-outlined text-outline icon-indicator">mail</span>
+                    <input class="w-full pl-xl pr-md py-sm bg-surface-container-lowest border-[1.5px] border-outline-variant/30 rounded-[10px] focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none text-on-surface font-body-md" id="email" name="email" placeholder="zaza@nutriplan.com" type="email" autocomplete="email"/>
+                </div>
+                <p class="error-msg text-body-sm text-error ml-xs" id="error-email">Format email tidak valid</p>
+            </div>
+            
+            <!-- Password Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-base">
+                <div class="space-y-xs">
+                    <label class="font-label-caps text-label-caps text-on-surface-variant ml-xs" for="password">Kata Sandi</label>
+                    <div class="relative">
+                        <span class="absolute left-md top-1/2 -translate-y-1/2 material-symbols-outlined text-outline icon-indicator">lock_open</span>
+                        <input class="w-full pl-xl pr-xl py-sm bg-surface-container-lowest border-[1.5px] border-outline-variant/30 rounded-[10px] focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none text-on-surface font-body-md" id="password" name="password" placeholder="••••••••" type="password" autocomplete="new-password"/>
+                        <!-- Toggle Password Visibility -->
+                        <button type="button" class="absolute right-md top-1/2 -translate-y-1/2 material-symbols-outlined text-outline hover:text-on-surface transition-colors" id="togglePassword" tabindex="-1">visibility_off</button>
+                    </div>
+                    <!-- Password Strength Indicator -->
+                    <div class="flex gap-1 mt-1" id="password-strength">
+                        <div class="strength-bar flex-1 bg-outline-variant/30 rounded-full"></div>
+                        <div class="strength-bar flex-1 bg-outline-variant/30 rounded-full"></div>
+                        <div class="strength-bar flex-1 bg-outline-variant/30 rounded-full"></div>
+                        <div class="strength-bar flex-1 bg-outline-variant/30 rounded-full"></div>
+                    </div>
+                    <p class="error-msg text-body-sm text-error ml-xs" id="error-password">Minimal 8 karakter, huruf besar, kecil, dan angka</p>
+                </div>
+                <div class="space-y-xs">
+                    <label class="font-label-caps text-label-caps text-on-surface-variant ml-xs" for="confirm_password">Konfirmasi Kata Sandi</label>
+                    <div class="relative">
+                        <span class="absolute left-md top-1/2 -translate-y-1/2 material-symbols-outlined text-outline icon-indicator">lock</span>
+                        <input class="w-full pl-xl pr-xl py-sm bg-surface-container-lowest border-[1.5px] border-outline-variant/30 rounded-[10px] focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none text-on-surface font-body-md" id="confirm_password" name="confirm_password" placeholder="••••••••" type="password" autocomplete="new-password"/>
+                        <button type="button" class="absolute right-md top-1/2 -translate-y-1/2 material-symbols-outlined text-outline hover:text-on-surface transition-colors" id="toggleConfirmPassword" tabindex="-1">visibility_off</button>
+                    </div>
+                    <p class="error-msg text-body-sm text-error ml-xs" id="error-confirm_password">Kata sandi tidak cocok</p>
+                </div>
+            </div>
+            
+            <!-- Terms -->
+            <div class="space-y-xs">
+                <div class="flex items-start gap-sm py-xs">
+                    <input class="w-5 h-5 mt-0.5 rounded border-outline-variant text-secondary focus:ring-secondary transition-all flex-shrink-0" id="terms" name="terms" type="checkbox"/>
+                    <label class="font-body-sm text-body-sm text-on-surface-variant" for="terms">
+                        Saya setuju dengan <a class="text-primary font-semibold hover:underline" href="#">Ketentuan Layanan</a> dan <a class="text-primary font-semibold hover:underline" href="#">Kebijakan Privasi</a>.
+                    </label>
+                </div>
+                <p class="error-msg text-body-sm text-error ml-xs" id="error-terms">Anda harus menyetujui ketentuan layanan</p>
+            </div>
+            
+            <!-- Global Error Message -->
+            <div class="error-msg bg-error-container border border-error/20 rounded-[10px] p-md flex items-start gap-sm" id="global-error">
+                <span class="material-symbols-outlined text-error flex-shrink-0">error</span>
+                <p class="text-body-sm text-on-error-container" id="global-error-text">Terjadi kesalahan. Silakan periksa kembali data Anda.</p>
+            </div>
+            
+            <!-- CTA Button -->
+            <button id="submitBtn" class="w-full bg-secondary text-white font-headline-md text-headline-md py-sm rounded-[10px] shadow-lg shadow-secondary/20 hover:bg-secondary/90 active:scale-[0.98] transition-all flex items-center justify-center gap-sm mt-md" type="submit">
+                <span id="btnText">Buat Akun</span>
+                <span class="material-symbols-outlined" id="btnIcon">arrow_forward</span>
+            </button>
+        </form>
+        
+        <!-- Divider -->
+        <div class="relative my-lg">
+            <div class="absolute inset-0 flex items-center">
+                <span class="w-full border-t border-outline-variant/30"></span>
+            </div>
+            <div class="relative flex justify-center text-xs">
+                <span class="px-md bg-surface text-on-surface-variant font-label-caps">Atau daftar dengan</span>
+            </div>
+        </div>
+        
+        <!-- Social Grid -->
+        <div class="grid grid-cols-2 gap-base">
+            <button class="flex items-center justify-center gap-sm px-md py-sm bg-surface-container-lowest border-[1.5px] border-outline-variant/30 rounded-[10px] font-body-md hover:bg-surface-container-low transition-colors" type="button">
+                <img alt="Google" class="w-5 h-5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIi4vzLYsMj3cY-gAYWjW3LXYyly7xxlx4ZOzvnI6XCLdhzjeifb3MQcR7Fr_KLJOQc1HcHVifQCpBVwVZNcZ4SPudUg6gcTaqsh1tyLp8rGpR7oBDFJ-n305v6wpyBXn0qqoNid-SPSYLDnrV-a7W30J2Ht5GbCMsjdLlgJR-QjSITYBBQn-Fy-NCEM1SN3lzie2VnyR0Zs3mj1UoSNufAXZiQxotvhAenIph_Fyf7jN7pbMwy7M2tHIlB2IVT6W3_OEq92aw6mmU"/>
+                Google
+            </button>
+            <button class="flex items-center justify-center gap-sm px-md py-sm bg-surface-container-lowest border-[1.5px] border-outline-variant/30 rounded-[10px] font-body-md hover:bg-surface-container-low transition-colors" type="button">
+                <span class="material-symbols-outlined text-[#1877F2]" style="font-variation-settings: 'FILL' 1;">face_nod</span>
+                Facebook
+            </button>
+        </div>
+        
+        <!-- Footer Link -->
+        <p class="text-center mt-xl font-body-md text-on-surface-variant">
+            Sudah punya akun? 
+            <a class="text-primary font-bold hover:underline transition-all" href="masuk.html">Masuk</a>
+        </p>
+    </div>
+</section>
+</main>
+
+<script>
+    // ==================== VALIDATION ENGINE ====================
+    const form = document.getElementById('signupForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const btnText = document.getElementById('btnText');
+    const btnIcon = document.getElementById('btnIcon');
+    
+    // Field references
+    const fields = {
+        full_name: document.getElementById('full_name'),
+        email: document.getElementById('email'),
+        password: document.getElementById('password'),
+        confirm_password: document.getElementById('confirm_password'),
+        terms: document.getElementById('terms')
+    };
+    
+    // Validation rules
+    const validators = {
+        full_name: (value) => {
+            if (!value || value.trim().length < 3) return 'Nama lengkap minimal 3 karakter';
+            if (!/^[a-zA-Z\s'-]+$/.test(value)) return 'Nama hanya boleh huruf, spasi, dan tanda hubung';
+            return null;
+        },
+        email: (value) => {
+            if (!value) return 'Email wajib diisi';
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(value)) return 'Format email tidak valid';
+            return null;
+        },
+        password: (value) => {
+            if (!value) return 'Kata sandi wajib diisi';
+            if (value.length < 8) return 'Minimal 8 karakter';
+            if (!/[A-Z]/.test(value)) return 'Harus ada huruf besar';
+            if (!/[a-z]/.test(value)) return 'Harus ada huruf kecil';
+            if (!/[0-9]/.test(value)) return 'Harus ada angka';
+            return null;
+        },
+        confirm_password: (value) => {
+            if (!value) return 'Konfirmasi kata sandi wajib diisi';
+            if (value !== fields.password.value) return 'Kata sandi tidak cocok';
+            return null;
+        },
+        terms: (checked) => {
+            if (!checked) return 'Anda harus menyetujui ketentuan layanan';
+            return null;
+        }
+    };
+    
+    // Track validation state
+    const fieldState = {
+        full_name: false,
+        email: false,
+        password: false,
+        confirm_password: false,
+        terms: false
+    };
+    
+    // Show/hide error for specific field
+    function showFieldError(fieldName, message) {
+        const field = fields[fieldName];
+        const errorEl = document.getElementById(`error-${fieldName}`);
+        const parent = field.closest('.space-y-xs') || field.closest('.flex');
+        const inputWrapper = parent.querySelector('.relative');
+        const input = inputWrapper ? inputWrapper.querySelector('input') : field;
+        
+        if (message) {
+            errorEl.textContent = message;
+            errorEl.classList.add('show');
+            input.classList.add('input-error');
+            input.classList.remove('input-success');
+            
+            // Shake animation
+            parent.classList.remove('shake-error');
+            void parent.offsetWidth; // Trigger reflow
+            parent.classList.add('shake-error');
+            
+            fieldState[fieldName] = false;
+        } else {
+            errorEl.classList.remove('show');
+            input.classList.remove('input-error');
+            input.classList.add('input-success');
+            fieldState[fieldName] = true;
+        }
+    }
+    
+    // Validate single field
+    function validateField(fieldName) {
+        const field = fields[fieldName];
+        let value;
+        if (fieldName === 'terms') {
+            value = field.checked;
+        } else {
+            value = field.value.trim();
+        }
+        
+        const error = validators[fieldName](value);
+        showFieldError(fieldName, error);
+        return !error;
+    }
+    
+    // Validate all fields
+    function validateAll() {
+        let allValid = true;
+        Object.keys(fields).forEach(fieldName => {
+            const valid = validateField(fieldName);
+            if (!valid) allValid = false;
+        });
+        return allValid;
+    }
+    
+    // Password strength checker
+    function checkPasswordStrength(password) {
+        const bars = document.querySelectorAll('#password-strength .strength-bar');
+        let strength = 0;
+        
+        if (password.length >= 8) strength++;
+        if (/[A-Z]/.test(password) && /[a-z]/.test(password)) strength++;
+        if (/[0-9]/.test(password)) strength++;
+        if (/[^A-Za-z0-9]/.test(password)) strength++;
+        
+        const colors = ['bg-outline-variant/30', 'bg-error', 'bg-secondary', 'bg-primary-fixed-dim', 'bg-primary'];
+        
+        bars.forEach((bar, index) => {
+            bar.className = `strength-bar flex-1 rounded-full ${index < strength ? colors[strength] : 'bg-outline-variant/30'}`;
+        });
+    }
+    
+    // Real-time validation listeners
+    fields.full_name.addEventListener('blur', () => validateField('full_name'));
+    fields.full_name.addEventListener('input', () => {
+        if (fields.full_name.classList.contains('input-error')) {
+            validateField('full_name');
+        }
+    });
+    
+    fields.email.addEventListener('blur', () => validateField('email'));
+    fields.email.addEventListener('input', () => {
+        if (fields.email.classList.contains('input-error')) {
+            validateField('email');
+        }
+    });
+    
+    fields.password.addEventListener('blur', () => validateField('password'));
+    fields.password.addEventListener('input', () => {
+        checkPasswordStrength(fields.password.value);
+        validateField('password');
+        // Also re-validate confirm password if it has value
+        if (fields.confirm_password.value) {
+            validateField('confirm_password');
+        }
+    });
+    
+    fields.confirm_password.addEventListener('blur', () => validateField('confirm_password'));
+    fields.confirm_password.addEventListener('input', () => {
+        if (fields.confirm_password.classList.contains('input-error')) {
+            validateField('confirm_password');
+        }
+    });
+    
+    fields.terms.addEventListener('change', () => validateField('terms'));
+    
+    // Toggle password visibility
+    document.getElementById('togglePassword').addEventListener('click', function() {
+        const type = fields.password.type === 'password' ? 'text' : 'password';
+        fields.password.type = type;
+        this.textContent = type === 'password' ? 'visibility_off' : 'visibility';
+    });
+    
+    document.getElementById('toggleConfirmPassword').addEventListener('click', function() {
+        const type = fields.confirm_password.type === 'password' ? 'text' : 'password';
+        fields.confirm_password.type = type;
+        this.textContent = type === 'password' ? 'visibility_off' : 'visibility';
+    });
+    
+    // Icon focus effects
+    const inputs = document.querySelectorAll('input:not([type="checkbox"])');
+    inputs.forEach(input => {
+        input.addEventListener('focus', () => {
+            const parent = input.closest('.relative');
+            if (parent) {
+                const icon = parent.querySelector('.icon-indicator');
+                if (icon) icon.classList.add('text-primary');
+            }
+        });
+        input.addEventListener('blur', () => {
+            const parent = input.closest('.relative');
+            if (parent) {
+                const icon = parent.querySelector('.icon-indicator');
+                if (icon) icon.classList.remove('text-primary');
+            }
+        });
+    });
+    
+    // Form submission handler
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        // Hide global error
+        document.getElementById('global-error').classList.remove('show');
+        
+        // Validate all fields
+        const isValid = validateAll();
+        
+        if (!isValid) {
+            // Focus first invalid field
+            const firstInvalid = Object.keys(fieldState).find(key => !fieldState[key]);
+            if (firstInvalid) {
+                fields[firstInvalid].focus();
+            }
+            return; // STOP - Don't proceed if validation fails
+        }
+        
+        // ALL VALID - Show loading state
+        submitBtn.disabled = true;
+        submitBtn.classList.add('btn-disabled');
+        btnText.textContent = 'Memverifikasi...';
+        btnIcon.innerHTML = 'progress_activity';
+        btnIcon.classList.add('animate-spin');
+        
+        try {
+            // Simulate API call / verification (replace with actual fetch)
+            await simulateRegistration();
+            
+            // Success - redirect
+            btnText.textContent = 'Berhasil!';
+            btnIcon.innerHTML = 'check_circle';
+            btnIcon.classList.remove('animate-spin');
+            
             setTimeout(() => {
                 window.location.href = 'preferensi.html';
+            }, 800);
+            
+        } catch (error) {
+            // Show global error
+            const globalError = document.getElementById('global-error');
+            const globalErrorText = document.getElementById('global-error-text');
+            globalErrorText.textContent = error.message || 'Terjadi kesalahan. Silakan coba lagi.';
+            globalError.classList.add('show');
+            
+            // Reset button
+            submitBtn.disabled = false;
+            submitBtn.classList.remove('btn-disabled');
+            btnText.textContent = 'Buat Akun';
+            btnIcon.innerHTML = 'arrow_forward';
+            btnIcon.classList.remove('animate-spin');
+        }
+    });
+    
+    // Simulate registration API (replace with actual endpoint)
+    function simulateRegistration() {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                // Simulate 95% success rate for demo
+                if (Math.random() > 0.05) {
+                    resolve({ success: true });
+                } else {
+                    reject(new Error('Email sudah terdaftar. Silakan gunakan email lain.'));
+                }
             }, 1500);
         });
-    </script>
+    }
+    
+    // Prevent form submission on Enter key for better UX (optional)
+    form.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter' && e.target.tagName !== 'BUTTON') {
+            // Let default behavior handle it, but validation will catch issues
+        }
+    });
+</script>
 </body>
-</html>
+</html>'''
