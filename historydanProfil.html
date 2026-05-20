@@ -1,477 +1,426 @@
 <!DOCTYPE html>
-
-<html class="light" lang="id"><head>
+<html lang="id">
+<head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>NutriPlan | Riwayat &amp; Profil</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<title>Profil & Riwayat | NutriPlan</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script src="nutriplan-store.js"></script>
 <style>
-        body {
-            background-color: #fff8f5;
-            color: #27180a;
-            -webkit-font-smoothing: antialiased;
-        }
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        .glass-header {
-            backdrop-filter: blur(12px);
-        }
-        .botanical-bg {
-            background-image: radial-gradient(circle at 2px 2px, rgba(58, 107, 53, 0.05) 1px, transparent 0);
-            background-size: 24px 24px;
-        }
-    </style>
-<script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    "colors": {
-                        "primary-fixed": "#b9f1ad",
-                        "primary-container": "#3a6b35",
-                        "on-tertiary-container": "#cae2c0",
-                        "surface-tint": "#386933",
-                        "inverse-on-surface": "#ffeee1",
-                        "on-primary-fixed": "#002202",
-                        "outline": "#72796e",
-                        "secondary": "#924c00",
-                        "on-primary-container": "#b2eaa6",
-                        "inverse-surface": "#3e2d1d",
-                        "tertiary-fixed-dim": "#b5cdac",
-                        "surface-variant": "#fbddc5",
-                        "outline-variant": "#c1c9bb",
-                        "error-container": "#ffdad6",
-                        "on-secondary-fixed": "#2f1500",
-                        "inverse-primary": "#9ed493",
-                        "error": "#ba1a1a",
-                        "primary-fixed-dim": "#9ed493",
-                        "surface-container-lowest": "#ffffff",
-                        "surface-dim": "#f2d5bd",
-                        "on-tertiary-fixed-variant": "#374c32",
-                        "surface-bright": "#fff8f5",
-                        "surface-container-highest": "#fbddc5",
-                        "on-primary": "#ffffff",
-                        "surface-container": "#ffeada",
-                        "secondary-fixed-dim": "#ffb77f",
-                        "on-tertiary-fixed": "#0d200a",
-                        "surface-container-low": "#fff1e8",
-                        "on-primary-fixed-variant": "#20511e",
-                        "on-secondary-container": "#6a3600",
-                        "on-error": "#ffffff",
-                        "tertiary": "#394e34",
-                        "surface-container-high": "#ffe3cd",
-                        "on-secondary": "#ffffff",
-                        "secondary-container": "#fe973c",
-                        "tertiary-fixed": "#d1eac7",
-                        "on-surface-variant": "#42493f",
-                        "secondary-fixed": "#ffdcc4",
-                        "tertiary-container": "#50664a",
-                        "on-background": "#27180a",
-                        "background": "#fff8f5",
-                        "on-surface": "#27180a",
-                        "surface": "#fff8f5",
-                        "on-tertiary": "#ffffff",
-                        "on-secondary-fixed-variant": "#6f3800",
-                        "on-error-container": "#93000a",
-                        "primary": "#22521f"
-                    },
-                    "borderRadius": {
-                        "DEFAULT": "0.25rem",
-                        "lg": "16px",
-                        "xl": "24px",
-                        "full": "9999px"
-                    },
-                    "spacing": {
-                        "sm": "12px",
-                        "xl": "80px",
-                        "md": "24px",
-                        "xs": "4px",
-                        "container-max": "1200px",
-                        "lg": "48px",
-                        "base": "8px",
-                        "gutter": "24px"
-                    },
-                    "fontFamily": {
-                        "headline-lg": ["Playfair Display"],
-                        "data-mono": ["JetBrains Mono"],
-                        "label-caps": ["Plus Jakarta Sans"],
-                        "body-sm": ["Plus Jakarta Sans"],
-                        "body-md": ["Plus Jakarta Sans"],
-                        "body-lg": ["Plus Jakarta Sans"],
-                        "headline-md": ["Playfair Display"],
-                        "display-lg": ["Playfair Display"]
-                    },
-                    "fontSize": {
-                        "headline-lg": ["32px", {"lineHeight": "1.3", "fontWeight": "700"}],
-                        "data-mono": ["14px", {"lineHeight": "1", "fontWeight": "500"}],
-                        "label-caps": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "700"}],
-                        "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
-                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
-                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
-                        "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
-                        "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}]
-                    }
-                }
-            }
-        }
-    </script>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Plus Jakarta Sans', sans-serif; background: #fff8f5; color: #27180a; }
+:root {
+  --primary: #22521f; --primary-container: #3a6b35;
+  --primary-fixed: #b9f1ad; --secondary: #924c00;
+  --secondary-container: #fe973c; --on-secondary-container: #6a3600;
+  --surface: #fff8f5; --surface-low: #fff1e8; --surface-card: #fff;
+  --outline-v: #c1c9bb; --on-surface-v: #42493f; --error: #ba1a1a;
+}
+.app { display: grid; grid-template-columns: 240px 1fr; min-height: 100vh; }
+.sidebar { background: var(--primary-container); display: flex; flex-direction: column; padding: 24px 0; position: sticky; top: 0; height: 100vh; overflow-y: auto; }
+.sidebar-brand { padding: 0 24px 24px; border-bottom: 1px solid rgba(255,255,255,.1); }
+.sidebar-brand h2 { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--primary-fixed); font-style: italic; }
+.nav-item { display: flex; align-items: center; gap: 12px; padding: 10px 14px; margin: 0 12px 2px; border-radius: 10px; font-size: 11px; font-weight: 700; letter-spacing: .08em; color: rgba(185,241,173,.65); cursor: pointer; transition: all .18s; text-transform: uppercase; text-decoration: none; }
+.nav-item:hover { background: rgba(255,255,255,.08); color: var(--primary-fixed); }
+.nav-item.active { background: rgba(185,241,173,.15); color: var(--primary-fixed); border-left: 3px solid var(--primary-fixed); padding-left: 11px; }
+.nav-item i { font-size: 18px; }
+.sidebar-user { margin: 16px 12px 0; padding: 14px; background: rgba(255,255,255,.07); border-radius: 12px; display: flex; align-items: center; gap: 10px; }
+.sidebar-user img { width: 38px; height: 38px; border-radius: 50%; border: 2px solid rgba(185,241,173,.3); }
+.sidebar-user .uname { font-size: 13px; font-weight: 600; color: var(--primary-fixed); }
+.sidebar-user .utag { font-size: 10px; color: rgba(185,241,173,.5); text-transform: uppercase; }
+.main { display: flex; flex-direction: column; }
+.topbar { position: sticky; top: 0; z-index: 40; background: rgba(255,248,245,.92); backdrop-filter: blur(12px); display: flex; justify-content: space-between; align-items: center; padding: 12px 32px; border-bottom: 1px solid rgba(193,201,187,.2); }
+.topbar h2 { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--primary); }
+.content { padding: 32px; max-width: 1100px; width: 100%; margin: 0 auto; display: flex; flex-direction: column; gap: 32px; }
+.card { background: var(--surface-card); border-radius: 20px; border: 1px solid rgba(193,201,187,.3); padding: 28px; box-shadow: 0 2px 10px rgba(45,106,79,.05); }
+.card-title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--primary); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-group label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--on-surface-v); }
+.form-group input, .form-group select { padding: 10px 14px; border: 1.5px solid var(--outline-v); border-radius: 10px; font-size: 14px; font-family: 'Plus Jakarta Sans', sans-serif; transition: border-color .18s; background: #fff; }
+.form-group input:focus, .form-group select:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(34,82,31,.1); }
+.btn-save { background: var(--primary); color: #fff; padding: 12px 24px; border-radius: 12px; font-size: 12px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; border: none; cursor: pointer; transition: all .18s; display: inline-flex; align-items: center; gap: 8px; margin-top: 8px; }
+.btn-save:hover { opacity: .9; transform: translateY(-1px); }
+.btn-danger { background: transparent; color: var(--error); padding: 10px 20px; border-radius: 10px; font-size: 12px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; border: 1.5px solid rgba(186,26,26,.3); cursor: pointer; transition: all .18s; display: inline-flex; align-items: center; gap: 8px; }
+.btn-danger:hover { background: rgba(186,26,26,.08); }
+
+/* History cards */
+.history-list { display: flex; flex-direction: column; gap: 14px; }
+.history-card { background: var(--surface-card); border-radius: 16px; border: 1px solid rgba(193,201,187,.3); padding: 18px 20px; display: flex; align-items: center; gap: 20px; box-shadow: 0 2px 8px rgba(45,106,79,.05); transition: all .2s; }
+.history-card:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(45,106,79,.08); }
+.history-info { flex: 1; min-width: 0; }
+.h-title { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; color: var(--primary); margin-bottom: 4px; }
+.h-meta { font-size: 12px; color: var(--on-surface-v); margin-bottom: 8px; }
+.h-stats { display: flex; gap: 16px; font-size: 12px; font-weight: 600; color: var(--on-surface-v); flex-wrap: wrap; }
+.status-chip { font-size: 9px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: 3px 10px; border-radius: 999px; }
+.status-aktif { background: #d1eac7; color: #1B4332; }
+.status-selesai { background: #ffe3cd; color: #6a3600; }
+.h-actions { display: flex; gap: 8px; flex-shrink: 0; flex-wrap: wrap; justify-content: flex-end; }
+.btn-sm { padding: 7px 14px; border-radius: 8px; font-size: 11px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; cursor: pointer; border: none; transition: all .18s; display: flex; align-items: center; gap: 4px; }
+.btn-view { background: rgba(34,82,31,.1); color: var(--primary); }
+.btn-view:hover { background: rgba(34,82,31,.2); }
+.btn-del { background: rgba(186,26,26,.1); color: var(--error); }
+.btn-del:hover { background: rgba(186,26,26,.2); }
+.btn-use { background: var(--primary); color: #fff; }
+.btn-use:hover { opacity: .9; }
+
+/* Avatar area */
+.avatar-area { display: flex; align-items: center; gap: 20px; margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid rgba(193,201,187,.3); }
+.avatar-area img { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; border: 3px solid var(--primary-fixed); }
+.avatar-info h3 { font-size: 18px; font-weight: 700; color: var(--primary); }
+.avatar-info p { font-size: 13px; color: var(--on-surface-v); }
+
+@media (max-width: 768px) {
+  .app { grid-template-columns: 1fr; }
+  .sidebar { display: none; }
+  .form-grid { grid-template-columns: 1fr; }
+}
+</style>
 </head>
-<body class="bg-surface font-body-md text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed-variant">
-<!-- Sidebar Navigation Shell -->
-<aside class="fixed left-0 top-0 h-full w-[240px] bg-primary-container text-on-primary-container flex flex-col p-md gap-base shadow-lg shadow-primary/10 z-50">
-<div class="mb-lg px-xs">
-<h1 class="font-headline-md text-headline-md font-bold text-on-primary-container">NutriPlan</h1>
-<p class="font-label-caps text-label-caps opacity-80">Nutrisi Praktis</p>
-</div>
-<nav class="flex flex-col gap-xs flex-grow">
-<a class="flex items-center gap-sm p-sm text-on-primary-container/80 hover:bg-primary/20 hover:text-on-primary-container rounded-lg transition-colors duration-200" href="#">
-<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
-<span class="font-label-caps text-label-caps">Dasbor</span>
-</a>
-<a class="flex items-center gap-sm p-sm text-on-primary-container/80 hover:bg-primary/20 hover:text-on-primary-container rounded-lg transition-colors duration-200" href="#">
-<span class="material-symbols-outlined" data-icon="tune">tune</span>
-<span class="font-label-caps text-label-caps">Preferensi</span>
-</a>
-<a class="flex items-center gap-sm p-sm text-on-primary-container/80 hover:bg-primary/20 hover:text-on-primary-container rounded-lg transition-colors duration-200" href="#">
-<span class="material-symbols-outlined" data-icon="restaurant_menu">restaurant_menu</span>
-<span class="font-label-caps text-label-caps">Rencana Makan</span>
-</a>
-<!-- Active State: History -->
-<a class="flex items-center gap-sm p-sm bg-secondary-container text-on-secondary-container rounded-lg font-bold transition-all duration-200" href="javascript:void(0)" id="nav-history" onclick="switchView('history')">
-<span class="material-symbols-outlined" data-icon="history">history</span>
-<span class="font-label-caps text-label-caps">Riwayat</span>
-</a>
-<!-- State: Profile -->
-<a class="flex items-center gap-sm p-sm text-on-primary-container/80 hover:bg-primary/20 hover:text-on-primary-container rounded-lg transition-colors duration-200" href="javascript:void(0)" id="nav-profile" onclick="switchView('profile')">
-<span class="material-symbols-outlined" data-icon="person">person</span>
-<span class="font-label-caps text-label-caps">Profil</span>
-</a>
-</nav>
-<div class="mt-auto pt-md border-t border-white/10 flex items-center gap-sm px-xs">
-<img alt="Foto Profil Zaza" class="w-10 h-10 rounded-full border-2 border-primary-fixed" data-alt="A portrait of a young professional woman with a warm, friendly smile, captured in soft, natural morning light. She has dark hair and is wearing a minimalist, earth-toned outfit. The background is a blurred, bright office space with subtle green botanical plants, maintaining a clean, modern, light-mode professional aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1gvkKnvAnMUXe7YEwCZ0Bt7AYnAf_ff8RckTwor_D0o-ekX_bICjCGXJP2R7aQr7qvUn5O5xgF83QASR40INI27KBCjUDq1YgmCcV2syFJnjnXvgqYE0tgbFMs7Sy7YYckouxQHEOZwi1jYR5S1KiAtJeATM6Fs1GMzgSTVhjdr2fdWGEQuIn0Ynwyn-9Foan_mSKfSuJRLJMC_GN6pdrnaVss_-lZKINGhzlIimPgZmx1eTavaPlSdLORT_IvWM3sNnWB5TLtMyM"/>
-<div class="overflow-hidden">
-<p class="font-label-caps text-label-caps truncate font-bold">Zaza Mandir</p>
-<p class="text-[10px] opacity-70 truncate font-data-mono uppercase">Anggota Premium</p>
-</div>
-</div>
-</aside>
-<!-- Top AppBar Shell -->
-<header class="fixed top-0 left-[240px] right-0 bg-surface/80 glass-header flex justify-between items-center px-md py-sm border-b border-outline-variant/20 z-40">
-<div class="flex items-center gap-sm text-primary">
-<span class="material-symbols-outlined text-primary" data-icon="calendar_today">calendar_today</span>
-<h2 class="font-headline-md text-headline-md text-primary" id="app-bar-title">Selamat pagi, Zaza! 🌿</h2>
-</div>
-<div class="flex gap-md">
-<button class="text-on-surface-variant hover:text-primary transition-colors duration-200">
-<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
-</button>
-<button class="text-on-surface-variant hover:text-primary transition-colors duration-200">
-<span class="material-symbols-outlined" data-icon="search">search</span>
-</button>
-</div>
-</header>
-<!-- Main Content Canvas -->
-<main class="ml-[240px] pt-[80px] min-h-screen botanical-bg p-lg">
-<!-- SECTION: HISTORY PAGE -->
-<section class="max-w-container-max mx-auto" id="view-history">
-<div class="flex justify-between items-end mb-lg">
-<div>
-<h3 class="font-headline-lg text-headline-lg text-primary mb-xs">Riwayat Makan Anda</h3>
-<p class="font-body-md text-on-surface-variant">Tinjau dan gunakan kembali rencana nutrisi Anda sebelumnya.</p>
-</div>
-<div class="flex gap-sm">
-<button class="px-md py-xs rounded-full border-2 border-primary text-primary font-label-caps text-label-caps hover:bg-primary/5 transition-colors">
-                    Ekspor CSV
-                </button>
-<button class="px-md py-xs rounded-full bg-secondary-container text-on-secondary-container font-label-caps text-label-caps shadow-sm hover:opacity-90 transition-opacity">
-                    Filter Berdasarkan Tanggal
-                </button>
-</div>
-</div>
-<!-- History Cards Stack -->
-<div class="grid gap-md">
-<!-- Card 1 -->
-<div class="bg-surface-container-lowest p-md rounded-xl border border-outline-variant/30 flex flex-col md:flex-row items-center gap-md shadow-[4px_12px_24px_rgba(58,107,53,0.06)] hover:shadow-[8px_16px_32px_rgba(58,107,53,0.12)] transition-all duration-300">
-<div class="w-full md:w-32 h-32 rounded-lg overflow-hidden shrink-0">
-<img alt="Healthy Bowl" class="w-full h-full object-cover" data-alt="A top-down vibrant culinary photograph of a diverse Mediterranean grain bowl filled with colorful ingredients like roasted chickpeas, fresh kale, sliced radishes, and creamy avocado. The lighting is bright and airy, emphasizing the natural textures and organic greens. The background is a clean, minimalist off-white surface that aligns with a healthy, organized nutritional lifestyle." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9ojrIImlQPF_Be0ps3yhMS_EIMMFOwHN1QjNLz42vl1xkCB5o1RvSYGWm5GNQxXN8VaO4NHwO0YgBsR5dtAbKywOVgm0LkQCfwbRk4qGZ9upw9gVgAQjQUQ91_jSVEvkfnWTB7MgrJGhucr8UXmTmTdxyagYSe5pejqQkXDuf8BuRksWth2HfUYDNtzd6GyePMAcOxFlRGHZP5GcANz1EB3AykD94owR34R6tdBpx0k8p0RV9yBNEUos7tgihQd3SVFMwB4S2g_Jc"/>
-</div>
-<div class="flex-grow">
-<div class="flex items-center gap-sm mb-xs">
-<span class="px-sm py-xs bg-secondary rounded-full text-white font-data-mono text-[10px] uppercase">Rencana Aktif</span>
-<span class="text-on-surface-variant font-label-caps text-label-caps">21 Okt - 27 Okt, 2024</span>
-</div>
-<h4 class="font-headline-md text-headline-md mb-xs">Minggu Pekerja Meja Tinggi Protein</h4>
-<p class="font-body-sm text-body-sm text-on-surface-variant mb-base">Fokus: Kenyang &amp; Kejernihan Mental untuk jadwal 9-5.</p>
-<div class="flex gap-md">
-<div class="flex items-center gap-xs">
-<span class="material-symbols-outlined text-primary text-sm" data-icon="bolt">bolt</span>
-<span class="font-data-mono text-data-mono text-primary">1.850 kkal/rata-rata</span>
-</div>
-<div class="flex items-center gap-xs">
-<span class="material-symbols-outlined text-secondary text-sm" data-icon="payments">payments</span>
-<span class="font-data-mono text-data-mono text-secondary">Rp 450.000 total</span>
-</div>
-</div>
-</div>
-<div class="shrink-0 flex gap-sm">
-<button class="p-sm text-on-surface-variant hover:text-primary transition-colors">
-<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
-</button>
-<button class="bg-[#D4761A] hover:bg-[#B66516] text-white px-md py-sm rounded-lg font-label-caps text-label-caps transition-all active:scale-95 flex items-center gap-xs">
-<span class="material-symbols-outlined text-base" data-icon="refresh">refresh</span>
-                        Gunakan Lagi
-                    </button>
-</div>
-</div>
-<!-- Card 2 -->
-<div class="bg-surface-container-lowest p-md rounded-xl border border-outline-variant/30 flex flex-col md:flex-row items-center gap-md shadow-[4px_12px_24px_rgba(58,107,53,0.06)] hover:shadow-[8px_16px_32px_rgba(58,107,53,0.12)] transition-all duration-300">
-<div class="w-full md:w-32 h-32 rounded-lg overflow-hidden shrink-0">
-<img alt="Keto Plan" class="w-full h-full object-cover" data-alt="A clean, professionally styled meal prep photo featuring glass containers filled with organized portions of grilled salmon, asparagus, and quinoa. The aesthetic is extremely neat and methodical, with soft natural light highlighting the fresh ingredients. The composition uses a minimalist light-mode palette with subtle green accents from the vegetables, suggesting a structured and healthy approach to nutrition." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-XwrPLR2O3ADg1K6_cnwhsjv2_iaGhXks-a3Gc5o8fTpPCva-eZciWuC4hV4d0SYMkjwknl-stUCR-kEjW8an_d4UUsH8JJOdfAc0b8DbFDxuc5nSMzNTO5I0SKyqVriy9DC4oXz4uePFfFU7vsKA5bYeLGYVapo-CELs2ot5cM1-uw6ZvP-l6B061DrsWLuXyOnnU2VjO5aWNilNpFF5ZeQaFV5fOgerH7eh3wwNBdIIXsWokaIRFEUWxHDFXqZmLPSv03XbLIlb"/>
-</div>
-<div class="flex-grow">
-<div class="flex items-center gap-sm mb-xs">
-<span class="px-sm py-xs bg-outline-variant rounded-full text-on-surface-variant font-data-mono text-[10px] uppercase">Selesai</span>
-<span class="text-on-surface-variant font-label-caps text-label-caps">14 Okt - 20 Okt, 2024</span>
-</div>
-<h4 class="font-headline-md text-headline-md mb-xs">Mahasiswa Hemat Rendah Karbohidrat</h4>
-<p class="font-body-sm text-body-sm text-on-surface-variant mb-base">Fokus: Bahan lokal ramah keto yang terjangkau.</p>
-<div class="flex gap-md">
-<div class="flex items-center gap-xs">
-<span class="material-symbols-outlined text-primary text-sm" data-icon="bolt">bolt</span>
-<span class="font-data-mono text-data-mono text-primary">1.600 kkal/rata-rata</span>
-</div>
-<div class="flex items-center gap-xs">
-<span class="material-symbols-outlined text-secondary text-sm" data-icon="payments">payments</span>
-<span class="font-data-mono text-data-mono text-secondary">Rp 320.000 total</span>
-</div>
-</div>
-</div>
-<div class="shrink-0 flex gap-sm">
-<button class="p-sm text-on-surface-variant hover:text-primary transition-colors">
-<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
-</button>
-<button class="bg-[#D4761A] hover:bg-[#B66516] text-white px-md py-sm rounded-lg font-label-caps text-label-caps transition-all active:scale-95 flex items-center gap-xs">
-<span class="material-symbols-outlined text-base" data-icon="refresh">refresh</span>
-                        Gunakan Lagi
-                    </button>
-</div>
-</div>
-<!-- Empty State Hidden by Default in Demo -->
-<div class="hidden flex flex-col items-center justify-center py-[100px] text-center" id="history-empty-state">
-<div class="w-24 h-24 bg-tertiary-fixed rounded-full flex items-center justify-center mb-md">
-<span class="material-symbols-outlined text-[48px] text-primary" data-icon="soup_kitchen">soup_kitchen</span>
-</div>
-<h4 class="font-headline-md text-headline-md text-primary mb-xs">Belum ada rencana?</h4>
-<p class="font-body-md text-on-surface-variant max-w-[300px]">Mulailah perjalanan nutrisi Anda dengan membuat rencana makan pertama yang dipersonalisasi.</p>
-<button class="mt-md px-lg py-sm bg-primary text-white rounded-full font-label-caps text-label-caps hover:opacity-90">Buat Rencana Baru</button>
-</div>
-</div>
-</section>
-<!-- SECTION: PROFILE PAGE -->
-<section class="hidden max-w-container-max mx-auto" id="view-profile">
-<div class="grid grid-cols-1 md:grid-cols-12 gap-lg">
-<!-- Left Column: Avatar & Stats -->
-<div class="md:col-span-4 space-y-md">
-<div class="bg-surface-container-lowest p-lg rounded-xl border border-outline-variant/30 text-center shadow-sm">
-<div class="relative w-32 h-32 mx-auto mb-md">
-<img alt="Profil" class="w-full h-full rounded-full border-4 border-primary-fixed object-cover" data-alt="A portrait of a young professional woman with a warm, friendly smile, captured in soft, natural morning light. She has dark hair and is wearing a minimalist, earth-toned outfit. The background is a blurred, bright office space with subtle green botanical plants, maintaining a clean, modern, light-mode professional aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFtl3A0kbbJMotRav7Rofsfj62E21LmEhp0Bh0ldvh2q62NrMJTi9lR8CVIw3M9ZmbZxu8VAX2qQMveJElhFbs-6uWU56102BxxuDh6bqCHib3DjX6rdxEh_CCCAbyp5NHgZ9qrKhVVveWFjfVIKSVXXIavhalk1WukmdcvjCFKCe8UeZQH0vrRKspGEgMa5cT0Bc15hbzm3gsZk7UQTxCY8wQw1OrByy_-HaUCVksio_054n0Ul62TnNPsicfak2T7wjk_EwJBabT"/>
-<button class="absolute bottom-0 right-0 p-2 bg-primary text-white rounded-full shadow-lg hover:scale-105 transition-transform">
-<span class="material-symbols-outlined text-sm" data-icon="edit">edit</span>
-</button>
-</div>
-<h3 class="font-headline-md text-headline-md">Zaza Mandir</h3>
-<p class="font-body-sm text-on-surface-variant mb-md">Penggemar Nutrisi • Jakarta, ID</p>
-<div class="flex justify-center gap-xs">
-<span class="px-sm py-xs bg-primary-fixed text-on-primary-fixed-variant rounded-full text-[10px] font-bold uppercase tracking-wider">Terverifikasi</span>
-<span class="px-sm py-xs bg-secondary-fixed text-on-secondary-fixed-variant rounded-full text-[10px] font-bold uppercase tracking-wider">Premium</span>
-</div>
-</div>
-<div class="bg-surface-container-lowest p-md rounded-xl border border-outline-variant/30 shadow-sm space-y-md">
-<div class="flex items-center justify-between">
-<div class="flex items-center gap-sm">
-<div class="w-10 h-10 rounded-lg bg-primary-fixed/30 flex items-center justify-center text-primary">
-<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
-</div>
-<span class="font-label-caps text-label-caps">Rencana Dibuat</span>
-</div>
-<span class="font-headline-md text-headline-md text-primary">12</span>
-</div>
-<div class="flex items-center justify-between">
-<div class="flex items-center gap-sm">
-<div class="w-10 h-10 rounded-lg bg-secondary-fixed/30 flex items-center justify-center text-secondary">
-<span class="material-symbols-outlined" data-icon="avg_pace">avg_pace</span>
-</div>
-<span class="font-label-caps text-label-caps">Rata-rata Kalori</span>
-</div>
-<span class="font-headline-md text-headline-md text-secondary">1.720</span>
-</div>
-<div class="pt-sm border-t border-outline-variant/20">
-<p class="font-body-sm text-on-surface-variant italic leading-relaxed">"Nutrisi praktis adalah kunci fokus harian saya di tempat kerja. NutriPlan membuatnya sederhana."</p>
-</div>
-</div>
-</div>
-<!-- Right Column: Tabs & Forms -->
-<div class="md:col-span-8">
-<div class="bg-surface-container-lowest rounded-xl border border-outline-variant/30 shadow-sm overflow-hidden h-full">
-<!-- Tab Navigation -->
-<div class="flex border-b border-outline-variant/20">
-<button class="flex-1 py-md font-label-caps text-label-caps border-b-2 border-primary text-primary transition-all" id="tab-personal" onclick="switchTab('personal')">Info Pribadi</button>
-<button class="flex-1 py-md font-label-caps text-label-caps border-b-2 border-transparent text-on-surface-variant hover:text-primary transition-all" id="tab-preferences" onclick="switchTab('preferences')">Preferensi</button>
-<button class="flex-1 py-md font-label-caps text-label-caps border-b-2 border-transparent text-on-surface-variant hover:text-primary transition-all" id="tab-security" onclick="switchTab('security')">Keamanan</button>
-</div>
-<!-- Form Content -->
-<div class="p-lg">
-<div class="space-y-lg" id="form-personal">
-<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
-<div class="space-y-xs">
-<label class="font-body-sm text-on-surface-variant ml-xs">Nama Lengkap</label>
-<input class="w-full bg-surface rounded-lg border-outline-variant/50 focus:border-primary focus:ring-primary/20 transition-all px-md py-sm" type="text" value="Zaza Mandir"/>
-</div>
-<div class="space-y-xs">
-<label class="font-body-sm text-on-surface-variant ml-xs">Alamat Email</label>
-<input class="w-full bg-surface rounded-lg border-outline-variant/50 focus:border-primary focus:ring-primary/20 transition-all px-md py-sm" type="email" value="zaza.mandir@example.com"/>
-</div>
-<div class="space-y-xs">
-<label class="font-body-sm text-on-surface-variant ml-xs">Tanggal Lahir</label>
-<input class="w-full bg-surface rounded-lg border-outline-variant/50 focus:border-primary focus:ring-primary/20 transition-all px-md py-sm" type="date" value="1996-04-12"/>
-</div>
-<div class="space-y-xs">
-<label class="font-body-sm text-on-surface-variant ml-xs">Lokasi</label>
-<input class="w-full bg-surface rounded-lg border-outline-variant/50 focus:border-primary focus:ring-primary/20 transition-all px-md py-sm" type="text" value="Jakarta, Indonesia"/>
-</div>
-</div>
-<div class="pt-md flex justify-end gap-sm">
-<button class="px-lg py-sm font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors">Batalkan Perubahan</button>
-<button class="px-lg py-sm bg-primary text-white rounded-lg font-label-caps text-label-caps shadow-sm hover:opacity-90 active:scale-95 transition-all">Simpan Profil</button>
-</div>
-</div>
-<div class="hidden space-y-lg" id="form-preferences">
-<div class="space-y-md">
-<h5 class="font-headline-md text-primary">Batasan Diet</h5>
-<div class="flex flex-wrap gap-sm">
-<label class="flex items-center gap-sm px-md py-sm rounded-lg bg-primary-fixed/20 border-2 border-primary-fixed cursor-pointer">
-<input checked="" class="text-primary focus:ring-primary" type="checkbox"/>
-<span class="font-label-caps text-label-caps">Vegetarian</span>
-</label>
-<label class="flex items-center gap-sm px-md py-sm rounded-lg border-2 border-outline-variant/30 cursor-pointer">
-<input class="text-primary focus:ring-primary" type="checkbox"/>
-<span class="font-label-caps text-label-caps">Bebas Gluten</span>
-</label>
-<label class="flex items-center gap-sm px-md py-sm rounded-lg border-2 border-outline-variant/30 cursor-pointer">
-<input class="text-primary focus:ring-primary" type="checkbox"/>
-<span class="font-label-caps text-label-caps">Bebas Susu</span>
-</label>
-<label class="flex items-center gap-sm px-md py-sm rounded-lg border-2 border-outline-variant/30 cursor-pointer">
-<input checked="" class="text-primary focus:ring-primary" type="checkbox"/>
-<span class="font-label-caps text-label-caps">Alergi Kacang</span>
-</label>
-</div>
-</div>
-<div class="pt-md flex justify-end">
-<button class="px-lg py-sm bg-primary text-white rounded-lg font-label-caps text-label-caps shadow-sm hover:opacity-90 active:scale-95 transition-all">Simpan Preferensi</button>
-</div>
-</div>
-<div class="hidden space-y-lg" id="form-security">
-<div class="space-y-md max-w-md">
-<div class="space-y-xs">
-<label class="font-body-sm text-on-surface-variant ml-xs">Kata Sandi Saat Ini</label>
-<input class="w-full bg-surface rounded-lg border-outline-variant/50 focus:border-primary focus:ring-primary/20 transition-all px-md py-sm" placeholder="••••••••" type="password"/>
-</div>
-<div class="space-y-xs">
-<label class="font-body-sm text-on-surface-variant ml-xs">Kata Sandi Baru</label>
-<input class="w-full bg-surface rounded-lg border-outline-variant/50 focus:border-primary focus:ring-primary/20 transition-all px-md py-sm" placeholder="••••••••" type="password"/>
-</div>
-</div>
-<div class="pt-md border-t border-outline-variant/20 space-y-md">
-<h5 class="font-headline-md text-error">Zona Berbahaya</h5>
-<p class="font-body-sm text-on-surface-variant">Hapus akun Anda secara permanen beserta semua riwayat rencana makan yang terkait. Tindakan ini tidak dapat dibatalkan.</p>
-<button class="px-lg py-sm border-2 border-error text-error rounded-lg font-label-caps text-label-caps hover:bg-error/5 transition-colors">Hapus Akun</button>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-</main>
-<!-- Footer Shell -->
-<footer class="ml-[240px] bg-inverse-surface text-inverse-on-surface">
-<div class="max-w-container-max mx-auto px-md py-xl grid grid-cols-1 md:grid-cols-4 gap-lg">
-<div class="md:col-span-1">
-<h2 class="font-headline-md text-headline-md italic text-primary-fixed mb-sm">NutriPlan</h2>
-<p class="font-body-sm text-body-sm opacity-70">Nutrisi tepat untuk dunia yang praktis.</p>
-</div>
-<div class="space-y-sm">
-<h5 class="font-label-caps text-label-caps text-secondary-fixed">Navigasi</h5>
-<ul class="space-y-xs">
-<li><a class="font-body-sm text-inverse-on-surface/70 hover:text-inverse-on-surface transition-colors" href="#">Dasbor</a></li>
-<li><a class="font-body-sm text-inverse-on-surface/70 hover:text-inverse-on-surface transition-colors" href="#">Rencana Makan</a></li>
-<li><a class="font-body-sm text-inverse-on-surface/70 hover:text-inverse-on-surface transition-colors" href="#">Resep</a></li>
-</ul>
-</div>
-<div class="space-y-sm">
-<h5 class="font-label-caps text-label-caps text-secondary-fixed">Perusahaan</h5>
-<ul class="space-y-xs">
-<li><a class="font-body-sm text-inverse-on-surface/70 hover:text-inverse-on-surface transition-colors" href="#">Tentang Kami</a></li>
-<li><a class="font-body-sm text-inverse-on-surface/70 hover:text-inverse-on-surface transition-colors" href="#">Syarat Layanan</a></li>
-<li><a class="font-body-sm text-inverse-on-surface/70 hover:text-inverse-on-surface transition-colors" href="#">Kebijakan Privasi</a></li>
-</ul>
-</div>
-<div class="space-y-sm">
-<h5 class="font-label-caps text-label-caps text-secondary-fixed">Buletin</h5>
-<div class="flex gap-xs">
-<input class="w-full bg-white/10 border-none rounded-lg text-white font-body-sm focus:ring-primary-fixed" placeholder="Email" type="email"/>
-<button class="bg-primary-fixed text-on-primary-fixed px-md rounded-lg">
-<span class="material-symbols-outlined align-middle" data-icon="arrow_forward">arrow_forward</span>
-</button>
-</div>
-</div>
-</div>
-<div class="text-center py-md border-t border-white/5 font-body-sm text-inverse-on-surface/50">
-        © 2024 NutriPlan. Hak cipta dilindungi undang-undang.
+<body>
+<div class="app">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <h2>NutriPlan</h2>
+      <span style="font-size:10px;font-weight:700;letter-spacing:.1em;color:rgba(185,241,173,.5);text-transform:uppercase">Dasbor Nutrisi</span>
     </div>
-</footer>
+    <nav style="flex:1;padding:20px 0;display:flex;flex-direction:column;gap:2px">
+      <a href="dashboard.html" class="nav-item"><i class="material-symbols-outlined">dashboard</i> Beranda</a>
+      <a href="preferensi.html" class="nav-item"><i class="material-symbols-outlined">tune</i> Preferensi</a>
+      <a href="hasilRencanaMakan.html" class="nav-item"><i class="material-symbols-outlined">restaurant_menu</i> Rencana Makan</a>
+      <a href="historydanProfil.html" class="nav-item active"><i class="material-symbols-outlined">manage_accounts</i> Profil & Riwayat</a>
+    </nav>
+    <div class="sidebar-user">
+      <img id="sidebarAvatar" src="" alt="avatar"/>
+      <div>
+        <div class="uname" id="sidebarName">Pengguna</div>
+        <div class="utag" id="sidebarEmail">—</div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <h2>Profil & Riwayat</h2>
+      <button onclick="NutriStore.User.logout(); window.location.href='masuk.html'"
+        style="display:flex;align-items:center;gap:6px;padding:8px 16px;border-radius:10px;border:1.5px solid rgba(186,26,26,.3);background:transparent;color:var(--error);font-size:12px;font-weight:700;cursor:pointer">
+        <span class="material-symbols-outlined" style="font-size:16px">logout</span> Keluar
+      </button>
+    </div>
+
+    <div class="content">
+
+      <!-- Profil User -->
+      <div class="card">
+        <div class="avatar-area">
+          <img id="profileAvatar" src="" alt="avatar"/>
+          <div class="avatar-info">
+            <h3 id="profileNameDisplay">Pengguna</h3>
+            <p id="profileEmailDisplay">—</p>
+            <p style="font-size:11px;margin-top:2px;color:var(--on-surface-v)">Bergabung: <span id="profileJoinDate">—</span></p>
+          </div>
+        </div>
+        <div class="card-title">
+          <span class="material-symbols-outlined" style="font-size:20px">person</span>
+          Edit Profil
+        </div>
+        <form id="profileForm">
+          <div class="form-grid">
+            <div class="form-group" style="grid-column:1/-1">
+              <label>Nama Lengkap</label>
+              <input type="text" id="profileName" placeholder="Nama kamu..."/>
+            </div>
+            <div class="form-group" style="grid-column:1/-1">
+              <label>Email</label>
+              <input type="email" id="profileEmail" placeholder="email@contoh.com"/>
+            </div>
+          </div>
+          <div class="card-title" style="margin-top:24px;margin-bottom:16px;font-size:17px">
+            <span class="material-symbols-outlined" style="font-size:18px">fitness_center</span>
+            Data Fisik (untuk hitung kalori otomatis)
+          </div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Jenis Kelamin</label>
+              <select id="gender">
+                <option value="pria">Pria</option>
+                <option value="wanita">Wanita</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Usia (tahun)</label>
+              <input type="number" id="usia" min="10" max="100" placeholder="22"/>
+            </div>
+            <div class="form-group">
+              <label>Berat Badan (kg)</label>
+              <input type="number" id="beratBadan" min="30" max="300" placeholder="65"/>
+            </div>
+            <div class="form-group">
+              <label>Tinggi Badan (cm)</label>
+              <input type="number" id="tinggiBadan" min="100" max="250" placeholder="170"/>
+            </div>
+            <div class="form-group">
+              <label>Tingkat Aktivitas</label>
+              <select id="aktivitas">
+                <option value="sedentari">Sedentari (sangat sedikit gerak)</option>
+                <option value="ringan">Ringan (olahraga 1-3x/minggu)</option>
+                <option value="sedang">Sedang (olahraga 3-5x/minggu)</option>
+                <option value="berat">Berat (olahraga 6-7x/minggu)</option>
+                <option value="sangat_berat">Sangat Berat (atlet)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Tujuan</label>
+              <select id="tujuan">
+                <option value="sehat">Pola Makan Sehat</option>
+                <option value="turun">Turun Berat Badan</option>
+                <option value="naik">Naik Berat Badan</option>
+                <option value="massa_otot">Bangun Massa Otot</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Kalori auto-hitung -->
+          <div id="kaloriInfo" style="margin-top:20px;padding:16px;background:rgba(34,82,31,.06);border-radius:12px;border-left:4px solid var(--primary);display:flex;align-items:center;gap:12px">
+            <span class="material-symbols-outlined" style="color:var(--primary);font-size:20px" style="font-variation-settings:'FILL' 1">local_fire_department</span>
+            <div>
+              <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--on-surface-v)">Kebutuhan Kalori Harian (Estimasi)</div>
+              <div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--primary)" id="kaloriEstimasi">— kkal</div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:12px;margin-top:20px;flex-wrap:wrap">
+            <button type="submit" class="btn-save">
+              <span class="material-symbols-outlined" style="font-size:16px">save</span>
+              Simpan Profil
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Riwayat Rencana Makan -->
+      <div class="card">
+        <div class="card-title">
+          <span class="material-symbols-outlined" style="font-size:20px">history</span>
+          Riwayat Rencana Makan
+        </div>
+        <div id="historyList" class="history-list">
+          <div style="text-align:center;padding:40px;color:var(--on-surface-v)">
+            <span class="material-symbols-outlined" style="font-size:48px;opacity:.4">history</span>
+            <p style="margin-top:12px">Belum ada riwayat rencana makan.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hapus Semua Data -->
+      <div class="card" style="border-left:4px solid rgba(186,26,26,.3)">
+        <div class="card-title" style="color:var(--error)">
+          <span class="material-symbols-outlined" style="font-size:20px">warning</span>
+          Zona Bahaya
+        </div>
+        <p style="font-size:14px;color:var(--on-surface-v);margin-bottom:16px">
+          Hapus seluruh data NutriPlan dari perangkat ini. Aksi ini tidak dapat dibatalkan.
+        </p>
+        <button onclick="resetAllData()" class="btn-danger">
+          <span class="material-symbols-outlined" style="font-size:16px">delete_forever</span>
+          Hapus Semua Data Saya
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 <script>
-    function switchView(view) {
-        const historyView = document.getElementById('view-history');
-        const profileView = document.getElementById('view-profile');
-        const navHistory = document.getElementById('nav-history');
-        const navProfile = document.getElementById('nav-profile');
-        const appBarTitle = document.getElementById('app-bar-title');
+NutriStore.UI.requireAuth('masuk.html');
 
-        if (view === 'history') {
-            historyView.classList.remove('hidden');
-            profileView.classList.add('hidden');
-            navHistory.className = "flex items-center gap-sm p-sm bg-secondary-container text-on-secondary-container rounded-lg font-bold transition-all duration-200";
-            navProfile.className = "flex items-center gap-sm p-sm text-on-primary-container/80 hover:bg-primary/20 hover:text-on-primary-container rounded-lg transition-colors duration-200";
-            appBarTitle.innerText = "Selamat pagi, Zaza! 🌿";
-        } else {
-            historyView.classList.add('hidden');
-            profileView.classList.remove('hidden');
-            navProfile.className = "flex items-center gap-sm p-sm bg-secondary-container text-on-secondary-container rounded-lg font-bold transition-all duration-200";
-            navHistory.className = "flex items-center gap-sm p-sm text-on-primary-container/80 hover:bg-primary/20 hover:text-on-primary-container rounded-lg transition-colors duration-200";
-            appBarTitle.innerText = "Akun Profil Anda";
-        }
-    }
+document.addEventListener('DOMContentLoaded', () => {
+  loadProfile();
+  loadHistory();
+});
 
-    function switchTab(tab) {
-        const tabs = ['personal', 'preferences', 'security'];
-        tabs.forEach(t => {
-            const form = document.getElementById(`form-${t}`);
-            const btn = document.getElementById(`tab-${t}`);
-            if (t === tab) {
-                form.classList.remove('hidden');
-                btn.classList.add('border-primary', 'text-primary');
-                btn.classList.remove('border-transparent', 'text-on-surface-variant');
-            } else {
-                form.classList.add('hidden');
-                btn.classList.remove('border-primary', 'text-primary');
-                btn.classList.add('border-transparent', 'text-on-surface-variant');
-            }
-        });
-    }
+// ─── LOAD PROFILE ─────────────────────────────────────────────────────────────
+function loadProfile() {
+  const user = NutriStore.User.get();
+  const profile = NutriStore.Profile.get();
+
+  // Sidebar
+  document.getElementById('sidebarName').textContent = user.name || 'Pengguna';
+  document.getElementById('sidebarEmail').textContent = user.email || '';
+  if (user.avatar) {
+    document.getElementById('sidebarAvatar').src = user.avatar;
+    document.getElementById('profileAvatar').src = user.avatar;
+  }
+
+  // Header display
+  document.getElementById('profileNameDisplay').textContent = user.name || 'Pengguna';
+  document.getElementById('profileEmailDisplay').textContent = user.email || '—';
+  document.getElementById('profileJoinDate').textContent = user.joinDate ? NutriStore.UI.tanggal(user.joinDate) : '—';
+
+  // Form values
+  document.getElementById('profileName').value = user.name || '';
+  document.getElementById('profileEmail').value = user.email || '';
+  document.getElementById('gender').value = profile.gender || 'pria';
+  document.getElementById('usia').value = profile.usia || '';
+  document.getElementById('beratBadan').value = profile.beratBadan || '';
+  document.getElementById('tinggiBadan').value = profile.tinggiBadan || '';
+  document.getElementById('aktivitas').value = profile.aktivitas || 'sedang';
+  document.getElementById('tujuan').value = profile.tujuan || 'sehat';
+
+  updateKaloriEstimasi();
+}
+
+// ─── AUTO-HITUNG KALORI ───────────────────────────────────────────────────────
+function updateKaloriEstimasi() {
+  const gender = document.getElementById('gender').value;
+  const usia = parseInt(document.getElementById('usia').value) || 22;
+  const berat = parseInt(document.getElementById('beratBadan').value) || 65;
+  const tinggi = parseInt(document.getElementById('tinggiBadan').value) || 170;
+  const aktivitas = document.getElementById('aktivitas').value;
+  const tujuan = document.getElementById('tujuan').value;
+
+  // Mifflin-St Jeor
+  let bmr = gender === 'pria'
+    ? 10 * berat + 6.25 * tinggi - 5 * usia + 5
+    : 10 * berat + 6.25 * tinggi - 5 * usia - 161;
+
+  const f = { sedentari: 1.2, ringan: 1.375, sedang: 1.55, berat: 1.725, sangat_berat: 1.9 };
+  let total = Math.round(bmr * (f[aktivitas] || 1.55));
+  if (tujuan === 'turun') total -= 500;
+  if (tujuan === 'naik' || tujuan === 'massa_otot') total += 300;
+
+  document.getElementById('kaloriEstimasi').textContent = total.toLocaleString('id-ID') + ' kkal';
+  return total;
+}
+
+['gender','usia','beratBadan','tinggiBadan','aktivitas','tujuan'].forEach(id => {
+  document.getElementById(id).addEventListener('input', updateKaloriEstimasi);
+  document.getElementById(id).addEventListener('change', updateKaloriEstimasi);
+});
+
+// ─── SIMPAN PROFIL ────────────────────────────────────────────────────────────
+document.getElementById('profileForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const name = document.getElementById('profileName').value.trim();
+  const email = document.getElementById('profileEmail').value.trim();
+
+  if (!name) { NutriStore.UI.toast('Nama tidak boleh kosong', 'error'); return; }
+
+  // Simpan user
+  NutriStore.User.set({ name, email });
+
+  // Simpan profile fisik
+  NutriStore.Profile.save({
+    gender: document.getElementById('gender').value,
+    usia: parseInt(document.getElementById('usia').value) || 22,
+    beratBadan: parseInt(document.getElementById('beratBadan').value) || 65,
+    tinggiBadan: parseInt(document.getElementById('tinggiBadan').value) || 170,
+    aktivitas: document.getElementById('aktivitas').value,
+    tujuan: document.getElementById('tujuan').value
+  });
+
+  // Update kalori target di preferensi sesuai kalkulasi
+  const kalori = updateKaloriEstimasi();
+  NutriStore.Prefs.save({ kaloriTarget: kalori });
+
+  // Update tampilan
+  document.getElementById('profileNameDisplay').textContent = name;
+  document.getElementById('profileEmailDisplay').textContent = email;
+  const user = NutriStore.User.get();
+  if (user.avatar) {
+    document.getElementById('profileAvatar').src = user.avatar;
+    document.getElementById('sidebarAvatar').src = user.avatar;
+  }
+  document.getElementById('sidebarName').textContent = name;
+
+  NutriStore.UI.toast('Profil berhasil disimpan! ✓', 'success');
+});
+
+// ─── LOAD HISTORY ─────────────────────────────────────────────────────────────
+function loadHistory() {
+  const plans = NutriStore.Plans.getAll();
+  const listEl = document.getElementById('historyList');
+
+  if (plans.length === 0) {
+    listEl.innerHTML = `
+      <div style="text-align:center;padding:40px;color:var(--on-surface-v)">
+        <span class="material-symbols-outlined" style="font-size:48px;opacity:.4">history</span>
+        <p style="margin-top:12px">Belum ada riwayat rencana makan.</p>
+        <a href="preferensi.html" style="display:inline-flex;align-items:center;gap:6px;margin-top:16px;padding:10px 20px;background:var(--primary);color:#fff;border-radius:10px;font-size:12px;font-weight:700;text-decoration:none;letter-spacing:.07em;text-transform:uppercase">
+          <span class="material-symbols-outlined" style="font-size:16px">add</span> Buat Rencana Pertama
+        </a>
+      </div>`;
+    return;
+  }
+
+  const activeId = localStorage.getItem('nutriplan_active_plan');
+
+  listEl.innerHTML = plans.map(plan => {
+    const isActive = plan.id === activeId || plan.status === 'aktif';
+    const menuCount = plan.hari ? plan.hari.reduce((s, h) => s + (h.menu?.length || 0), 0) : 0;
+    return `
+      <div class="history-card">
+        <div style="width:56px;height:56px;border-radius:12px;background:${isActive ? 'rgba(34,82,31,.1)' : 'rgba(193,201,187,.2)'};display:flex;align-items:center;justify-content:center;flex-shrink:0">
+          <span class="material-symbols-outlined" style="color:${isActive ? 'var(--primary)' : 'var(--on-surface-v)'}">restaurant_menu</span>
+        </div>
+        <div class="history-info">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+            <span class="status-chip ${isActive ? 'status-aktif' : 'status-selesai'}">${isActive ? 'Aktif' : 'Selesai'}</span>
+            <span style="font-size:12px;color:var(--on-surface-v)">${NutriStore.UI.tanggal(plan.createdAt)}</span>
+          </div>
+          <div class="h-title">${plan.nama}</div>
+          <div class="h-stats">
+            <span>🔥 ${plan.kalori?.toLocaleString('id-ID')} kkal/hari</span>
+            <span>💰 ${NutriStore.UI.rupiah(plan.budget)}/minggu</span>
+            <span>📅 ${plan.durasi || plan.hari?.length || 0} hari</span>
+            <span>🍽 ${menuCount} menu total</span>
+          </div>
+        </div>
+        <div class="h-actions">
+          ${!isActive ? `<button class="btn-sm btn-use" onclick="activatePlan('${plan.id}')">
+            <span class="material-symbols-outlined" style="font-size:13px">play_arrow</span> Gunakan
+          </button>` : ''}
+          <button class="btn-sm btn-view" onclick="window.location.href='hasilRencanaMakan.html'">
+            <span class="material-symbols-outlined" style="font-size:13px">visibility</span> Lihat
+          </button>
+          <button class="btn-sm btn-del" onclick="deletePlan('${plan.id}')">
+            <span class="material-symbols-outlined" style="font-size:13px">delete</span>
+          </button>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function activatePlan(id) {
+  NutriStore.Plans.setActive(id);
+  // Update status
+  const plans = NutriStore.Plans.getAll();
+  plans.forEach(p => { p.status = p.id === id ? 'aktif' : 'selesai'; });
+  localStorage.setItem('nutriplan_mealplans', JSON.stringify(plans));
+  loadHistory();
+  NutriStore.UI.toast('Rencana makan diaktifkan!', 'success');
+}
+
+function deletePlan(id) {
+  if (!confirm('Hapus rencana makan ini?')) return;
+  NutriStore.Plans.delete(id);
+  loadHistory();
+  NutriStore.UI.toast('Rencana dihapus', 'info');
+}
+
+function resetAllData() {
+  if (!confirm('HAPUS SEMUA DATA? Ini tidak bisa dibatalkan!')) return;
+  if (!confirm('Yakin? Semua profil, rencana, dan riwayat akan hilang.')) return;
+  const keys = ['nutriplan_user','nutriplan_profile','nutriplan_prefs','nutriplan_mealplans','nutriplan_active_plan','nutriplan_log','nutriplan_accounts'];
+  keys.forEach(k => localStorage.removeItem(k));
+  NutriStore.UI.toast('Semua data dihapus. Mengarahkan ke halaman utama...', 'info');
+  setTimeout(() => window.location.href = 'index.html', 1500);
+}
 </script>
-</body></html>
+</body>
+</html>

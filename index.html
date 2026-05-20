@@ -126,6 +126,7 @@
         }
     </script>
 <base target="_blank">
+<script src="nutriplan-store.js"></script>
 </head>
 <body class="bg-background text-on-background font-body-md overflow-x-hidden">
     <!-- TopNavBar -->
@@ -459,5 +460,24 @@
             });
         });
     </script>
+<script>
+// Jika sudah login, tambahkan indikator di navbar
+document.addEventListener('DOMContentLoaded', () => {
+  if (NutriStore.User.isLoggedIn()) {
+    const user = NutriStore.User.get();
+    const navBtns = document.querySelector("nav .flex.items-center.gap-md");
+    if (navBtns) {
+      navBtns.innerHTML = `
+        <a href="dashboard.html">
+          <span style="display:flex;align-items:center;gap:6px;padding:8px 16px;background:rgba(34,82,31,.1);color:#22521f;border-radius:999px;font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase">
+            <span class="material-symbols-outlined" style="font-size:16px">dashboard</span>
+            Dasbor Saya
+          </span>
+        </a>
+      `;
+    }
+  }
+});
+</script>
 </body>
 </html>

@@ -165,6 +165,7 @@
         },
     }
 </script>
+<script src="nutriplan-store.js"></script>
 </head>
 <body class="bg-surface font-body-md text-on-surface antialiased overflow-x-hidden">
 <main class="min-h-screen flex flex-col md:flex-row">
@@ -561,7 +562,7 @@
             btnIcon.classList.remove('animate-spin');
             
             setTimeout(() => {
-                window.location.href = 'masuk.html';
+                window.location.href = 'preferensi.html';
             }, 800);
             
         } catch (error) {
@@ -580,17 +581,26 @@
         }
     });
     
-    // Simulate registration API (replace with actual endpoint)
+    // Simpan akun ke localStorage
     function simulateRegistration() {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
-                // Simulate 95% success rate for demo
-                if (Math.random() > 0.05) {
-                    resolve({ success: true });
-                } else {
-                    reject(new Error('Email sudah terdaftar. Silakan gunakan email lain.'));
+                const name = document.getElementById('full_name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const password = document.getElementById('password').value;
+
+                const accounts = JSON.parse(localStorage.getItem('nutriplan_accounts') || '[]');
+                if (accounts.find(a => a.email === email)) {
+                    reject(new Error('Email sudah terdaftar. Silakan gunakan email lain atau masuk.'));
+                    return;
                 }
-            }, 1500);
+
+                accounts.push({ name, email, password, joinDate: new Date().toISOString().split('T')[0] });
+                localStorage.setItem('nutriplan_accounts', JSON.stringify(accounts));
+                NutriStore.User.login(email, name);
+                NutriStore.Prefs.save({ budget: 500000, durasi: 7, kaloriTarget: 2000 });
+                resolve({ success: true });
+            }, 1200);
         });
     }
     

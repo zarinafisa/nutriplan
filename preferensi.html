@@ -88,6 +88,7 @@
       border-radius: 999px;
     }
   </style>
+<script src="nutriplan-store.js"></script>
 </head>
 
 <body>
@@ -590,37 +591,87 @@
     });
 
 
+    // AUTH GUARD
+    if (!NutriStore.User.isLoggedIn()) {
+      window.location.href = 'masuk.html';
+    }
+
+    // LOAD saved prefs
+    (function loadSavedPrefs() {
+      const prefs = NutriStore.Prefs.get();
+      if (prefs.budget && range) {
+        range.value = prefs.budget;
+        if (budgetValue) budgetValue.innerText = 'Rp ' + Number(prefs.budget).toLocaleString('id-ID');
+      }
+      if (prefs.kaloriTarget && calorieInput) {
+        calorieInput.value = prefs.kaloriTarget;
+        chips.forEach(c => {
+          if (parseInt(c.innerText) === prefs.kaloriTarget) {
+            c.classList.add('bg-primary', 'text-white');
+            c.classList.remove('border', 'border-border');
+          }
+        });
+      }
+      if (prefs.durasi) {
+        durationBtns.forEach(b => {
+          if (parseInt(b.textContent) === prefs.durasi) {
+            durationBtns.forEach(x => {
+              x.classList.remove('bg-secondary', 'text-white', 'scale-105', 'shadow-lg');
+              x.classList.add('border', 'border-border');
+            });
+            b.classList.add('bg-secondary', 'text-white', 'scale-105', 'shadow-lg');
+          }
+        });
+      }
+      // Update nama user di sidebar
+      NutriStore.UI.updateNavUser();
+    })();
+
     // GENERATE BUTTON
     const generateBtn = document.getElementById('generateBtn');
     const toast = document.getElementById('toast');
 
     generateBtn.addEventListener('click', () => {
+      // Kumpulkan semua preferensi dari form
+      const activeDuration = document.querySelector('.duration-btn.bg-secondary');
+      const durasi = activeDuration ? parseInt(activeDuration.textContent) : 7;
+      const kaloriTarget = parseInt(calorieInput.value) || 2000;
+      const budget = parseInt(range.value) || 500000;
 
+      // Kumpulkan pantangan
+      const pantangan = [];
+      document.querySelectorAll('input[type="checkbox"]:checked').forEach(cb => {
+        if (cb.nextElementSibling) pantangan.push(cb.nextElementSibling.textContent?.trim());
+      });
+
+      // Simpan preferensi
+      NutriStore.Prefs.save({ budget, durasi, kaloriTarget, pantangan });
+
+      // Buat meal plan baru
       generateBtn.disabled = true;
-
-      generateBtn.innerHTML = `
+      generateBtn.innerHTML = 
         <div class="flex items-center justify-center gap-3">
-          <span class="material-symbols-outlined animate-spin">
-            progress_activity
-          </span>
+          <span class="material-symbols-outlined animate-spin">progress_activity</span>
           Menganalisis Preferensi...
         </div>
-      `;
+      ;
 
       setTimeout(() => {
+        // Generate & simpan plan
+        NutriStore.Plans.create({ kalori: kaloriTarget, budget, durasi, pantangan });
 
         toast.classList.remove('translate-y-32', 'opacity-0');
-
         generateBtn.innerHTML = 'Rencana Berhasil Dibuat ✅';
         generateBtn.classList.remove('bg-secondary');
         generateBtn.classList.add('bg-primary');
+        NutriStore.UI.toast('Rencana makan ' + durasi + ' hari berhasil dibuat!', 'success');
 
       }, 1800);
 
       setTimeout(() => {
         toast.classList.add('translate-y-32', 'opacity-0');
-      }, 4500);
-
+        window.location.href = 'hasilRencanaMakan.html';
+      }, 3500);
     });
 
   </script>
