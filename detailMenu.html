@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&amp;family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed": "#b9f1ad",
+                        "primary-container": "#3a6b35",
+                        "on-tertiary-container": "#cae2c0",
+                        "surface-tint": "#386933",
+                        "inverse-on-surface": "#ffeee1",
+                        "on-primary-fixed": "#002202",
+                        "outline": "#72796e",
+                        "secondary": "#924c00",
+                        "on-primary-container": "#b2eaa6",
+                        "inverse-surface": "#3e2d1d",
+                        "tertiary-fixed-dim": "#b5cdac",
+                        "surface-variant": "#fbddc5",
+                        "outline-variant": "#c1c9bb",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed": "#2f1500",
+                        "inverse-primary": "#9ed493",
+                        "error": "#ba1a1a",
+                        "primary-fixed-dim": "#9ed493",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-dim": "#f2d5bd",
+                        "on-tertiary-fixed-variant": "#374c32",
+                        "surface-bright": "#fff8f5",
+                        "surface-container-highest": "#fbddc5",
+                        "on-primary": "#ffffff",
+                        "surface-container": "#ffeada",
+                        "secondary-fixed-dim": "#ffb77f",
+                        "on-tertiary-fixed": "#0d200a",
+                        "surface-container-low": "#fff1e8",
+                        "on-primary-fixed-variant": "#20511e",
+                        "on-secondary-container": "#6a3600",
+                        "on-error": "#ffffff",
+                        "tertiary": "#394e34",
+                        "surface-container-high": "#ffe3cd",
+                        "on-secondary": "#ffffff",
+                        "secondary-container": "#fe973c",
+                        "tertiary-fixed": "#d1eac7",
+                        "on-surface-variant": "#42493f",
+                        "secondary-fixed": "#ffdcc4",
+                        "tertiary-container": "#50664a",
+                        "on-background": "#27180a",
+                        "background": "#fff8f5",
+                        "on-surface": "#27180a",
+                        "surface": "#fff8f5",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed-variant": "#6f3800",
+                        "on-error-container": "#93000a",
+                        "primary": "#22521f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "12px",
+                        "xl": "80px",
+                        "md": "24px",
+                        "xs": "4px",
+                        "container-max": "1200px",
+                        "lg": "48px",
+                        "base": "8px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Playfair Display"],
+                        "data-mono": ["JetBrains Mono"],
+                        "label-caps": ["Plus Jakarta Sans"],
+                        "body-sm": ["Plus Jakarta Sans"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "headline-md": ["Playfair Display"],
+                        "display-lg": ["Playfair Display"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                        "data-mono": ["14px", {"lineHeight": "1", "fontWeight": "500"}],
+                        "label-caps": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .tonal-shadow {
+            box-shadow: 0 4px 12px rgba(58, 107, 53, 0.08);
+        }
+        .modal-overlay {
+            backdrop-filter: blur(8px);
+            background-color: rgba(39, 24, 10, 0.4);
+        }
+    </style>
+</head>
+<body class="bg-background font-body-md text-on-background min-h-screen">
+<!-- TopAppBar Semantic Shell -->
+<header class="flex justify-between items-center px-md py-sm border-b border-outline-variant/20 docked full-width top-0 sticky bg-surface z-50">
+<div class="flex items-center gap-base">
+<span class="material-symbols-outlined text-primary text-headline-md" data-icon="calendar_today">calendar_today</span>
+<h1 class="font-headline-md text-headline-md text-primary">Selamat pagi, Zaza! 🌿</h1>
+</div>
+<div class="hidden md:flex gap-md">
+<nav class="flex items-center gap-md">
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors" href="#">Beranda</a>
+<a class="font-label-caps text-label-caps text-primary border-b-2 border-secondary font-bold pb-1" href="#">Rencana Makan</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors" href="#">Riwayat</a>
+</nav>
+</div>
+</header>
+<main class="relative z-10 px-md py-lg flex justify-center items-center min-h-[calc(100vh-64px)]">
+<!-- Blurred Content Placeholder -->
+<div class="w-full max-w-container-max opacity-20 pointer-events-none filter blur-sm">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+<div class="h-64 bg-surface-container rounded-xl"></div>
+<div class="h-64 bg-surface-container rounded-xl"></div>
+<div class="h-64 bg-surface-container rounded-xl"></div>
+</div>
+</div>
+<!-- Full-screen Modal Overlay -->
+<div class="fixed inset-0 modal-overlay z-[60] flex items-center justify-center p-md">
+<!-- Modal Card (560px) -->
+<div class="bg-surface-bright w-full max-w-[560px] rounded-[24px] overflow-hidden tonal-shadow animate-in fade-in zoom-in duration-300">
+<!-- Close Action (Absolute) -->
+<button class="absolute top-md right-md z-[70] bg-surface/80 backdrop-blur-md p-xs rounded-full text-on-surface hover:bg-surface transition-colors" onclick="window.history.back()">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+<!-- Hero Section: Food Image -->
+<div class="relative h-[280px] w-full overflow-hidden">
+<img alt="Protein Avocado Toast" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjBN6IGG2SG8WPdPxeTZrdScVrb9TuvJ-P6EJtvMRHDFPxZ7iLFtz227jCJvlpbgb14EiqJjD4jEgEHJstqsErTtrbAz-7Cfy8s-lhg0NFf4xlAumd1VO5u8oTEBGRJItd9-iZIanBGy9hZ4NMo86SoFPJy8ZH-FgxF6XjSKnqKQTTjreBeOK4TYK0DLCz9g2VUyUBZAMLaWBYVpfvGlQtgN7FKhOk6UPNPc__56EowUqCkWi5XHvQQa2oakDEhrZiAA0DVotP2QVZ"/>
+<div class="absolute top-md left-md">
+<span class="bg-primary-container text-on-primary-container font-label-caps text-label-caps px-md py-xs rounded-full shadow-sm uppercase tracking-wider">Sarapan</span>
+</div>
+</div>
+<!-- Content Body -->
+<div class="p-md md:p-lg space-y-md max-h-[614px] overflow-y-auto">
+<!-- Title & Identity -->
+<div class="space-y-xs">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Protein Avocado Toast</h2>
+<div class="flex items-center gap-md">
+<div class="flex items-center gap-xs">
+<span class="bg-secondary-container text-on-secondary-container font-data-mono text-data-mono px-sm py-xs rounded-full">
+                                🔥 340 kkal
+                            </span>
+</div>
+<div class="flex items-center gap-xs">
+<span class="bg-primary-container text-on-primary-container font-data-mono text-data-mono px-sm py-xs rounded-full">
+                                💰 Rp 12.000
+                            </span>
+</div>
+</div>
+</div>
+<!-- Ingredients Section -->
+<section class="space-y-sm">
+<h3 class="font-label-caps text-label-caps text-primary border-b border-outline-variant/30 pb-xs">Bahan-bahan</h3>
+<div class="flex flex-wrap gap-xs">
+<span class="bg-tertiary-fixed text-on-tertiary-fixed font-body-sm text-body-sm px-sm py-base rounded-lg border border-tertiary-fixed-dim/20">2 Lembar Roti Sourdough</span>
+<span class="bg-tertiary-fixed text-on-tertiary-fixed font-body-sm text-body-sm px-sm py-base rounded-lg border border-tertiary-fixed-dim/20">1 Buah Alpukat Matang</span>
+<span class="bg-tertiary-fixed text-on-tertiary-fixed font-body-sm text-body-sm px-sm py-base rounded-lg border border-tertiary-fixed-dim/20">2 Butir Telur Organik</span>
+<span class="bg-tertiary-fixed text-on-tertiary-fixed font-body-sm text-body-sm px-sm py-base rounded-lg border border-tertiary-fixed-dim/20">Serpihan Cabai Merah</span>
+<span class="bg-tertiary-fixed text-on-tertiary-fixed font-body-sm text-body-sm px-sm py-base rounded-lg border border-tertiary-fixed-dim/20">Air Perasan Lemon</span>
+</div>
+</section>
+<!-- Preparation Section -->
+<section class="space-y-sm">
+<h3 class="font-label-caps text-label-caps text-primary border-b border-outline-variant/30 pb-xs">Langkah Persiapan</h3>
+<ol class="space-y-base">
+<li class="flex gap-md group">
+<span class="font-headline-md text-primary/30 group-hover:text-primary transition-colors">01</span>
+<p class="font-body-md text-on-surface-variant pt-xs">Panggang roti sourdough sampai berwarna cokelat keemasan dan renyah di bagian pinggirnya.</p>
+</li>
+<li class="flex gap-md group">
+<span class="font-headline-md text-primary/30 group-hover:text-primary transition-colors">02</span>
+<p class="font-body-md text-on-surface-variant pt-xs">Dalam mangkuk kecil, hancurkan alpukat dengan sedikit perasan lemon dan sejumput garam.</p>
+</li>
+<li class="flex gap-md group">
+<span class="font-headline-md text-primary/30 group-hover:text-primary transition-colors">03</span>
+<p class="font-body-md text-on-surface-variant pt-xs">Masak telur rebus (poached egg) dalam air mendidih selama 3 menit untuk kuning telur setengah matang yang sempurna.</p>
+</li>
+<li class="flex gap-md group">
+<span class="font-headline-md text-primary/30 group-hover:text-primary transition-colors">04</span>
+<p class="font-body-md text-on-surface-variant pt-xs">Oleskan alpukat pada roti panggang, letakkan telur di atasnya, dan taburi dengan serpihan cabai merah.</p>
+</li>
+</ol>
+</section>
+</div>
+<!-- Bottom Sticky Actions -->
+<div class="p-md bg-surface-container-low/50 backdrop-blur-sm border-t border-outline-variant/10 flex flex-col sm:flex-row gap-base">
+<button class="flex-1 bg-secondary text-on-secondary font-label-caps text-label-caps py-md rounded-xl hover:opacity-90 active:scale-95 transition-all shadow-md">
+                    Simpan Menu Ini
+                </button>
+<button class="flex-1 bg-transparent border-2 border-primary-container text-primary-container font-label-caps text-label-caps py-md rounded-xl hover:bg-primary-container/5 active:scale-95 transition-all">
+                    Ganti Menu Ini
+                </button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Semantic Shell -->
+<footer class="bg-inverse-surface text-inverse-on-surface p-xl opacity-10 blur-sm pointer-events-none">
+<div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-4 gap-lg">
+<div class="space-y-md">
+<span class="font-headline-md text-headline-md italic text-primary-fixed">NutriPlan</span>
+<p class="font-body-sm text-body-sm">Nutrisi tepat untuk dunia yang praktis.</p>
+</div>
+<div>
+<h4 class="font-label-caps text-label-caps mb-sm">Tautan</h4>
+<ul class="space-y-xs opacity-70">
+<li>Kebijakan Privasi</li>
+<li>Syarat Layanan</li>
+</ul>
+</div>
+</div>
+</footer>
+<script>
+    document.querySelectorAll('button').forEach(button => {
+        button.addEventListener('mouseenter', () => {
+            // Feedback visual kecil
+        });
+    });
+</script>
+</body></html>

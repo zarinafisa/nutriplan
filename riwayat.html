@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riwayat Makan Anda - NutriPlan</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&family=DM+Serif+Display&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="riwayat.css">
+</head>
+<body>
+
+    <div class="dashboard-container">
+        
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <h2>NutriPlan</h2>
+                <span>NUTRISI PRAKTIS</span>
+            </div>
+            
+            <nav class="sidebar-menu">
+                <a href="#" class="menu-item"><i class="fa-solid fa-table-cells-large"></i> BERANDA</a>
+                <a href="#" class="menu-item"><i class="fa-solid fa-sliders"></i> PREFERENSI</a>
+                <a href="#" class="menu-item"><i class="fa-solid fa-utensils"></i> RENCANA MAKAN</a>
+                <a href="#" class="menu-item active"><i class="fa-solid fa-clock-rotate-left"></i> RIWAYAT</a>
+                <a href="#" class="menu-item"><i class="fa-solid fa-user"></i> PROFIL</a>
+            </nav>
+            
+            <div class="sidebar-user">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=100&auto=format&fit=crop" alt="User Avatar">
+                <div class="user-info">
+                    <h4>Zaza Arisanti</h4>
+                    <span>Anggota Premium</span>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            
+            <header class="content-header">
+                <div class="greeting">
+                    <i class="fa-regular fa-calendar"></i> Selamat pagi, Zaza! 🍃
+                </div>
+                <div class="header-actions">
+                    <button class="icon-btn"><i class="fa-regular fa-bell"></i></button>
+                    <button class="icon-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+            </header>
+
+            <div class="history-title-area">
+                <div class="title-text">
+                    <h1 class="history-main-title">Riwayat Makan Anda</h1>
+                    <p class="history-subtitle">Tinjau dan gunakan kembali rencana nutrisi Anda sebelumnya.</p>
+                </div>
+                <div class="history-actions">
+                    <button class="btn-action-outline">Ekspor CSV</button>
+                    <button class="btn-action-solid">Filter Berdasarkan Tanggal</button>
+                </div>
+            </div>
+
+            <div class="history-cards-list">
+                
+                <div class="history-item-card">
+                    <div class="card-left-section">
+                        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=150&auto=format&fit=crop" alt="Menu Minggu Kerja" class="history-food-img">
+                        <div class="card-info-details">
+                            <div class="meta-row">
+                                <span class="status-badge active-plan">RENCANA AKTIF</span>
+                                <span class="date-range">21 Okt - 27 Okt, 2024</span>
+                            </div>
+                            <h2 class="plan-title">Minggu Pekerja Meja Tinggi Protein</h2>
+                            <p class="plan-focus">Fokus: Kenyang & Kejernihan Mental untuk jadwal 9–5.</p>
+                            <div class="plan-stats">
+                                <span><i class="fa-solid fa-bolt"></i> 1.850 kcal/rata-rata</span>
+                                <span><i class="fa-solid fa-wallet"></i> Rp 450.000 total</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-right-section">
+                        <button class="btn-view"><i class="fa-regular fa-eye"></i></button>
+                        <button class="btn-reuse"><i class="fa-solid fa-rotate-right"></i> Gunakan Lagi</button>
+                    </div>
+                </div>
+
+                <div class="history-item-card">
+                    <div class="card-left-section">
+                        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=150&auto=format&fit=crop" alt="Menu Mahasiswa Hemat" class="history-food-img">
+                        <div class="card-info-details">
+                            <div class="meta-row">
+                                <span class="status-badge completed-plan">SELESAI</span>
+                                <span class="date-range">14 Okt - 20 Okt, 2024</span>
+                            </div>
+                            <h2 class="plan-title">Mahasiswa Hemat Rendah Karbohidrat</h2>
+                            <p class="plan-focus">Fokus: Bahan lokal ramah keto yang terjangkau.</p>
+                            <div class="plan-stats">
+                                <span><i class="fa-solid fa-bolt"></i> 1.680 kcal/rata-rata</span>
+                                <span><i class="fa-solid fa-wallet"></i> Rp 320.000 total</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-right-section">
+                        <button class="btn-view"><i class="fa-regular fa-eye"></i></button>
+                        <button class="btn-reuse"><i class="fa-solid fa-rotate-right"></i> Gunakan Lagi</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </main>
+
+        <footer class="dashboard-footer">
+            <div class="footer-brand">
+                <h3>NutriPlan</h3>
+                <p>© 2026 NutriPlan. Nutrisi tepat untuk dunia yang praktis.</p>
+            </div>
+            <div class="footer-links-grid">
+                <div class="footer-col">
+                    <h4>PRODUK</h4>
+                    <a href="#">Cara Kerja</a>
+                    <a href="#">Fitur</a>
+                    <a href="#">Harga</a>
+                </div>
+                <div class="footer-col">
+                    <h4>HUKUM</h4>
+                    <a href="#">Kebijakan Privasi</a>
+                    <a href="#">Syarat Layanan</a>
+                </div>
+                <div class="footer-col">
+                    <h4>DUKUNGAN</h4>
+                    <a href="#">Pusat Bantuan</a>
+                    <a href="#">Hubungi Kami</a>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+</body>
+</html>

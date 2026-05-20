@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NutriPlan | Nutrisi Praktis untuk Dunia Nyata</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&amp;family=Plus+Jakarta+Sans:wght@400;500;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .organic-blob {
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            background: linear-gradient(135deg, #b9f1ad 0%, #d1eac7 100%);
+            filter: blur(80px);
+            opacity: 0.4;
+            z-index: -1;
+        }
+        .dotted-line {
+            background-image: radial-gradient(circle, #72796e 1px, transparent 1px);
+            background-size: 16px 16px;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .green-shadow {
+            box-shadow: 0 4px 12px rgba(58, 107, 53, 0.08);
+        }
+        .green-shadow-hover:hover {
+            box-shadow: 0 8px 16px rgba(58, 107, 53, 0.12);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary-fixed": "#b9f1ad",
+                      "primary-container": "#3a6b35",
+                      "on-tertiary-container": "#cae2c0",
+                      "surface-tint": "#386933",
+                      "inverse-on-surface": "#ffeee1",
+                      "on-primary-fixed": "#002202",
+                      "outline": "#72796e",
+                      "secondary": "#924c00",
+                      "on-primary-container": "#b2eaa6",
+                      "inverse-surface": "#3e2d1d",
+                      "tertiary-fixed-dim": "#b5cdac",
+                      "surface-variant": "#fbddc5",
+                      "outline-variant": "#c1c9bb",
+                      "error-container": "#ffdad6",
+                      "on-secondary-fixed": "#2f1500",
+                      "inverse-primary": "#9ed493",
+                      "error": "#ba1a1a",
+                      "primary-fixed-dim": "#9ed493",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-dim": "#f2d5bd",
+                      "on-tertiary-fixed-variant": "#374c32",
+                      "surface-bright": "#fff8f5",
+                      "surface-container-highest": "#fbddc5",
+                      "on-primary": "#ffffff",
+                      "surface-container": "#ffeada",
+                      "secondary-fixed-dim": "#ffb77f",
+                      "on-tertiary-fixed": "#0d200a",
+                      "surface-container-low": "#fff1e8",
+                      "on-primary-fixed-variant": "#20511e",
+                      "on-secondary-container": "#6a3600",
+                      "on-error": "#ffffff",
+                      "tertiary": "#394e34",
+                      "surface-container-high": "#ffe3cd",
+                      "on-secondary": "#ffffff",
+                      "secondary-container": "#fe973c",
+                      "tertiary-fixed": "#d1eac7",
+                      "on-surface-variant": "#42493f",
+                      "secondary-fixed": "#ffdcc4",
+                      "tertiary-container": "#50664a",
+                      "on-background": "#27180a",
+                      "background": "#fff8f5",
+                      "on-surface": "#27180a",
+                      "surface": "#fff8f5",
+                      "on-tertiary": "#ffffff",
+                      "on-secondary-fixed-variant": "#6f3800",
+                      "on-error-container": "#93000a",
+                      "primary": "#22521f"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "16px",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "sm": "12px",
+                      "xl": "80px",
+                      "md": "24px",
+                      "xs": "4px",
+                      "container-max": "1200px",
+                      "lg": "48px",
+                      "base": "8px",
+                      "gutter": "24px"
+              },
+              "fontFamily": {
+                      "headline-lg": ["Playfair Display"],
+                      "data-mono": ["JetBrains Mono"],
+                      "label-caps": ["Plus Jakarta Sans"],
+                      "body-sm": ["Plus Jakarta Sans"],
+                      "body-md": ["Plus Jakarta Sans"],
+                      "body-lg": ["Plus Jakarta Sans"],
+                      "headline-md": ["Playfair Display"],
+                      "display-lg": ["Playfair Display"]
+              },
+              "fontSize": {
+                      "headline-lg": ["32px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                      "data-mono": ["14px", {"lineHeight": "1", "fontWeight": "500"}],
+                      "label-caps": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                      "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                      "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                      "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-x-hidden">
+<!-- TopNavBar -->
+<nav class="docked full-width top-0 sticky z-50 backdrop-blur-md bg-surface/80 shadow-sm transition-all duration-200">
+<div class="flex justify-between items-center w-full px-md py-sm max-w-container-max mx-auto">
+<div class="flex items-center gap-base">
+<span class="font-headline-md text-headline-md italic text-primary">NutriPlan</span>
+</div>
+<div class="hidden md:flex items-center gap-lg">
+<a class="text-primary border-b-2 border-secondary font-bold pb-1 font-label-caps text-label-caps" href="#">Beranda</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps" href="#">Fitur</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps" href="#">Cara Kerja</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps" href="#">Tentang</a>
+</div>
+<div class="flex items-center gap-md">
+<button class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps">Masuk</button>
+<button class="bg-secondary text-on-primary px-md py-xs rounded-full font-label-caps text-label-caps hover:opacity-90 transition-opacity active:scale-95 duration-200">Mulai Sekarang</button>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<section class="relative h-[921px] flex items-center overflow-hidden">
+<div class="absolute top-1/2 left-0 -translate-y-1/2 organic-blob w-[500px] h-[500px]"></div>
+<div class="absolute top-1/4 right-0 organic-blob w-[300px] h-[300px]" style="background: linear-gradient(135deg, #fe973c 0%, #ffdcc4 100%); opacity: 0.15;"></div>
+<div class="max-w-container-max mx-auto px-md grid grid-cols-1 lg:grid-cols-2 gap-lg items-center relative z-10">
+<div>
+<h1 class="font-display-lg text-display-lg mb-md leading-tight">
+                    Rencanakan Makan. <br/>
+<span class="text-primary italic">Makan Lebih Baik.</span> <br/>
+                    Belanja Lebih Cerdas.
+                </h1>
+<p class="text-body-lg text-on-surface-variant mb-lg max-w-md">
+                    Presisi seorang ahli gizi yang dipadukan dengan kepraktisan hidup sehari-hari. Cocok untuk mahasiswa dan pekerja kantoran di Indonesia yang ingin hidup sehat tanpa ribet dan tetap hemat.
+                </p>
+<button class="bg-secondary-container text-on-secondary-container px-lg py-md rounded-xl font-headline-md text-headline-md shadow-lg hover:shadow-xl transition-all active:scale-95">
+                    Mulai Perencanaan Gratis
+                </button>
+<div class="mt-md flex items-center gap-xs text-primary font-label-caps text-label-caps">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+                    Tanpa kartu kredit
+                </div>
+</div>
+<div class="relative hidden lg:block">
+<!-- Floating 3-day meal plan mockup -->
+<div class="glass-card p-md rounded-xl green-shadow border-outline-variant/20 animate-bounce" style="animation-duration: 4s;">
+<div class="flex justify-between items-center mb-md">
+<span class="font-headline-md text-headline-md text-primary">Rencana Minggu Ini</span>
+<span class="bg-primary-fixed text-on-primary-fixed px-sm py-xs rounded-full font-data-mono text-data-mono">1.850 kkal/hari</span>
+</div>
+<div class="space-y-md">
+<div class="flex gap-md items-center p-sm bg-surface rounded-lg border-l-4 border-secondary">
+<div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A macro photography shot of a vibrant breakfast bowl containing fresh kale, sliced avocado, soft boiled eggs, and quinoa." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDncPFugK2I5upGJMAAJgBWD4s7Vxm2EIS3gB7nWD0g99ATLrWf8k6XYpIg5m9uw-FASRa1ZOEYNjNTgdfwNA7rmg1m_D5Y_pHNl3JR6u6nvjDRLV1VlA-30jR9Xiq9_biYC-2fasztPgwIbgTQ-ZukeKE1XLWIrgB9mgKXfLs0oENS4uoVyFoafqgIVnBnWEBwX0y9KJCqQ_XZwo8gods7Xf0gP6AYoGfz-I__7AcQUTwOXjAfZFjQtVKkgnq5hrIULWOf3jL2QCXK"/>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-secondary uppercase">Sarapan</p>
+<p class="font-bold">Power Bowl Alpukat &amp; Kale</p>
+<p class="text-body-sm text-on-surface-variant">420 kkal • Rp12.500 / porsi</p>
+</div>
+</div>
+<div class="flex gap-md items-center p-sm bg-surface rounded-lg border-l-4 border-primary">
+<div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A beautifully plated mediterranean salad with chickpeas, cherry tomatoes, cucumbers, and a drizzle of olive oil." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDao8aiXz3rzSHLSEKOgz3TiTrGZnsFWQAppRjWOnoWRSXqE6MgDUea-f1UY_uC39D3sDOnqbsYk6DzVNdMacPISLeUAUOABBohnaWXe77LWwGtVE83vAAK6QB93Fky5TxFpcO4ogt9tUEEaaK5YzrcgucYIwaK_BzaSSPXoha9uoXpuHAZC-QdmYLGkzvJYYe-x262Y3uKUwEh6WO--nMBHShjhwWHkZcr_uDtmWyFpKwKeVlrV-yqTUNP_xJhYKDZ5OFSglcwIYt8"/>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-primary uppercase">Makan Siang</p>
+<p class="font-bold">Salad Mediterania Kacang Arab</p>
+<p class="text-body-sm text-on-surface-variant">510 kkal • Rp10.000 / porsi</p>
+</div>
+</div>
+<div class="flex gap-md items-center p-sm bg-surface rounded-lg border-l-4 border-secondary-container">
+<div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A gourmet grilled salmon fillet seasoned with herbs and lemon slices." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoUL7mZrrkG5-Ef_N1gNTI1p-dc7BMsaJ88BacbV2HUq536NAYAcQ9bGQ1YBvP782f7EfRjjPeTxXXDyQkIA3wtoR9H67ybmyjjLROqbWfK5ayUC9Ptql-WZuVwD76cJzWqa9ArSB61Rm0FI2kLtBTMDL4WR3e6RjjPPbt3WAMEhlFUmHT66GJHFZArFJYfDdlef0AjIvGV3YCb7XsetM-Cnw5RNKWBaGTRn5-jgYwyDo-zSWc5YNzzDg39S0IBM0Tt_rPgdj7qEpF"/>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-on-secondary-container uppercase">Makan Malam</p>
+<p class="font-bold">Salmon Lemon &amp; Asparagus</p>
+<p class="text-body-sm text-on-surface-variant">680 kkal • Rp35.000 / porsi</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Floating botanical elements -->
+<div class="absolute -top-12 -right-12 text-primary/20 opacity-40 select-none">
+<span class="material-symbols-outlined text-[120px]">eco</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Problem Statement -->
+<section class="py-xl bg-surface-container-low">
+<div class="max-w-container-max mx-auto px-md">
+<div class="text-center mb-lg">
+<span class="text-primary font-label-caps text-label-caps uppercase tracking-widest">Tantangan</span>
+<h2 class="font-headline-lg text-headline-lg mt-xs">Mengapa diet tradisional gagal</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+<div class="bg-surface p-md rounded-xl border-l-8 border-primary-fixed green-shadow transition-transform hover:-translate-y-2">
+<span class="material-symbols-outlined text-primary text-[40px] mb-sm">schedule</span>
+<h3 class="font-headline-md text-headline-md mb-xs">Terlalu Sibuk</h3>
+<p class="text-on-surface-variant">Perencanaan memakan waktu berjam-jam yang tidak Anda miliki. Kami memangkasnya menjadi hitungan menit dengan otomatisasi cerdas.</p>
+</div>
+<div class="bg-surface p-md rounded-xl border-l-8 border-primary-fixed green-shadow transition-transform hover:-translate-y-2">
+<span class="material-symbols-outlined text-primary text-[40px] mb-sm">payments</span>
+<h3 class="font-headline-md text-headline-md mb-xs">Anggaran Berlebih</h3>
+<p class="text-on-surface-variant">Makan sehat tidak harus mahal. Algoritma kami memprioritaskan bahan makanan padat nutrisi dengan harga terjangkau.</p>
+</div>
+<div class="bg-surface p-md rounded-xl border-l-8 border-primary-fixed green-shadow transition-transform hover:-translate-y-2">
+<span class="material-symbols-outlined text-primary text-[40px] mb-sm">psychology</span>
+<h3 class="font-headline-md text-headline-md mb-xs">Bingung</h3>
+<p class="text-on-surface-variant">Makro, mikro, label kemasan—semuanya rumit. Kami menangani perhitungannya agar Anda bisa fokus menikmati makanan.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Features Bento Grid -->
+<section class="py-xl">
+<div class="max-w-container-max mx-auto px-md">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<div class="bg-primary text-on-primary p-lg rounded-xl green-shadow flex flex-col justify-between">
+<div>
+<span class="material-symbols-outlined text-[48px] mb-md" style="font-variation-settings: 'FILL' 1">auto_awesome</span>
+<h3 class="font-headline-lg text-headline-lg mb-sm">Perencanaan Otomatis</h3>
+<p class="text-body-lg opacity-90">Nutrisionis AI kami mempelajari selera Anda dan membuat rencana seminggu penuh dalam satu klik. Tidak ada lagi stres memikirkan menu makan.</p>
+</div>
+<div class="mt-lg">
+<img class="rounded-lg shadow-lg" data-alt="A clean top-down view of a modern tablet displaying a structured weekly meal plan interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAp3gLrVXTaku2DXB9eeRXgDqp6qHPEKMTNA-hD1N6zgWGR7BV8I3biQYywaJEayz2e9VSESmSOH-n90xm03s8L4-7_cGP3IxfEVtPMjVE0WIome-_nxI2kPTXklJ_WzSy5ozBFjf_62EN7SQ9Okc3s--1Hm-gYVZuC7vYDE7fugg3TDOTRHierb4rWIGnoj90SByw6N7_d5U5m0LsqmAirwnth7dRMRQZpvvlQcMzPkc3wLP9M8hhIZEdofRnVZkaR0_oNYuL5JhMO"/>
+</div>
+</div>
+<div class="grid grid-rows-2 gap-gutter">
+<div class="bg-surface p-lg rounded-xl green-shadow-hover border border-outline-variant/10 flex gap-md items-center">
+<div class="w-2/3">
+<h3 class="font-headline-md text-headline-md mb-xs">Pelacakan Kalori</h3>
+<p class="text-on-surface-variant">Pelacakan presisi yang tetap menyenangkan. Tetapkan target dan pantau progres Anda dengan visual yang indah dan sederhana.</p>
+</div>
+<div class="w-1/3 flex justify-center">
+<span class="material-symbols-outlined text-primary text-[64px]">monitoring</span>
+</div>
+</div>
+<div class="bg-surface p-lg rounded-xl green-shadow-hover border border-outline-variant/10 flex flex-col justify-center">
+<div class="flex items-center justify-between mb-sm">
+<h3 class="font-headline-md text-headline-md">Penganggaran</h3>
+<span class="bg-secondary text-on-primary px-sm py-xs rounded-full font-data-mono text-data-mono">Hemat ~24%</span>
+</div>
+<p class="text-on-surface-variant">Bandingkan harga bahan pokok dan temukan cara paling hemat biaya untuk memenuhi nutrisi harian tanpa kompromi rasa.</p>
+</div>
+</div>
+<div class="md:col-span-2 bg-tertiary-fixed text-on-tertiary-fixed p-lg rounded-xl green-shadow flex flex-col md:flex-row gap-lg items-center">
+<div class="md:w-1/2">
+<h3 class="font-headline-lg text-headline-lg mb-sm">Kustomisasi Total</h3>
+<p class="text-body-lg">Vegan? Keto? Alergi kacang? Hanya punya waktu masak 15 menit? NutriPlan beradaptasi dengan setiap batasan Anda untuk rencana yang berkelanjutan.</p>
+<div class="flex flex-wrap gap-xs mt-md">
+<span class="bg-surface/50 px-sm py-xs rounded-full font-label-caps text-label-caps">Bebas Gluten</span>
+<span class="bg-surface/50 px-sm py-xs rounded-full font-label-caps text-label-caps">Tinggi Protein</span>
+<span class="bg-surface/50 px-sm py-xs rounded-full font-label-caps text-label-caps">Hemat Biaya</span>
+<span class="bg-surface/50 px-sm py-xs rounded-full font-label-caps text-label-caps">Masak Cepat</span>
+</div>
+</div>
+<div class="md:w-1/2 grid grid-cols-2 gap-sm">
+<div class="aspect-square bg-surface/30 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-[40px]">restaurant</span>
+</div>
+<div class="aspect-square bg-surface/30 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-[40px]">grocery</span>
+</div>
+<div class="aspect-square bg-surface/30 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-[40px]">skillet</span>
+</div>
+<div class="aspect-square bg-surface/30 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-[40px]">timer</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- How It Works -->
+<section class="py-xl bg-surface-container overflow-hidden">
+<div class="max-w-container-max mx-auto px-md">
+<div class="text-center mb-xl">
+<h2 class="font-headline-lg text-headline-lg mb-xs">Langkah Menuju Pola Makan Lebih Baik</h2>
+<p class="text-on-surface-variant max-w-lg mx-auto">Tiga langkah sederhana untuk mentransformasi hubungan Anda dengan makanan.</p>
+</div>
+<div class="relative">
+<!-- Dotted Line Background -->
+<div class="absolute top-1/2 left-0 w-full h-1 dotted-line -translate-y-1/2 hidden md:block"></div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg relative z-10">
+<div class="text-center group">
+<div class="w-16 h-16 bg-primary text-on-primary rounded-full flex items-center justify-center mx-auto mb-md shadow-lg group-hover:scale-110 transition-transform duration-300">
+<span class="font-headline-md">1</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-xs">Atur Profil</h3>
+<p class="text-on-surface-variant px-sm">Masukkan target, kebutuhan diet, dan preferensi anggaran Anda dalam pengaturan cepat.</p>
+</div>
+<div class="text-center group">
+<div class="w-16 h-16 bg-primary text-on-primary rounded-full flex items-center justify-center mx-auto mb-md shadow-lg group-hover:scale-110 transition-transform duration-300">
+<span class="font-headline-md">2</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-xs">Buat &amp; Sesuaikan</h3>
+<p class="text-on-surface-variant px-sm">Tinjau rencana mingguan kustom Anda. Ganti menu apa pun dengan satu klik sesuai suasana hati.</p>
+</div>
+<div class="text-center group">
+<div class="w-16 h-16 bg-primary text-on-primary rounded-full flex items-center justify-center mx-auto mb-md shadow-lg group-hover:scale-110 transition-transform duration-300">
+<span class="font-headline-md">3</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-xs">Belanja &amp; Nikmati</h3>
+<p class="text-on-surface-variant px-sm">Dapatkan daftar belanja otomatis dan resep yang mudah diikuti untuk setiap hidangan.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Personas / Testimonials -->
+<section class="py-xl">
+<div class="max-w-container-max mx-auto px-md">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-lg">
+<!-- Student Zaza -->
+<div class="bg-surface p-lg rounded-xl border-b-4 border-secondary green-shadow flex flex-col md:flex-row gap-md items-center md:items-start">
+<div class="w-32 h-32 rounded-full overflow-hidden border-4 border-surface-variant flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A portrait of a young, smiling female student." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAj38BL9f9Dm9eAUcwigdyuF737GQfTnEt7TDm2XuBmDzqsys-wll5r02sCSimSwY9N8KGmDObJ277BOy61sYm6Qu3jcvWbv0QnkKMEWC0nZrhc2ZP6JdgriUrCYjjGLo9pmTD-CkES_hbb5UvgmWVSaHU3SfpOJk_Ym2xQneY1hvqOIPo0Gb8QEzRUHLiVay1HQ4jlWBRUrcNNcRQzTSHzltqgQqYUlsVto3NtxUmtsJqLiORxmziDfFQ59gbiHzU7xIqnezXXntPW"/>
+</div>
+<div>
+<div class="flex items-center gap-xs mb-xs">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1">star</span>
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1">star</span>
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1">star</span>
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1">star</span>
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1">star</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-xs">Zaza, Mahasiswi</h3>
+<p class="italic text-on-surface-variant mb-md text-body-lg">"Sebagai mahasiswa dengan anggaran terbatas, NutriPlan menyelamatkan saya! Dulu saya hidup dari mi instan, tapi sekarang saya bisa makan sehat dengan kurang dari Rp500rb seminggu."</p>
+<span class="text-primary font-label-caps text-label-caps uppercase tracking-widest">— Turun 5kg dengan Rencana Mahasiswa</span>
+</div>
+</div>
+<!-- Professional Anis -->
+<div class="bg-surface p-lg rounded-xl border-b-4 border-secondary green-shadow flex flex-col md:flex-row gap-md items-center md:items-start">
+<div class="w-32 h-32 rounded-full overflow-hidden border-4 border-surface-variant flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A professional man in his early 30s with a confident, calm smile." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfLfmGR3BwR8zBygis82oaLg2-0sKhb-miNwPvaY7IjugvthuJBkn4cHfI75_uhKHiF13JRdqChNBGLPCQRhu4nXVi83qxrolB6nMka9f9wn1l3NSSpNCBZWX5SA1LIkSd-e0UOmKaW05LlRwcTRYhSJcEOx520lbBuCQA2PYFbUAk6IzVZL4ipfl-7CJsdzKGDi3JhdVDWUs9S7hfRuZ6LsYIYZSANC-DZNZJCJvnmEDvCUKcNLllF5no53Jz6BuHdvRj4wQDs73i"/>
+</div>
+<div>
+<div class="flex items-center gap-xs mb-xs">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1">star</span>
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1">star</span>
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1">star</span>
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1">star</span>
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1">star</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-xs">Anis, Marketing Lead</h3>
+<p class="italic text-on-surface-variant mb-md text-body-lg">"Saya tidak punya waktu memikirkan makro setelah 10 jam bekerja. NutriPlan menangani logistiknya agar saya tinggal masak dan santai. Energi saya lebih stabil sekarang."</p>
+<span class="text-primary font-label-caps text-label-caps uppercase tracking-widest">— Meningkatkan Fokus &amp; Energi Harian</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Banner -->
+<section class="py-xl max-w-container-max mx-auto px-md">
+<div class="bg-gradient-to-r from-primary to-primary-container rounded-3xl p-lg md:p-xl text-center relative overflow-hidden">
+<div class="absolute -top-12 -left-12 text-on-primary/10 select-none">
+<span class="material-symbols-outlined text-[200px]">potted_plant</span>
+</div>
+<div class="relative z-10">
+<h2 class="font-display-lg text-display-lg text-on-primary mb-md">Siap makan lebih terencana?</h2>
+<p class="text-on-primary-container text-body-lg mb-lg max-w-2xl mx-auto">Bergabunglah dengan 15.000+ orang lainnya yang telah memulihkan kesehatan dan anggaran belanja mereka dengan pendekatan praktis NutriPlan.</p>
+<button class="bg-secondary-container text-on-secondary-container px-lg py-md rounded-xl font-headline-md text-headline-md shadow-lg hover:shadow-xl transition-all active:scale-95">
+                    Buat Akun Gratis Anda
+                </button>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-inverse-surface text-inverse-on-surface">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-lg px-md py-xl max-w-container-max mx-auto">
+<div class="col-span-1 md:col-span-1">
+<span class="font-headline-md text-headline-md italic text-primary-fixed block mb-md">NutriPlan</span>
+<p class="text-body-sm text-inverse-on-surface/70 mb-md leading-relaxed">
+                    Nutrisi presisi untuk dunia yang praktis. Kami menjembatani celah antara diet berbasis sains dan gaya hidup yang sibuk.
+                </p>
+</div>
+<div>
+<h4 class="font-label-caps text-label-caps mb-md uppercase tracking-widest">Produk</h4>
+<ul class="space-y-sm">
+<li><a class="text-inverse-on-surface/70 hover:text-inverse-on-surface transition-colors" href="#">Fitur</a></li>
+<li><a class="text-inverse-on-surface/70 hover:text-inverse-on-surface transition-colors" href="#">Harga</a></li>
+<li><a class="text-inverse-on-surface/70 hover:text-inverse-on-surface transition-colors" href="#">Resep</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-caps text-label-caps mb-md uppercase tracking-widest">Sumber Daya</h4>
+<ul class="space-y-sm">
+<li><a class="text-inverse-on-surface/70 hover:text-inverse-on-surface transition-colors" href="#">Pusat Bantuan</a></li>
+<li><a class="text-inverse-on-surface/70 hover:text-inverse-on-surface transition-colors" href="#">Kebijakan Privasi</a></li>
+<li><a class="text-inverse-on-surface/70 hover:text-inverse-on-surface transition-colors" href="#">Syarat Layanan</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-caps text-label-caps mb-md uppercase tracking-widest">Hubungi Kami</h4>
+<ul class="space-y-sm">
+<li><a class="text-inverse-on-surface/70 hover:text-inverse-on-surface transition-colors" href="#">Instagram</a></li>
+<li><a class="text-inverse-on-surface/70 hover:text-inverse-on-surface transition-colors" href="#">Kontak Kami</a></li>
+<li class="pt-sm">
+<div class="flex gap-sm">
+<span class="material-symbols-outlined text-primary-fixed">mail</span>
+<span class="material-symbols-outlined text-primary-fixed">share</span>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-md py-md border-t border-on-surface-variant/20 text-center">
+<p class="text-body-sm text-inverse-on-surface/50">© 2024 NutriPlan. Nutrisi presisi untuk dunia yang praktis.</p>
+</div>
+</footer>
+<script>
+        document.addEventListener('mousemove', (e) => {
+            const blobs = document.querySelectorAll('.organic-blob');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            blobs.forEach((blob, index) => {
+                const speed = (index + 1) * 20;
+                blob.style.transform = `translate(${x * speed}px, ${y * speed}px) translateY(-50%)`;
+            });
+        });
+    </script>
+</body></html>

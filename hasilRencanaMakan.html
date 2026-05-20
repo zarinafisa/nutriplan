@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+
+<html class="light" lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NutriPlan | Rencana Makan 7-Hari Anda</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed": "#b9f1ad",
+                    "primary-container": "#3a6b35",
+                    "on-tertiary-container": "#cae2c0",
+                    "surface-tint": "#386933",
+                    "inverse-on-surface": "#ffeee1",
+                    "on-primary-fixed": "#002202",
+                    "outline": "#72796e",
+                    "secondary": "#924c00",
+                    "on-primary-container": "#b2eaa6",
+                    "inverse-surface": "#3e2d1d",
+                    "tertiary-fixed-dim": "#b5cdac",
+                    "surface-variant": "#fbddc5",
+                    "outline-variant": "#c1c9bb",
+                    "error-container": "#ffdad6",
+                    "on-secondary-fixed": "#2f1500",
+                    "inverse-primary": "#9ed493",
+                    "error": "#ba1a1a",
+                    "primary-fixed-dim": "#9ed493",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-dim": "#f2d5bd",
+                    "on-tertiary-fixed-variant": "#374c32",
+                    "surface-bright": "#fff8f5",
+                    "surface-container-highest": "#fbddc5",
+                    "on-primary": "#ffffff",
+                    "surface-container": "#ffeada",
+                    "secondary-fixed-dim": "#ffb77f",
+                    "on-tertiary-fixed": "#0d200a",
+                    "surface-container-low": "#fff1e8",
+                    "on-primary-fixed-variant": "#20511e",
+                    "on-secondary-container": "#6a3600",
+                    "on-error": "#ffffff",
+                    "tertiary": "#394e34",
+                    "surface-container-high": "#ffe3cd",
+                    "on-secondary": "#ffffff",
+                    "secondary-container": "#fe973c",
+                    "tertiary-fixed": "#d1eac7",
+                    "on-surface-variant": "#42493f",
+                    "secondary-fixed": "#ffdcc4",
+                    "tertiary-container": "#50664a",
+                    "on-background": "#27180a",
+                    "background": "#fff8f5",
+                    "on-surface": "#27180a",
+                    "surface": "#fff8f5",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-fixed-variant": "#6f3800",
+                    "on-error-container": "#93000a",
+                    "primary": "#22521f"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sm": "12px",
+                    "xl": "80px",
+                    "md": "24px",
+                    "xs": "4px",
+                    "container-max": "1200px",
+                    "lg": "48px",
+                    "base": "8px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Playfair Display"],
+                    "data-mono": ["JetBrains Mono"],
+                    "label-caps": ["Plus Jakarta Sans"],
+                    "body-sm": ["Plus Jakarta Sans"],
+                    "body-md": ["Plus Jakarta Sans"],
+                    "body-lg": ["Plus Jakarta Sans"],
+                    "headline-md": ["Playfair Display"],
+                    "display-lg": ["Playfair Display"]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .ambient-shadow { box-shadow: 0 4px 12px rgba(58, 107, 53, 0.08); }
+        .ambient-shadow-hover:hover { box-shadow: 0 8px 16px rgba(58, 107, 53, 0.12); }
+        .mint-track { background: #d1eac7; }
+        .primary-gradient { background: linear-gradient(90deg, #3a6b35 0%, #22521f 100%); }
+    </style>
+</head>
+<body class="bg-background font-body-md text-on-surface">
+<!-- SideNavBar Shell -->
+<aside class="fixed left-0 top-0 h-full w-[240px] bg-primary-container flex flex-col p-md gap-base z-50">
+<div class="mb-lg">
+<h1 class="font-headline-md text-headline-md font-bold text-on-primary-container">NutriPlan</h1>
+<p class="font-body-sm text-body-sm text-on-primary-container/70">Nutrisi Praktis</p>
+</div>
+<nav class="flex flex-col gap-xs flex-1">
+<a class="flex items-center gap-sm px-sm py-base text-on-primary-container/80 hover:bg-primary/20 hover:text-on-primary-container rounded-lg transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-caps text-label-caps uppercase">Dasbor</span>
+</a>
+<a class="flex items-center gap-sm px-sm py-base text-on-primary-container/80 hover:bg-primary/20 hover:text-on-primary-container rounded-lg transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="tune">tune</span>
+<span class="font-label-caps text-label-caps uppercase">Preferensi</span>
+</a>
+<a class="flex items-center gap-sm px-sm py-base bg-secondary-container text-on-secondary-container rounded-lg font-bold transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="restaurant_menu">restaurant_menu</span>
+<span class="font-label-caps text-label-caps uppercase">Rencana Makan</span>
+</a>
+<a class="flex items-center gap-sm px-sm py-base text-on-primary-container/80 hover:bg-primary/20 hover:text-on-primary-container rounded-lg transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="font-label-caps text-label-caps uppercase">Riwayat</span>
+</a>
+<a class="flex items-center gap-sm px-sm py-base text-on-primary-container/80 hover:bg-primary/20 hover:text-on-primary-container rounded-lg transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-caps text-label-caps uppercase">Profil</span>
+</a>
+</nav>
+<div class="mt-auto pt-md border-t border-on-primary-container/10 flex items-center gap-sm">
+<img alt="Foto Profil Zaza" class="w-10 h-10 rounded-full object-cover border-2 border-primary-fixed" data-alt="A professional close-up portrait of a woman in her late 20s with a warm, confident expression." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAarvViTGgyNDxAiRM7fZAQcLP_-Izeu6vcNBGA0QtJZT8fgahtqjSpVaDcXd2UyjRNd7bwpdHRSR3h_nTzbyPrgMbWKNGLyJ4iDBDvXj3ee8Es7k9Okn1Pqo_p6gUTND06EvUR5OT4MtDdwJIgJc7mul69OL66goreO2ywNfc0hOxyljtTS0VeMdbIBgXWEiDe-FHV-zrr6PgXtbweZoPwzhkw5txDWJwpHv1NEgUmzpF0A7nHJ5pQhBYv5sip72-x7pfsgDNr7BN3"/>
+<div>
+<p class="font-label-caps text-label-caps text-on-primary-container font-bold">Zaza</p>
+<p class="font-body-sm text-[10px] text-on-primary-container/60">Anggota Premium</p>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-[240px] min-h-screen flex flex-col">
+<!-- TopAppBar Shell -->
+<header class="sticky top-0 z-40 bg-surface flex justify-between items-center px-md py-sm border-b border-outline-variant/20">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" data-icon="calendar_today">calendar_today</span>
+<h2 class="font-headline-md text-headline-md text-primary">Selamat pagi, Zaza! 🌿</h2>
+</div>
+<div class="flex items-center gap-md">
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+</div>
+</header>
+<!-- Canvas -->
+<section class="p-md lg:p-lg max-w-container-max mx-auto w-full flex flex-col gap-lg">
+<!-- Page Header & Global Stats -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-md">
+<div>
+<h3 class="font-headline-lg text-headline-lg text-on-surface">Rencana Makan 7-Hari Anda</h3>
+<p class="font-body-md text-on-surface-variant max-w-2xl mt-base">Dioptimalkan untuk preferensi tinggi protein, rendah karbohidrat dengan fokus anggaran di bawah Rp 50.000 per hari.</p>
+</div>
+<div class="flex gap-sm flex-wrap">
+<div class="flex items-center gap-xs bg-secondary-container px-sm py-xs rounded-full">
+<span class="material-symbols-outlined text-on-secondary-container text-sm" data-icon="local_fire_department" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+<span class="font-data-mono text-data-mono text-on-secondary-container">RATA 1.850 kkal</span>
+</div>
+<div class="flex items-center gap-xs bg-primary-container px-sm py-xs rounded-full">
+<span class="material-symbols-outlined text-on-primary-container text-sm" data-icon="payments" style="font-variation-settings: 'FILL' 1;">payments</span>
+<span class="font-data-mono text-data-mono text-on-primary-container">TOT Rp 315.000</span>
+</div>
+</div>
+</div>
+<!-- Day Selection Tabs -->
+<div class="w-full border-b border-outline-variant/30 overflow-x-auto hide-scrollbar">
+<div class="flex min-w-max">
+<button class="px-md py-sm font-label-caps text-label-caps text-primary border-b-2 border-secondary font-bold transition-all duration-200">HARI 1</button>
+<button class="px-md py-sm font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-all duration-200">HARI 2</button>
+<button class="px-md py-sm font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-all duration-200">HARI 3</button>
+<button class="px-md py-sm font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-all duration-200">HARI 4</button>
+<button class="px-md py-sm font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-all duration-200">HARI 5</button>
+<button class="px-md py-sm font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-all duration-200">HARI 6</button>
+<button class="px-md py-sm font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-all duration-200">HARI 7</button>
+</div>
+</div>
+<!-- Meal Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+<!-- Breakfast Card -->
+<div class="bg-surface-container-lowest rounded-xl ambient-shadow ambient-shadow-hover transition-all duration-300 overflow-hidden flex flex-col group border-b-4 border-transparent hover:border-secondary">
+<div class="relative h-48 w-full overflow-hidden">
+<img alt="Breakfast Bowl" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A top-down shot of a vibrant, healthy breakfast bowl featuring creamy yogurt, fresh sliced strawberries, blueberries, granola, and a drizzle of honey." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTye5Mg7MalJwDagyJFh6XQz3DtywC8K7TGqIsEhx2IWlGQw_9GJROlhWGxfFWtw3DSNDI7zacf5dV-lB1e7JGyVQcqqJ0v1LwSNWzvK0qQ83ekLrDSugYZQ8vh-7PGclqzmd4l1AYArpGmBck9NHued8GBJmfTQUH84BiLuE-RW3kdaUTcq5QIYlsKXoMI9EBOn6lX1Ds-z4zrnjVVEdRSan-BtgvoUBrxyj6ohahZkHXUemeKJ3mWLuH4aOrvE6awbnqzgFAuyhp"/>
+<div class="absolute top-sm left-sm">
+<span class="bg-surface/90 backdrop-blur-sm px-sm py-xs rounded-full font-label-caps text-[10px] text-primary font-bold uppercase">Sarapan</span>
+</div>
+</div>
+<div class="p-md flex flex-col gap-sm">
+<h4 class="font-headline-md text-headline-md text-on-surface">Mangkuk Yogurt Berry Power</h4>
+<div class="flex flex-wrap gap-xs">
+<span class="bg-secondary-container/20 text-on-secondary-container px-xs py-[2px] rounded-full font-data-mono text-[11px] flex items-center gap-xs">
+<span class="material-symbols-outlined text-[12px]" data-icon="local_fire_department" style="font-variation-settings: 'FILL' 1;">local_fire_department</span> 380 kkal
+                            </span>
+<span class="bg-primary-container/20 text-on-primary-container px-xs py-[2px] rounded-full font-data-mono text-[11px] flex items-center gap-xs">
+<span class="material-symbols-outlined text-[12px]" data-icon="payments" style="font-variation-settings: 'FILL' 1;">payments</span> Rp 15.000
+                            </span>
+</div>
+<a class="mt-base text-primary font-label-caps text-label-caps flex items-center gap-xs hover:gap-sm transition-all" href="#">
+                            LIHAT DETAIL <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Lunch Card -->
+<div class="bg-surface-container-lowest rounded-xl ambient-shadow ambient-shadow-hover transition-all duration-300 overflow-hidden flex flex-col group border-b-4 border-secondary">
+<div class="relative h-48 w-full overflow-hidden">
+<img alt="Chicken Salad" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A professional food photography shot of a grilled chicken breast salad with avocado slices." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqD7_bX0d2S0IEo7n-t4dvJFbUePEQO3wR3tbUpiqA26uw8MC7mmBUgbKDo_UjO--ybf-F-tjcn8qgz3DP676caOM21xJNGLgLGb4CooM0ep0rv9x5ukVmJg8myr5bt4q_HOlhFgQqAEvJgOP8tN9kih-l1lcoNBk5IAtWv4R3imzvWz2nFjqAS10ldA026QrD4aOVZYXCF490w88Hgr72u6k5goIFTVIwiaFG5-lzR6RprMfHjvteInFiijelMONmsxJ8ES_kZD4E"/>
+<div class="absolute top-sm left-sm">
+<span class="bg-surface/90 backdrop-blur-sm px-sm py-xs rounded-full font-label-caps text-[10px] text-primary font-bold uppercase">Makan Siang • Direkomendasikan</span>
+</div>
+</div>
+<div class="p-md flex flex-col gap-sm">
+<h4 class="font-headline-md text-headline-md text-on-surface">Salad Ayam Bakar Alpukat</h4>
+<div class="flex flex-wrap gap-xs">
+<span class="bg-secondary-container px-xs py-[2px] rounded-full font-data-mono text-[11px] text-on-secondary-container flex items-center gap-xs">
+<span class="material-symbols-outlined text-[12px]" data-icon="local_fire_department" style="font-variation-settings: 'FILL' 1;">local_fire_department</span> 520 kkal
+                            </span>
+<span class="bg-primary-container px-xs py-[2px] rounded-full font-data-mono text-[11px] text-on-primary-container flex items-center gap-xs">
+<span class="material-symbols-outlined text-[12px]" data-icon="payments" style="font-variation-settings: 'FILL' 1;">payments</span> Rp 22.000
+                            </span>
+</div>
+<a class="mt-base text-primary font-label-caps text-label-caps flex items-center gap-xs hover:gap-sm transition-all" href="#">
+                            LIHAT DETAIL <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Dinner Card -->
+<div class="bg-surface-container-lowest rounded-xl ambient-shadow ambient-shadow-hover transition-all duration-300 overflow-hidden flex flex-col group border-b-4 border-transparent hover:border-secondary">
+<div class="relative h-48 w-full overflow-hidden">
+<img alt="Steamed Fish" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A beautifully presented steamed white fish fillet garnished with ginger, scallions, and soy sauce." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfuOXzMGM5bYHFJOB5n_UblnZdxJgU19Tg2nJ7ncNRbOGSA64ipPCUQC4-JHJLeih16yYMaGUJ4JDqVO1Fboeb036NOzpaKaKd9tMWNhX_nzS7uQObSPTeco529dcXFiVsyG8G_Oq6C7-t8O_OvEkQrpM6FHGL4giiknf3oty9Z6Y5qVO86uFtG81f6_ikLjaRt0jU2uwpa70mSdPtKQ6F0mx4gb5XgTZxncBRf86cQikSLaYb3bxe9-o-E8n1m7WKaQA6VjAoi157"/>
+<div class="absolute top-sm left-sm">
+<span class="bg-surface/90 backdrop-blur-sm px-sm py-xs rounded-full font-label-caps text-[10px] text-primary font-bold uppercase">Makan Malam</span>
+</div>
+</div>
+<div class="p-md flex flex-col gap-sm">
+<h4 class="font-headline-md text-headline-md text-on-surface">Nila Kukus Jahe Kecap</h4>
+<div class="flex flex-wrap gap-xs">
+<span class="bg-secondary-container/20 text-on-secondary-container px-xs py-[2px] rounded-full font-data-mono text-[11px] flex items-center gap-xs">
+<span class="material-symbols-outlined text-[12px]" data-icon="local_fire_department" style="font-variation-settings: 'FILL' 1;">local_fire_department</span> 410 kkal
+                            </span>
+<span class="bg-primary-container/20 text-on-primary-container px-xs py-[2px] rounded-full font-data-mono text-[11px] flex items-center gap-xs">
+<span class="material-symbols-outlined text-[12px]" data-icon="payments" style="font-variation-settings: 'FILL' 1;">payments</span> Rp 12.000
+                            </span>
+</div>
+<a class="mt-base text-primary font-label-caps text-label-caps flex items-center gap-xs hover:gap-sm transition-all" href="#">
+                            LIHAT DETAIL <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Day Summary Bento Section -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-md">
+<!-- Nutrition Progress -->
+<div class="lg:col-span-8 bg-surface-container-low p-md lg:p-lg rounded-xl flex flex-col gap-md">
+<div class="flex justify-between items-center">
+<h5 class="font-headline-md text-headline-md text-on-surface">Progres Harian</h5>
+<span class="bg-primary/10 text-primary px-sm py-xs rounded-full font-label-caps text-[10px] font-bold">STATUS HARI 1: SEMPURNA</span>
+</div>
+<div class="space-y-sm">
+<div class="flex justify-between font-label-caps text-[11px] text-on-surface-variant">
+<span>ASUPAN KALORI</span>
+<span class="font-data-mono">1.310 / 1.800 kkal</span>
+</div>
+<div class="w-full h-3 mint-track rounded-full overflow-hidden">
+<div class="h-full primary-gradient rounded-full transition-all duration-1000" style="width: 72%"></div>
+</div>
+</div>
+<div class="space-y-sm">
+<div class="flex justify-between font-label-caps text-[11px] text-on-surface-variant">
+<span>PENGELUARAN HARIAN</span>
+<span class="font-data-mono">Rp 49.000 / Rp 50.000</span>
+</div>
+<div class="w-full h-3 mint-track rounded-full overflow-hidden">
+<div class="h-full bg-secondary rounded-full transition-all duration-1000" style="width: 98%"></div>
+</div>
+</div>
+</div>
+<!-- Status & Actions -->
+<div class="lg:col-span-4 flex flex-col gap-md">
+<div class="flex-1 bg-primary-container p-md rounded-xl text-on-primary-container flex flex-col items-center justify-center text-center gap-sm">
+<span class="material-symbols-outlined text-4xl" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<h6 class="font-headline-md text-headline-md">Sesuai Anggaran</h6>
+<p class="font-body-sm opacity-80">Kerja bagus! Anda menghemat Rp 1.000 hari ini dibandingkan dengan target Anda.</p>
+</div>
+<button class="w-full bg-secondary py-md rounded-xl text-on-secondary font-label-caps text-label-caps shadow-lg shadow-secondary/20 hover:scale-[1.02] active:scale-95 transition-all">
+                        SIMPAN RENCANA HARI 1
+                    </button>
+</div>
+</div>
+</section>
+<!-- Footer Shell -->
+<footer class="mt-auto bg-inverse-surface text-inverse-on-surface">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-lg px-md py-xl max-w-container-max mx-auto">
+<div class="col-span-1 md:col-span-2">
+<h2 class="font-headline-md text-headline-md italic text-primary-fixed mb-sm">NutriPlan</h2>
+<p class="font-body-sm text-body-sm opacity-70">© 2024 NutriPlan. Nutrisi tepat untuk dunia yang praktis.</p>
+</div>
+<div class="flex flex-col gap-sm">
+<h6 class="font-label-caps text-label-caps font-bold">Sumber Daya</h6>
+<a class="font-body-sm text-body-sm text-inverse-on-surface/70 hover:text-inverse-on-surface transition-colors" href="#">Kebijakan Privasi</a>
+<a class="font-body-sm text-body-sm text-inverse-on-surface/70 hover:text-inverse-on-surface transition-colors" href="#">Ketentuan Layanan</a>
+</div>
+<div class="flex flex-col gap-sm">
+<h6 class="font-label-caps text-label-caps font-bold">Dukungan</h6>
+<a class="font-body-sm text-body-sm text-inverse-on-surface/70 hover:text-inverse-on-surface transition-colors" href="#">Hubungi Kami</a>
+<a class="font-body-sm text-body-sm text-inverse-on-surface/70 hover:text-inverse-on-surface transition-colors" href="#">Pusat Bantuan</a>
+</div>
+</div>
+</footer>
+</main>
+<script>
+        // Simple micro-interaction for tab switching simulation
+        const tabs = document.querySelectorAll('.hide-scrollbar button');
+        const dayNames = ["HARI 1", "HARI 2", "HARI 3", "HARI 4", "HARI 5", "HARI 6", "HARI 7"];
+        
+        tabs.forEach((tab, index) => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => {
+                    t.classList.remove('text-primary', 'border-b-2', 'border-secondary', 'font-bold');
+                    t.classList.add('text-on-surface-variant');
+                });
+                tab.classList.add('text-primary', 'border-b-2', 'border-secondary', 'font-bold');
+                tab.classList.remove('text-on-surface-variant');
+                
+                // Update save button text based on day
+                const saveBtn = document.querySelector('button.bg-secondary.text-on-secondary');
+                if(saveBtn) saveBtn.textContent = `SIMPAN RENCANA ${dayNames[index]}`;
+            });
+        });
+
+        // Add a subtle entrance animation for cards
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.bg-surface-container-lowest');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+    </script>
+</body></html>
