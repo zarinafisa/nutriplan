@@ -1,1002 +1,881 @@
-<!DOCTYPE html>
-<html class="light" lang="id">
-<head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>NutriPlan Dashboard</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-  tailwind.config = {
-    darkMode: "class",
-    theme: {
-      extend: {
-        colors: {
-          "primary-fixed": "#b9f1ad",
-          "primary-container": "#3a6b35",
-          "on-tertiary-container": "#cae2c0",
-          "surface-tint": "#386933",
-          "inverse-on-surface": "#ffeee1",
-          "on-primary-fixed": "#002202",
-          "outline": "#72796e",
-          "secondary": "#924c00",
-          "on-primary-container": "#b2eaa6",
-          "inverse-surface": "#3e2d1d",
-          "tertiary-fixed-dim": "#b5cdac",
-          "surface-variant": "#fbddc5",
-          "outline-variant": "#c1c9bb",
-          "error-container": "#ffdad6",
-          "on-secondary-fixed": "#2f1500",
-          "inverse-primary": "#9ed493",
-          "error": "#ba1a1a",
-          "primary-fixed-dim": "#9ed493",
-          "surface-container-lowest": "#ffffff",
-          "surface-dim": "#f2d5bd",
-          "on-tertiary-fixed-variant": "#374c32",
-          "surface-bright": "#fff8f5",
-          "surface-container-highest": "#fbddc5",
-          "on-primary": "#ffffff",
-          "surface-container": "#ffeada",
-          "secondary-fixed-dim": "#ffb77f",
-          "on-tertiary-fixed": "#0d200a",
-          "surface-container-low": "#fff1e8",
-          "on-primary-fixed-variant": "#20511e",
-          "on-secondary-container": "#6a3600",
-          "on-error": "#ffffff",
-          "tertiary": "#394e34",
-          "surface-container-high": "#ffe3cd",
-          "on-secondary": "#ffffff",
-          "secondary-container": "#fe973c",
-          "tertiary-fixed": "#d1eac7",
-          "on-surface-variant": "#42493f",
-          "secondary-fixed": "#ffdcc4",
-          "tertiary-container": "#50664a",
-          "on-background": "#27180a",
-          "background": "#fff8f5",
-          "on-surface": "#27180a",
-          "surface": "#fff8f5",
-          "on-tertiary": "#ffffff",
-          "on-secondary-fixed-variant": "#6f3800",
-          "on-error-container": "#93000a",
-          "primary": "#22521f"
-        },
-        borderRadius: {
-          DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"
-        },
-        spacing: {
-          sm: "12px", xl: "80px", md: "24px", xs: "4px",
-          "container-max": "1200px", lg: "48px", base: "8px", gutter: "24px"
-        },
-        fontFamily: {
-          "headline-lg": ["Playfair Display"],
-          "data-mono": ["JetBrains Mono"],
-          "label-caps": ["Plus Jakarta Sans"],
-          "body-sm": ["Plus Jakarta Sans"],
-          "body-md": ["Plus Jakarta Sans"],
-          "body-lg": ["Plus Jakarta Sans"],
-          "headline-md": ["Playfair Display"],
-          "display-lg": ["Playfair Display"]
-        },
-        fontSize: {
-          "headline-lg": ["32px", {lineHeight: "1.3", fontWeight: "700"}],
-          "data-mono": ["14px", {lineHeight: "1", fontWeight: "500"}],
-          "label-caps": ["12px", {lineHeight: "1.2", letterSpacing: "0.05em", fontWeight: "700"}],
-          "body-sm": ["14px", {lineHeight: "1.5", fontWeight: "400"}],
-          "body-md": ["16px", {lineHeight: "1.6", fontWeight: "400"}],
-          "body-lg": ["18px", {lineHeight: "1.6", fontWeight: "400"}],
-          "headline-md": ["24px", {lineHeight: "1.4", fontWeight: "600"}],
-          "display-lg": ["48px", {lineHeight: "1.2", letterSpacing: "-0.02em", fontWeight: "700"}]
-        }
-      }
-    }
-  }
-</script>
+
 <style>
-  .material-symbols-outlined {
-    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-    vertical-align: middle;
-  }
-  .tonal-shadow { box-shadow: 0 4px 12px rgba(58,107,53,0.08); }
-  .active-nav-shadow { box-shadow: 0 8px 16px rgba(58,107,53,0.12); }
-  .glass-header { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:#fff8f5;color:#27180a;min-height:100vh}
+:root{
+  --primary:#22521f;--primary-container:#3a6b35;--on-primary:#fff;
+  --primary-fixed:#b9f1ad;--on-primary-container:#b2eaa6;
+  --secondary:#924c00;--secondary-container:#fe973c;--on-secondary-container:#6a3600;
+  --surface:#fff8f5;--surface-low:#fff1e8;--surface-container:#ffeada;
+  --surface-card:#fff;--outline:#72796e;--outline-v:#c1c9bb;
+  --on-surface:#27180a;--on-surface-v:#42493f;
+  --tertiary-fixed:#d1eac7;--inverse-surface:#3e2d1d;--inverse-on:#ffeee1;
+  --error:#ba1a1a;
+}
+a{text-decoration:none;color:inherit}
 
-  /* Sidebar overlay for mobile */
-  #sidebar-overlay {
-    display: none;
-    position: fixed; inset: 0;
-    background: rgba(0,0,0,0.4);
-    z-index: 40;
-  }
-  #sidebar-overlay.active { display: block; }
+.app{display:grid;grid-template-columns:240px 1fr;min-height:100vh}
 
-  /* Sidebar mobile slide */
-  #sidebar {
-    transition: transform 0.3s cubic-bezier(.4,0,.2,1);
-  }
-  @media (max-width: 767px) {
-    #sidebar {
-      transform: translateX(-100%);
-    }
-    #sidebar.open {
-      transform: translateX(0);
-    }
-    #main-content {
-      margin-left: 0 !important;
-    }
-  }
+/* SIDEBAR */
+.sidebar{
+  background:var(--primary-container);
+  display:flex;flex-direction:column;
+  padding:24px 0;
+  position:sticky;top:0;height:100vh;overflow-y:auto;
+}
+.sidebar-brand{padding:0 24px 28px;border-bottom:1px solid rgba(255,255,255,0.1)}
+.sidebar-brand h2{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--primary-fixed);font-style:italic}
+.sidebar-brand span{display:block;font-size:10px;font-weight:700;letter-spacing:.1em;color:rgba(185,241,173,.5);text-transform:uppercase;margin-top:3px}
+.sidebar-nav{flex:1;padding:20px 12px;display:flex;flex-direction:column;gap:3px}
+.nav-item{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:10px;font-size:11px;font-weight:700;letter-spacing:.08em;color:rgba(185,241,173,.65);cursor:pointer;transition:all .18s;text-transform:uppercase;border:none;background:transparent;width:100%;text-align:left}
+.nav-item i{font-size:18px;width:20px;text-align:center;color:inherit}
+.nav-item:hover{background:rgba(255,255,255,.08);color:var(--primary-fixed)}
+.nav-item.active{background:rgba(185,241,173,.15);color:var(--primary-fixed);border-left:3px solid var(--primary-fixed);padding-left:11px}
+.sidebar-user{margin:0 12px;padding:14px;background:rgba(255,255,255,.07);border-radius:12px;display:flex;align-items:center;gap:10px;border:1px solid rgba(185,241,173,.12)}
+.sidebar-user img{width:38px;height:38px;border-radius:50%;object-fit:cover;border:2px solid rgba(185,241,173,.3);flex-shrink:0}
+.sidebar-user .uname{font-size:13px;font-weight:600;color:var(--primary-fixed)}
+.sidebar-user .utag{font-size:10px;font-weight:700;letter-spacing:.06em;color:rgba(185,241,173,.5);text-transform:uppercase}
 
-  /* Toast */
-  #toast {
-    position: fixed; bottom: 24px; right: 24px;
-    background: #3a6b35; color: #b2eaa6;
-    padding: 12px 20px; border-radius: 12px;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 14px; font-weight: 600;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-    z-index: 9999;
-    transform: translateY(80px); opacity: 0;
-    transition: all 0.4s cubic-bezier(.4,0,.2,1);
-    pointer-events: none;
-  }
-  #toast.show { transform: translateY(0); opacity: 1; }
+/* MAIN */
+.main{display:flex;flex-direction:column;min-height:100vh;background:var(--surface)}
 
-  /* Ripple */
-  .ripple-btn { position: relative; overflow: hidden; }
-  .ripple-btn .ripple {
-    position: absolute; border-radius: 50%;
-    background: rgba(255,255,255,0.3);
-    transform: scale(0); animation: ripple-anim 0.6s linear;
-    pointer-events: none;
-  }
-  @keyframes ripple-anim {
-    to { transform: scale(4); opacity: 0; }
-  }
+/* TOPBAR */
+.topbar{
+  position:sticky;top:0;z-index:40;
+  background:rgba(255,248,245,.92);backdrop-filter:blur(12px);
+  display:flex;justify-content:space-between;align-items:center;
+  padding:12px 24px;border-bottom:1px solid rgba(193,201,187,.2);
+}
+.topbar-left{display:flex;align-items:center;gap:10px}
+.topbar-left h2{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--primary)}
+.topbar-right{display:flex;gap:8px;align-items:center}
+.icon-btn{width:38px;height:38px;border-radius:50%;border:1px solid var(--outline-v);background:var(--surface-card);color:var(--on-surface-v);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .18s;flex-shrink:0}
+.icon-btn:hover{background:#f0faf4;border-color:#52B788;color:var(--primary)}
+.hamburger{display:none}
 
-  /* Progress bar animation */
-  .progress-fill { transition: width 1s ease; }
+/* VIEWS */
+.view{display:none;flex-direction:column;flex:1}
+.view.active{display:flex}
 
-  /* Notification badge */
-  .notif-badge {
-    position: absolute; top: -4px; right: -4px;
-    width: 10px; height: 10px;
-    background: #924c00; border-radius: 50%;
-    border: 2px solid #fff8f5;
-  }
+/* CONTENT AREA */
+.content{padding:32px 32px 48px;max-width:1100px;width:100%;margin:0 auto;display:flex;flex-direction:column;gap:32px}
 
-  /* Meal item hover */
-  .meal-item {
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    cursor: pointer;
-  }
-  .meal-item:hover {
-    transform: translateX(4px);
-    box-shadow: 0 4px 16px rgba(58,107,53,0.12);
-  }
+/* PAGE TITLE */
+.page-title h1{font-family:'Playfair Display',serif;font-size:30px;font-weight:800;color:var(--primary)}
+.page-title p{font-size:14px;color:var(--on-surface-v);margin-top:5px}
+.page-header{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap}
 
-  /* Nav active indicator */
-  .nav-item { transition: all 0.2s ease; }
+/* STAT CARDS */
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.stat-card{background:var(--surface-card);padding:20px;border-radius:14px;border-left:4px solid;display:flex;flex-direction:column;gap:10px;cursor:pointer;transition:all .25s;box-shadow:0 3px 10px rgba(58,107,53,.07)}
+.stat-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(58,107,53,.13)}
+.stat-label{font-size:10px;font-weight:700;letter-spacing:.08em;color:var(--on-surface-v);text-transform:uppercase}
+.stat-value{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;line-height:1}
+.stat-sub{font-size:12px;color:var(--on-surface-v)}
+.prog-track{height:6px;background:var(--primary-fixed);border-radius:3px;overflow:hidden;margin-top:2px}
+.prog-fill{height:100%;border-radius:3px;transition:width .8s ease}
 
-  /* Card hover */
-  .stat-card { transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer; }
-  .stat-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(58,107,53,0.14); }
+/* QUICK ACTIONS & MENU */
+.actions-grid{display:grid;grid-template-columns:5fr 8fr;gap:20px}
+.action-col{display:flex;flex-direction:column;gap:14px}
+.btn-generate{background:var(--secondary-container);color:var(--on-secondary-container);padding:28px 20px;border-radius:16px;border:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;cursor:pointer;transition:all .2s;text-align:center;width:100%;box-shadow:0 3px 10px rgba(58,107,53,.07)}
+.btn-generate:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(254,151,60,.25)}
+.btn-generate i{font-size:40px}
+.btn-generate h3{font-family:'Playfair Display',serif;font-size:18px;font-weight:700}
+.btn-generate p{font-size:13px;opacity:.85}
+.btn-outline{display:flex;align-items:center;justify-content:center;gap:8px;padding:12px;border-radius:12px;border:2px solid var(--primary);color:var(--primary);background:transparent;font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;cursor:pointer;transition:all .18s;width:100%}
+.btn-outline:hover{background:rgba(34,82,31,.05)}
+.btn-outline.orange{border-color:var(--secondary);color:var(--secondary)}
+.btn-outline.orange:hover{background:rgba(146,76,0,.05)}
+.menu-card{background:var(--surface-low);padding:20px;border-radius:16px;display:flex;flex-direction:column;gap:14px;box-shadow:0 3px 10px rgba(58,107,53,.07)}
+.menu-card-header{display:flex;justify-content:space-between;align-items:center}
+.menu-card-header h3{font-family:'Playfair Display',serif;font-size:18px;font-weight:700}
+.menu-card-header a{font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--primary);cursor:pointer}
+.meal-item{display:flex;align-items:center;justify-content:space-between;padding:10px;background:var(--surface-card);border-radius:10px;cursor:pointer;transition:all .18s}
+.meal-item:hover{transform:translateX(4px);box-shadow:0 4px 12px rgba(58,107,53,.1)}
+.meal-left{display:flex;align-items:center;gap:14px}
+.meal-img{width:56px;height:56px;border-radius:10px;object-fit:cover;flex-shrink:0}
+.meal-badge{font-size:9px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:2px 8px;border-radius:999px;display:inline-block;margin-bottom:3px}
+.meal-badge.breakfast{background:rgba(254,151,60,.15);color:var(--on-secondary-container)}
+.meal-badge.lunch{background:rgba(185,241,173,.3);color:#20511e}
+.meal-badge.dinner{background:rgba(254,151,60,.15);color:var(--on-secondary-container)}
+.meal-name{font-size:15px;font-weight:700}
+.meal-desc{font-size:12px;color:var(--on-surface-v)}
+.meal-right{display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+.kcal-badge{background:var(--secondary);color:#fff;font-size:12px;font-weight:600;padding:4px 10px;border-radius:999px}
+.meal-status{font-size:10px}
+.meal-status.done{color:var(--primary)}
+.meal-status.pending{color:var(--on-surface-v)}
 
-  /* Notification panel */
-  #notif-panel {
-    display: none;
-    position: absolute; right: 0; top: calc(100% + 8px);
-    width: 300px; background: white;
-    border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.12);
-    border: 1px solid #c1c9bb; z-index: 100;
-    overflow: hidden;
-  }
-  #notif-panel.open { display: block; animation: fadeDown 0.2s ease; }
-  @keyframes fadeDown { from { opacity:0; transform:translateY(-8px); } to { opacity:1; transform:translateY(0); } }
+/* INSIGHT */
+.insight{background:rgba(34,82,31,.05);border-radius:20px;padding:32px;display:flex;flex-direction:column;gap:20px;border:1px solid rgba(34,82,31,.08)}
+.insight-header h3{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--primary)}
+.insight-header p{font-size:14px;color:var(--on-surface-v);margin-top:8px;max-width:500px}
+.insight-stats{display:flex;gap:24px;flex-wrap:wrap}
+.insight-stat span:first-child{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--primary);display:block}
+.insight-stat span:last-child{font-family:'Playfair Display',serif;font-size:22px;font-weight:700}
+.btn-solid{display:inline-flex;align-items:center;gap:6px;background:var(--primary);color:#fff;padding:9px 18px;border-radius:9px;border:none;font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;cursor:pointer;transition:all .18s}
+.btn-solid:hover{opacity:.9}
+.insight-progress{display:flex;flex-direction:column;gap:8px}
+.insight-progress-label{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--primary);text-align:center}
 
-  /* Search panel */
-  #search-panel {
-    display: none;
-    position: absolute; right: 0; top: calc(100% + 8px);
-    width: 280px; background: white;
-    border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.12);
-    border: 1px solid #c1c9bb; z-index: 100;
-    padding: 12px;
-  }
-  #search-panel.open { display: block; animation: fadeDown 0.2s ease; }
+/* HISTORY */
+.history-cards{display:flex;flex-direction:column;gap:18px}
+.history-card{background:var(--surface-card);border-radius:16px;border:1px solid rgba(193,201,187,.3);padding:20px;display:flex;align-items:center;gap:20px;box-shadow:0 2px 10px rgba(45,106,79,.05);transition:all .2s}
+.history-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(45,106,79,.1)}
+.history-img{width:96px;height:96px;border-radius:12px;object-fit:cover;flex-shrink:0;border:1px solid var(--outline-v)}
+.history-info{flex:1;min-width:0}
+.meta-row{display:flex;align-items:center;gap:10px;margin-bottom:7px;flex-wrap:wrap}
+.status-badge{font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:999px}
+.status-badge.active{background:#d1eac7;color:#1B4332}
+.status-badge.done{background:#ffe3cd;color:#6a3600}
+.date-range{font-size:12px;color:var(--on-surface-v);font-weight:500}
+.history-title{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--primary);margin-bottom:4px}
+.history-focus{font-size:13px;color:var(--on-surface-v);margin-bottom:10px}
+.history-stats{display:flex;gap:18px;flex-wrap:wrap}
+.history-stats span{font-size:12px;font-weight:600;color:var(--on-surface-v);display:flex;align-items:center;gap:4px}
+.history-stats i{color:#52B788;font-size:12px}
+.history-actions{display:flex;flex-direction:column;align-items:flex-end;gap:10px;flex-shrink:0}
+.btn-view{width:36px;height:36px;border-radius:50%;border:1px solid var(--outline-v);background:var(--surface);color:var(--on-surface-v);font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .18s}
+.btn-view:hover{background:#f0faf4;border-color:#52B788;color:var(--primary)}
+.btn-reuse{display:flex;align-items:center;gap:6px;padding:9px 16px;border-radius:999px;border:none;background:var(--primary);color:var(--primary-fixed);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:all .2s;white-space:nowrap;box-shadow:0 4px 12px rgba(34,82,31,.2)}
+.btn-reuse:hover{background:var(--primary-container);transform:translateY(-1px)}
 
-  /* Meal detail modal */
-  #meal-modal {
-    display: none;
-    position: fixed; inset: 0; z-index: 200;
-    background: rgba(0,0,0,0.5);
-    align-items: center; justify-content: center;
-  }
-  #meal-modal.open { display: flex; }
-  #meal-modal-inner {
-    background: #fff8f5; border-radius: 20px;
-    padding: 28px; max-width: 420px; width: 90%;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-    animation: scaleIn 0.25s ease;
-  }
-  @keyframes scaleIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+/* MEAL PLAN (7-day) */
+.day-tabs{display:flex;overflow-x:auto;border-bottom:1px solid rgba(193,201,187,.3);gap:0;-webkit-overflow-scrolling:touch}
+.day-tabs::-webkit-scrollbar{display:none}
+.day-tab{padding:10px 18px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--on-surface-v);border:none;background:transparent;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;transition:all .18s;flex-shrink:0}
+.day-tab.active{color:var(--primary);border-bottom-color:var(--secondary)}
+.day-tab:hover:not(.active){color:var(--primary)}
+.meals-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.meal-card{background:var(--surface-card);border-radius:14px;overflow:hidden;box-shadow:0 3px 10px rgba(58,107,53,.07);transition:all .25s;border-bottom:3px solid transparent}
+.meal-card:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(58,107,53,.12);border-bottom-color:var(--secondary)}
+.meal-card.featured{border-bottom-color:var(--secondary)}
+.meal-card-img{width:100%;height:160px;object-fit:cover;display:block}
+.meal-card-body{padding:16px;display:flex;flex-direction:column;gap:10px}
+.meal-tag{display:inline-block;background:rgba(255,248,245,.92);backdrop-filter:blur(4px);padding:3px 10px;border-radius:999px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--primary)}
+.meal-card-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700}
+.pill-row{display:flex;gap:6px;flex-wrap:wrap}
+.pill{font-size:10px;font-weight:600;padding:3px 8px;border-radius:999px;display:flex;align-items:center;gap:3px}
+.pill.kcal{background:rgba(254,151,60,.15);color:var(--on-secondary-container)}
+.pill.price{background:rgba(185,241,173,.3);color:#20511e}
+.meal-card-link{font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--primary);display:flex;align-items:center;gap:4px;cursor:pointer}
+.day-summary{display:grid;grid-template-columns:8fr 4fr;gap:18px}
+.summary-card{background:var(--surface-low);padding:20px;border-radius:14px;display:flex;flex-direction:column;gap:14px}
+.summary-card h4{font-family:'Playfair Display',serif;font-size:17px;font-weight:700}
+.prog-row{display:flex;flex-direction:column;gap:5px}
+.prog-label{display:flex;justify-content:space-between;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--on-surface-v)}
+.prog-label span:last-child{font-family:'JetBrains Mono',monospace;font-weight:500}
+.side-summary{display:flex;flex-direction:column;gap:14px}
+.status-card{background:var(--primary-container);padding:20px;border-radius:14px;color:var(--on-primary-container);text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px;flex:1}
+.status-card i{font-size:36px}
+.status-card h5{font-family:'Playfair Display',serif;font-size:16px;font-weight:700}
+.status-card p{font-size:12px;opacity:.8}
+.btn-save-day{background:var(--secondary);color:#fff;padding:14px;border-radius:12px;border:none;font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;cursor:pointer;transition:all .2s;width:100%}
+.btn-save-day:hover{opacity:.9;transform:translateY(-1px)}
 
-  /* Log makanan modal */
-  #log-modal {
-    display: none;
-    position: fixed; inset: 0; z-index: 200;
-    background: rgba(0,0,0,0.5);
-    align-items: center; justify-content: center;
-  }
-  #log-modal.open { display: flex; }
-  #log-modal-inner {
-    background: #fff8f5; border-radius: 20px;
-    padding: 28px; max-width: 380px; width: 90%;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-    animation: scaleIn 0.25s ease;
-  }
+/* PROFILE */
+.profile-grid{display:grid;grid-template-columns:4fr 8fr;gap:24px}
+.profile-left{display:flex;flex-direction:column;gap:18px}
+.profile-card{background:var(--surface-card);padding:24px;border-radius:16px;border:1px solid rgba(193,201,187,.3);box-shadow:0 2px 10px rgba(58,107,53,.05)}
+.avatar-wrap{position:relative;width:100px;height:100px;margin:0 auto 16px}
+.avatar-wrap img{width:100%;height:100%;border-radius:50%;object-fit:cover;border:3px solid var(--primary-fixed)}
+.avatar-edit{position:absolute;bottom:2px;right:2px;width:28px;height:28px;border-radius:50%;background:var(--primary);color:#fff;border:none;font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.profile-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;text-align:center}
+.profile-sub{font-size:13px;color:var(--on-surface-v);text-align:center;margin-top:3px}
+.badge-row{display:flex;justify-content:center;gap:6px;margin-top:12px;flex-wrap:wrap}
+.badge{font-size:9px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:3px 10px;border-radius:999px}
+.badge.verified{background:var(--primary-fixed);color:#20511e}
+.badge.premium{background:#ffdcc4;color:#6f3800}
+.stats-list{display:flex;flex-direction:column;gap:14px}
+.stats-list-item{display:flex;align-items:center;justify-content:space-between}
+.stats-list-left{display:flex;align-items:center;gap:10px}
+.stats-list-icon{width:38px;height:38px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.stats-list-icon.green{background:rgba(185,241,173,.3);color:var(--primary)}
+.stats-list-icon.orange{background:rgba(254,151,60,.2);color:var(--secondary)}
+.stats-list-label{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--on-surface-v)}
+.stats-list-val{font-family:'Playfair Display',serif;font-size:20px;font-weight:700}
+.stats-list-val.green{color:var(--primary)}
+.stats-list-val.orange{color:var(--secondary)}
+.profile-quote{font-size:13px;color:var(--on-surface-v);font-style:italic;line-height:1.6;border-top:1px solid var(--outline-v);padding-top:14px}
+.profile-right{background:var(--surface-card);border-radius:16px;border:1px solid rgba(193,201,187,.3);overflow:hidden;box-shadow:0 2px 10px rgba(58,107,53,.05)}
+.tabs-nav{display:flex;border-bottom:1px solid rgba(193,201,187,.2)}
+.tab-btn{flex:1;padding:14px;font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;border:none;background:transparent;color:var(--on-surface-v);border-bottom:2px solid transparent;cursor:pointer;transition:all .18s}
+.tab-btn.active{color:var(--primary);border-bottom-color:var(--primary)}
+.tab-content{display:none;padding:24px}
+.tab-content.active{display:block}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-group{display:flex;flex-direction:column;gap:5px}
+.form-group label{font-size:13px;color:var(--on-surface-v)}
+.form-group input,.form-group select{padding:10px 14px;border:1px solid var(--outline-v);border-radius:9px;font-size:14px;background:var(--surface);outline:none;transition:border-color .18s;font-family:inherit;width:100%}
+.form-group input:focus,.form-group select:focus{border-color:var(--primary)}
+.form-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:20px;padding-top:16px;border-top:1px solid var(--outline-v)}
+.btn-cancel{padding:9px 18px;border:none;background:transparent;color:var(--on-surface-v);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;cursor:pointer}
+.btn-cancel:hover{color:var(--primary)}
+.diet-grid{display:flex;flex-wrap:wrap;gap:10px}
+.diet-label{display:flex;align-items:center;gap:8px;padding:9px 14px;border-radius:10px;border:2px solid var(--outline-v);cursor:pointer;font-size:12px;font-weight:600;transition:all .18s}
+.diet-label:has(input:checked){background:rgba(185,241,173,.2);border-color:var(--primary-fixed)}
+.diet-label input{accent-color:var(--primary)}
+.danger-zone{border-top:1px solid var(--outline-v);padding-top:18px;margin-top:4px}
+.danger-zone h5{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--error);margin-bottom:8px}
+.danger-zone p{font-size:13px;color:var(--on-surface-v);margin-bottom:14px}
+.btn-danger{padding:9px 18px;border:2px solid var(--error);color:var(--error);background:transparent;border-radius:9px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;cursor:pointer;transition:all .18s}
+.btn-danger:hover{background:rgba(186,26,26,.05)}
 
-  /* Budget modal */
-  #budget-modal {
-    display: none;
-    position: fixed; inset: 0; z-index: 200;
-    background: rgba(0,0,0,0.5);
-    align-items: center; justify-content: center;
-  }
-  #budget-modal.open { display: flex; }
-  #budget-modal-inner {
-    background: #fff8f5; border-radius: 20px;
-    padding: 28px; max-width: 360px; width: 90%;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-    animation: scaleIn 0.25s ease;
-  }
+/* MEAL DETAIL MODAL */
+.modal-bg{position:fixed;inset:0;background:rgba(39,24,10,.5);backdrop-filter:blur(4px);z-index:100;display:none;align-items:center;justify-content:center;padding:20px}
+.modal-bg.open{display:flex}
+.modal{background:var(--surface);border-radius:20px;max-width:440px;width:100%;max-height:90vh;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.2)}
+.modal-img{width:100%;height:200px;object-fit:cover}
+.modal-body{padding:20px 22px}
+.modal-meta{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.modal-type{font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;background:rgba(185,241,173,.3);color:#20511e;padding:3px 10px;border-radius:999px}
+.modal-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;margin-bottom:6px}
+.modal-desc{font-size:13px;color:var(--on-surface-v);margin-bottom:16px}
+.modal-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
+.modal-stat{background:var(--surface-container);border-radius:10px;padding:10px;text-align:center}
+.modal-stat-label{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--on-surface-v)}
+.modal-stat-val{font-size:18px;font-weight:700;margin-top:4px}
+.modal-stat-val.kcal{color:var(--secondary)}
+.modal-stat-val.prot{color:var(--primary)}
+.modal-btns{display:flex;gap:10px}
+.modal-close{position:absolute;top:12px;right:12px;width:34px;height:34px;border-radius:50%;background:rgba(255,248,245,.85);border:none;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--on-surface-v);z-index:10}
+.modal-rel{position:relative}
 
-  /* Kalori modal */
-  #kalori-modal {
-    display: none;
-    position: fixed; inset: 0; z-index: 200;
-    background: rgba(0,0,0,0.5);
-    align-items: center; justify-content: center;
-  }
-  #kalori-modal.open { display: flex; }
-  #kalori-modal-inner {
-    background: #fff8f5; border-radius: 20px;
-    padding: 28px; max-width: 360px; width: 90%;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-    animation: scaleIn 0.25s ease;
-  }
+/* LOG MODAL */
+.log-modal-inner{background:var(--surface);border-radius:20px;max-width:380px;width:100%;padding:24px;box-shadow:0 20px 60px rgba(0,0,0,.2)}
+.log-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.log-title h3{font-family:'Playfair Display',serif;font-size:20px;font-weight:700}
 
-  /* Slider style */
-  input[type=range] {
-    -webkit-appearance: none; width: 100%; height: 6px;
-    border-radius: 3px; background: #b9f1ad; outline: none;
-  }
-  input[type=range]::-webkit-slider-thumb {
-    -webkit-appearance: none; width: 20px; height: 20px;
-    border-radius: 50%; background: #22521f; cursor: pointer;
-    box-shadow: 0 2px 6px rgba(34,82,31,0.3);
-  }
+/* TOAST */
+#toast-msg{position:fixed;bottom:24px;right:24px;background:var(--primary-container);color:var(--on-primary-container);padding:12px 20px;border-radius:12px;font-size:13px;font-weight:600;box-shadow:0 8px 24px rgba(0,0,0,.18);z-index:9999;transform:translateY(80px);opacity:0;transition:all .35s cubic-bezier(.4,0,.2,1);pointer-events:none}
+#toast-msg.show{transform:translateY(0);opacity:1}
+
+/* FOOTER */
+.footer{background:var(--inverse-surface);color:var(--inverse-on);padding:48px 40px;display:flex;justify-content:space-between;gap:32px;flex-wrap:wrap}
+.footer-brand h3{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;font-style:italic;color:var(--primary-fixed);margin-bottom:7px}
+.footer-brand p{font-size:13px;color:rgba(255,238,225,.5);max-width:200px}
+.footer-links{display:flex;gap:40px;flex-wrap:wrap}
+.footer-col h4{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,238,225,.4);margin-bottom:10px}
+.footer-col a{display:block;font-size:13px;color:rgba(255,238,225,.65);margin-bottom:6px;transition:color .15s;cursor:pointer}
+.footer-col a:hover{color:var(--primary-fixed)}
+
+/* MOBILE OVERLAY */
+.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:60}
+.sidebar-overlay.show{display:block}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .app{grid-template-columns:1fr}
+  .sidebar{position:fixed;left:0;top:0;z-index:70;transform:translateX(-100%);transition:transform .3s cubic-bezier(.4,0,.2,1)}
+  .sidebar.open{transform:translateX(0)}
+  .hamburger{display:flex}
+  .stats-row{grid-template-columns:1fr}
+  .actions-grid{grid-template-columns:1fr}
+  .meals-grid{grid-template-columns:1fr}
+  .day-summary{grid-template-columns:1fr}
+  .side-summary{flex-direction:row}
+  .profile-grid{grid-template-columns:1fr}
+  .form-grid{grid-template-columns:1fr}
+  .history-card{flex-direction:column;align-items:flex-start}
+  .history-actions{flex-direction:row;width:100%;justify-content:flex-end}
+  .content{padding:20px 16px 40px}
+  .footer{padding:32px 20px}
+}
+@media(max-width:600px){
+  .stats-row{grid-template-columns:1fr}
+  .side-summary{flex-direction:column}
+  .history-img{width:100%;height:140px;border-radius:10px}
+  .history-card{gap:14px}
+  .page-header{flex-direction:column;align-items:flex-start}
+}
 </style>
-</head>
-<body class="bg-background text-on-background font-body-md overflow-x-hidden">
 
-<!-- Sidebar Overlay (mobile) -->
-<div id="sidebar-overlay"></div>
+<div id="toast-msg"></div>
+<div class="sidebar-overlay" id="overlay" onclick="closeSidebar()"></div>
 
-<!-- Toast -->
-<div id="toast">✓ Berhasil!</div>
-
-<!-- SIDEBAR -->
-<aside id="sidebar" class="fixed left-0 top-0 h-full w-[240px] bg-primary-container flex flex-col p-md gap-base z-50">
-  <div class="mb-lg px-xs flex items-center justify-between">
-    <div>
-      <h1 class="font-headline-md text-headline-md font-bold text-on-primary-container">NutriPlan</h1>
-      <p class="font-label-caps text-label-caps opacity-80 text-on-primary-container uppercase tracking-wider">Nutrisi Praktis</p>
+<div class="app">
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <h2>NutriPlan</h2>
+      <span>Nutrisi Praktis</span>
+      <button onclick="closeSidebar()" style="position:absolute;top:16px;right:12px;background:transparent;border:none;color:rgba(185,241,173,.5);font-size:20px;cursor:pointer;display:none" id="sidebar-close-btn" aria-label="Tutup"><i class="ti ti-x"></i></button>
     </div>
-    <!-- Close button (mobile only) -->
-    <button id="sidebar-close" class="md:hidden text-on-primary-container/70 hover:text-on-primary-container p-1 rounded-lg" title="Tutup menu">
-      <span class="material-symbols-outlined">close</span>
-    </button>
-  </div>
-
-  <nav class="flex flex-col gap-xs flex-grow">
-    <a id="nav-beranda" class="nav-item bg-secondary-container text-on-secondary-container rounded-lg font-bold flex items-center gap-sm px-sm py-base active-nav-shadow" href="#">
-      <span class="material-symbols-outlined">dashboard</span>
-      <span class="font-label-caps text-label-caps uppercase">Beranda</span>
-    </a>
-    <a id="nav-preferensi" class="nav-item text-on-primary-container/80 hover:bg-primary/20 hover:text-on-primary-container rounded-lg flex items-center gap-sm px-sm py-base" href="#" onclick="showToast('Membuka Preferensi...')">
-      <span class="material-symbols-outlined">tune</span>
-      <span class="font-label-caps text-label-caps uppercase">Preferensi</span>
-    </a>
-    <a id="nav-rencana" class="nav-item text-on-primary-container/80 hover:bg-primary/20 hover:text-on-primary-container rounded-lg flex items-center gap-sm px-sm py-base" href="#" onclick="showToast('Membuka Rencana Makan...')">
-      <span class="material-symbols-outlined">restaurant_menu</span>
-      <span class="font-label-caps text-label-caps uppercase">Rencana Makan</span>
-    </a>
-    <a id="nav-riwayat" class="nav-item text-on-primary-container/80 hover:bg-primary/20 hover:text-on-primary-container rounded-lg flex items-center gap-sm px-sm py-base" href="#" onclick="showToast('Membuka Riwayat...')">
-      <span class="material-symbols-outlined">history</span>
-      <span class="font-label-caps text-label-caps uppercase">Riwayat</span>
-    </a>
-    <a id="nav-profil" class="nav-item text-on-primary-container/80 hover:bg-primary/20 hover:text-on-primary-container rounded-lg flex items-center gap-sm px-sm py-base" href="#" onclick="showToast('Membuka Profil...')">
-      <span class="material-symbols-outlined">person</span>
-      <span class="font-label-caps text-label-caps uppercase">Profil</span>
-    </a>
-  </nav>
-
-  <div class="mt-auto pt-md flex items-center gap-sm px-xs border-t border-on-primary-container/10">
-    <img alt="Foto Profil Zaza" class="w-10 h-10 rounded-full border-2 border-primary-fixed object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBg4f6X8g-Tv6HcmzNuWMy429OloVJzvjWBHyNdHUKeW3gunUSmbh9aLbYpdbSys7jCMA6LgGmXLNi4nUDsny5_WLW2E7Z9xIMCeIIT94f1JPYR9BbvX1R8uTvh7yBtaiEjJwhcOienwCN92haPSnGcvIykO8VxRkPcnzXnorI_nB4JivXpG-zEGAocPrb38Gv4jq9O1lHAwtyd305agRdZTqIZ43qycWSSoN75UhI6_oicGzDGz6cC1NfZedPoGVwutcwMl9OH6I5"/>
-    <div class="flex flex-col">
-      <span class="text-on-primary-container font-bold text-sm">Zaza Arisanti</span>
-      <span class="text-on-primary-container/60 text-xs">Anggota Premium</span>
+    <nav class="sidebar-nav">
+      <button class="nav-item" onclick="goTo('dashboard')"><i class="ti ti-layout-dashboard" aria-hidden="true"></i>Beranda</button>
+      <button class="nav-item" onclick="toast('Membuka Preferensi...')"><i class="ti ti-adjustments-horizontal" aria-hidden="true"></i>Preferensi</button>
+      <button class="nav-item" onclick="goTo('mealplan')"><i class="ti ti-tool-kitchen-2" aria-hidden="true"></i>Rencana Makan</button>
+      <button class="nav-item" onclick="goTo('history')"><i class="ti ti-history" aria-hidden="true"></i>Riwayat</button>
+      <button class="nav-item" onclick="goTo('profile')"><i class="ti ti-user" aria-hidden="true"></i>Profil</button>
+    </nav>
+    <div class="sidebar-user">
+      <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=100&auto=format&fit=crop" alt="Zaza Arisanti">
+      <div>
+        <div class="uname">Zaza Arisanti</div>
+        <div class="utag">Anggota Premium</div>
+      </div>
     </div>
-  </div>
-</aside>
+  </aside>
 
-<!-- MAIN -->
-<main id="main-content" class="md:ml-[240px] min-h-screen flex flex-col relative">
+  <!-- MAIN -->
+  <div class="main">
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="icon-btn hamburger" id="hamburger" onclick="openSidebar()" aria-label="Buka menu"><i class="ti ti-menu-2" aria-hidden="true"></i></button>
+        <i class="ti ti-calendar" style="color:var(--primary);font-size:20px" aria-hidden="true"></i>
+        <h2 id="topbar-title">Selamat pagi, Zaza! 🌿</h2>
+      </div>
+      <div class="topbar-right">
+        <button class="icon-btn" onclick="toast('🔔 3 notifikasi baru')" aria-label="Notifikasi"><i class="ti ti-bell" aria-hidden="true"></i></button>
+        <button class="icon-btn" onclick="toast('Membuka pencarian...')" aria-label="Cari"><i class="ti ti-search" aria-hidden="true"></i></button>
+      </div>
+    </header>
 
-  <!-- TOP APP BAR -->
-  <header class="sticky top-0 z-40 bg-surface/90 glass-header flex justify-between items-center px-md py-sm border-b border-outline-variant/20">
-    <div class="flex items-center gap-sm">
-      <!-- Hamburger (mobile) -->
-      <button id="hamburger" class="md:hidden mr-2 p-1 rounded-lg hover:bg-primary/10 transition-colors" aria-label="Buka menu">
-        <span class="material-symbols-outlined text-primary">menu</span>
-      </button>
-      <span class="material-symbols-outlined text-primary">calendar_today</span>
-      <h2 class="font-headline-md text-headline-md text-primary text-lg md:text-2xl">Selamat pagi, Zaza! 🌿</h2>
-    </div>
-    <div class="flex items-center gap-3 relative">
-      <!-- Notifikasi -->
-      <div class="relative">
-        <button id="notif-btn" class="relative material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors p-2 rounded-full hover:bg-primary/10" title="Notifikasi">
-          notifications
-          <span class="notif-badge"></span>
-        </button>
-        <div id="notif-panel">
-          <div class="px-4 py-3 border-b border-outline-variant/30 flex justify-between items-center">
-            <span class="font-bold text-sm text-on-surface">Notifikasi</span>
-            <button onclick="document.getElementById('notif-panel').classList.remove('open')" class="text-xs text-primary hover:underline">Tutup</button>
+    <!-- ===== VIEW: DASHBOARD ===== -->
+    <div class="view active" id="view-dashboard">
+      <div class="content">
+        <!-- STATS -->
+        <div class="stats-row">
+          <div class="stat-card" style="border-left-color:var(--secondary-container)" onclick="toast('Menampilkan detail kalori...')">
+            <div class="stat-label">Kalori Hari Ini</div>
+            <div>
+              <span class="stat-value" style="color:var(--secondary)">1.420</span>
+              <span class="stat-sub"> / 1.800 kcal</span>
+            </div>
+            <div class="prog-track"><div class="prog-fill" style="width:78%;background:var(--secondary)"></div></div>
           </div>
-          <div class="py-2">
-            <div class="px-4 py-3 hover:bg-surface-container-low cursor-pointer">
-              <p class="text-sm font-semibold text-on-surface">🎯 Target protein tercapai!</p>
-              <p class="text-xs text-on-surface-variant mt-0.5">Hari ke-4 berturut-turut. Luar biasa!</p>
+          <div class="stat-card" style="border-left-color:var(--primary)" onclick="toast('Menampilkan detail anggaran...')">
+            <div class="stat-label">Anggaran Hari Ini</div>
+            <div>
+              <span class="stat-value" style="color:var(--primary)">Rp 45k</span>
+              <span class="stat-sub"> sisa dari 120k</span>
             </div>
-            <div class="px-4 py-3 hover:bg-surface-container-low cursor-pointer">
-              <p class="text-sm font-semibold text-on-surface">🍽️ Makan siang belum dicatat</p>
-              <p class="text-xs text-on-surface-variant mt-0.5">Jangan lupa catat Zesty Chickpea Bowl-mu</p>
+            <div class="prog-track"><div class="prog-fill" style="width:37%;background:var(--primary)"></div></div>
+          </div>
+          <div class="stat-card" style="border-left-color:var(--secondary-container);border-left:none;border-bottom:4px solid var(--secondary-container)" onclick="goTo('mealplan')">
+            <div class="stat-label">Rencana Aktif</div>
+            <div style="display:flex;align-items:center;gap:8px">
+              <i class="ti ti-brain" style="color:var(--primary);font-size:22px" aria-hidden="true"></i>
+              <span style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700">High Protein-Eco</span>
             </div>
-            <div class="px-4 py-3 hover:bg-surface-container-low cursor-pointer">
-              <p class="text-sm font-semibold text-on-surface">💧 Minum air: 4/8 gelas</p>
-              <p class="text-xs text-on-surface-variant mt-0.5">Tetap terhidrasi untuk performa optimal</p>
-            </div>
+            <div class="stat-sub">Hari 12 dari 30</div>
           </div>
         </div>
-      </div>
-      <!-- Search -->
-      <div class="relative">
-        <button id="search-btn" class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors p-2 rounded-full hover:bg-primary/10" title="Cari">search</button>
-        <div id="search-panel">
-          <input id="search-input" type="text" placeholder="Cari makanan, nutrisi..." class="w-full border border-outline-variant rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-primary bg-surface-container-low" />
-          <div id="search-results" class="mt-2 text-xs text-on-surface-variant"></div>
-        </div>
-      </div>
-    </div>
-  </header>
 
-  <!-- CONTENT -->
-  <div class="p-md lg:p-lg space-y-lg max-w-[1200px] mx-auto w-full">
-
-    <!-- STATS ROW -->
-    <section class="grid grid-cols-1 sm:grid-cols-3 gap-gutter">
-      <!-- Kalori -->
-      <div id="card-kalori" class="stat-card bg-surface-container-lowest p-md rounded-xl tonal-shadow border-l-4 border-secondary-container flex flex-col justify-between h-32" title="Klik untuk detail kalori">
-        <span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Kalori Hari Ini</span>
-        <div class="flex items-baseline gap-xs">
-          <span id="kalori-val" class="font-display-lg text-display-lg text-secondary">1,420</span>
-          <span class="font-data-mono text-data-mono text-on-surface-variant">/ <span id="kalori-target">1,800</span> kcal</span>
-        </div>
-        <div class="w-full bg-primary-fixed rounded-full h-1.5 mt-1">
-          <div id="kalori-bar" class="h-1.5 bg-secondary rounded-full progress-fill" style="width:78%"></div>
-        </div>
-      </div>
-      <!-- Budget -->
-      <div id="card-budget" class="stat-card bg-surface-container-lowest p-md rounded-xl tonal-shadow border-l-4 border-primary flex flex-col justify-between h-32" title="Klik untuk edit anggaran">
-        <span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Anggaran Hari Ini</span>
-        <div class="flex items-baseline gap-xs">
-          <span id="budget-sisa" class="font-display-lg text-display-lg text-primary">Rp 45k</span>
-          <span class="font-data-mono text-data-mono text-on-surface-variant">sisa dari <span id="budget-total">120k</span></span>
-        </div>
-        <div class="w-full bg-primary-fixed rounded-full h-1.5 mt-1">
-          <div id="budget-bar" class="h-1.5 bg-primary rounded-full progress-fill" style="width:37%"></div>
-        </div>
-      </div>
-      <!-- Active Plan -->
-      <div id="card-plan" class="stat-card bg-surface-container-lowest p-md rounded-xl tonal-shadow border-b-4 border-secondary-container flex flex-col justify-between h-32" title="Klik untuk ganti rencana">
-        <span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Rencana Aktif</span>
-        <div class="flex items-center gap-sm">
-          <span class="material-symbols-outlined text-primary">psychiatry</span>
-          <span id="plan-name" class="font-headline-md text-headline-md">High Protein-Eco</span>
-        </div>
-        <span class="text-xs text-on-surface-variant mt-1">Hari 12 dari 30</span>
-      </div>
-    </section>
-
-    <!-- QUICK ACTIONS & PREVIEW -->
-    <section class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
-      <!-- Action Cluster -->
-      <div class="lg:col-span-4 space-y-gutter">
-        <!-- Generate CTA -->
-        <button id="btn-generate" class="ripple-btn w-full bg-secondary-container text-on-secondary-container p-lg rounded-xl tonal-shadow flex flex-col items-center justify-center gap-md active:scale-95 transition-all duration-200 group relative overflow-hidden" title="Buat Rencana Makan Baru dengan AI">
-          <div class="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300 pointer-events-none"></div>
-          <span class="material-symbols-outlined text-5xl" style="font-variation-settings:'FILL' 1;">auto_fix_high</span>
-          <div class="text-center relative z-10">
-            <h3 class="font-headline-md text-headline-md">Buat Rencana Makan Baru</h3>
-            <p class="font-body-sm text-body-sm opacity-90 mt-1">Nutrisi berbasis AI untuk harimu</p>
-          </div>
-        </button>
-        <!-- View Last Plan -->
-        <button id="btn-last-plan" class="ripple-btn w-full border-2 border-primary text-primary p-md rounded-xl flex items-center justify-center gap-sm hover:bg-primary/5 transition-colors duration-200" title="Lihat rencana makan terakhir">
-          <span class="material-symbols-outlined">visibility</span>
-          <span class="font-label-caps text-label-caps uppercase">Lihat Rencana Terakhir</span>
-        </button>
-        <!-- Log Makanan -->
-        <button id="btn-log" class="ripple-btn w-full border-2 border-secondary text-secondary p-md rounded-xl flex items-center justify-center gap-sm hover:bg-secondary/5 transition-colors duration-200" title="Catat makanan yang sudah dimakan">
-          <span class="material-symbols-outlined">add_circle</span>
-          <span class="font-label-caps text-label-caps uppercase">Catat Makanan</span>
-        </button>
-      </div>
-
-      <!-- Today's Menu -->
-      <div class="lg:col-span-8 bg-surface-container-low p-md lg:p-lg rounded-xl tonal-shadow flex flex-col gap-md">
-        <div class="flex justify-between items-center mb-base">
-          <h3 class="font-headline-md text-headline-md">Menu Hari Ini</h3>
-          <a id="btn-jadwal" class="text-primary font-label-caps text-label-caps hover:underline cursor-pointer" title="Lihat jadwal lengkap seminggu">LIHAT JADWAL LENGKAP</a>
-        </div>
-        <div class="space-y-sm">
-          <!-- Breakfast -->
-          <div class="meal-item flex items-center justify-between p-sm bg-surface-container-lowest rounded-lg group"
-               data-meal="Sarapan" data-name="Protein Avocado Toast"
-               data-desc="2 iris roti gandum utuh + 1 telur poached + alpukat segar"
-               data-kcal="340" data-protein="18g" data-karbo="32g" data-lemak="14g">
-            <div class="flex items-center gap-md">
-              <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-lg overflow-hidden flex-shrink-0">
-                <img alt="Avocado Toast" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDskVRuYJLgvyJf6tC26rZNMr151tUfvlMiAsiA19xYM-Va1ZQuvlX-6wWWMTk0ej7hgaRvacrraqdutcEjVhVRVmbRnxPqK4KHOQIMWs3h1ADTaEA_hgwLVHL2h_eXo1Ggvrn_jhlHVBKAC21qSKM9oGM418MogsLxGwKW-Pe9muo6nRtQFeDIni3g70IhK5hbk_9IvcLh_SM0GnFPP_FOnm2viKy0OeyAujoJC1rnPzvbdhkapnpZ6PF4VPogoL1tBFznwg7rcrNb"/>
-              </div>
+        <!-- QUICK ACTIONS & MENU -->
+        <div class="actions-grid">
+          <div class="action-col">
+            <button class="btn-generate" onclick="generatePlan(this)">
+              <i class="ti ti-wand" aria-hidden="true"></i>
               <div>
-                <span class="font-label-caps text-label-caps text-secondary-fixed-dim bg-secondary-container/20 px-2 py-0.5 rounded-full uppercase text-[10px]">Sarapan</span>
-                <h4 class="font-body-lg text-body-lg font-bold text-sm sm:text-lg">Protein Avocado Toast</h4>
-                <p class="text-on-surface-variant text-xs sm:text-sm">2 iris gandum utuh + 1 telur</p>
+                <h3>Buat Rencana Makan Baru</h3>
+                <p>Nutrisi berbasis AI untuk harimu</p>
+              </div>
+            </button>
+            <button class="btn-outline" onclick="goTo('mealplan')">
+              <i class="ti ti-eye" aria-hidden="true"></i> Lihat Rencana Terakhir
+            </button>
+            <button class="btn-outline orange" onclick="openLogModal()">
+              <i class="ti ti-circle-plus" aria-hidden="true"></i> Catat Makanan
+            </button>
+          </div>
+          <div class="menu-card">
+            <div class="menu-card-header">
+              <h3>Menu Hari Ini</h3>
+              <a onclick="goTo('mealplan')">Lihat Jadwal Lengkap</a>
+            </div>
+            <div class="meal-item" onclick="openMealModal('Sarapan','Protein Avocado Toast','2 iris roti gandum utuh + 1 telur poached + alpukat segar','340','18g','32g','14g','https://images.unsplash.com/photo-1541519227354-08fa5d50c820?q=80&w=400&auto=format&fit=crop')">
+              <div class="meal-left">
+                <img src="https://images.unsplash.com/photo-1541519227354-08fa5d50c820?q=80&w=120&auto=format&fit=crop" alt="Avocado Toast" class="meal-img">
+                <div>
+                  <span class="meal-badge breakfast">Sarapan</span>
+                  <div class="meal-name">Protein Avocado Toast</div>
+                  <div class="meal-desc">2 iris gandum + 1 telur</div>
+                </div>
+              </div>
+              <div class="meal-right">
+                <span class="kcal-badge">340 kcal</span>
+                <span class="meal-status done">✓ Dimakan</span>
               </div>
             </div>
-            <div class="flex flex-col items-end gap-1">
-              <span class="bg-secondary text-white font-data-mono text-data-mono px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-xs sm:text-sm">340 kcal</span>
-              <span class="text-[10px] text-primary font-semibold">✓ Dimakan</span>
+            <div class="meal-item" onclick="openMealModal('Makan Siang','Zesty Chickpea Bowl','Dasar quinoa + ayam panggang + kacang arab + sayuran segar','520','34g','58g','12g','https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=400&auto=format&fit=crop')">
+              <div class="meal-left">
+                <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=120&auto=format&fit=crop" alt="Chickpea Bowl" class="meal-img">
+                <div>
+                  <span class="meal-badge lunch">Makan Siang</span>
+                  <div class="meal-name">Zesty Chickpea Bowl</div>
+                  <div class="meal-desc">Quinoa + Ayam Panggang</div>
+                </div>
+              </div>
+              <div class="meal-right">
+                <span class="kcal-badge">520 kcal</span>
+                <span class="meal-status pending">Belum dimakan</span>
+              </div>
+            </div>
+            <div class="meal-item" onclick="openMealModal('Makan Malam','Herb-Crusted Salmon','Salmon panggang dengan herbal segar + asparagus kukus + ubi jalar','560','42g','38g','22g','https://images.unsplash.com/photo-1467003909585-2f8a72700288?q=80&w=400&auto=format&fit=crop')">
+              <div class="meal-left">
+                <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?q=80&w=120&auto=format&fit=crop" alt="Salmon" class="meal-img">
+                <div>
+                  <span class="meal-badge dinner">Makan Malam</span>
+                  <div class="meal-name">Herb-Crusted Salmon</div>
+                  <div class="meal-desc">Asparagus + Ubi Jalar</div>
+                </div>
+              </div>
+              <div class="meal-right">
+                <span class="kcal-badge">560 kcal</span>
+                <span class="meal-status pending">Belum dimakan</span>
+              </div>
             </div>
           </div>
+        </div>
 
-          <!-- Lunch -->
-          <div class="meal-item flex items-center justify-between p-sm bg-surface-container-lowest rounded-lg group"
-               data-meal="Makan Siang" data-name="Zesty Chickpea Bowl"
-               data-desc="Dasar quinoa + ayam panggang + kacang arab + sayuran segar"
-               data-kcal="520" data-protein="34g" data-karbo="58g" data-lemak="12g">
-            <div class="flex items-center gap-md">
-              <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-lg overflow-hidden flex-shrink-0">
-                <img alt="Chickpea Bowl" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMIP128RGEG_wAEJSXKaZ-bpZ1ZPNC_aVfYDkSnwK2FxbPNFesKuG4M5fJaiZxKzg8yI6JAKYuAVo4acuIknve3vF6MlHY3WQDOOx822pXxXNw_B5n9mrFZv1z6Q2SBSPZhPCUPCqIX4eb9R4wH6XyyHvV5-5k5aEqTevUAx2SLQKSot-zyXKJy2MSfIirlxHzuihFdASiN7AsJeaFokgLlpy0ZBYSfmDNFoLu06kGUmNJYL5XcBmecV9ovVsKz2MLIIsRZ-TSXl4q"/>
-              </div>
-              <div>
-                <span class="font-label-caps text-label-caps text-primary bg-primary-fixed/30 px-2 py-0.5 rounded-full uppercase text-[10px]">Makan Siang</span>
-                <h4 class="font-body-lg text-body-lg font-bold text-sm sm:text-lg">Zesty Chickpea Bowl</h4>
-                <p class="text-on-surface-variant text-xs sm:text-sm">Dasar Quinoa + Ayam Panggang</p>
-              </div>
+        <!-- INSIGHT -->
+        <div class="insight">
+          <div class="insight-header">
+            <h3>Wawasan Nutrisi</h3>
+            <p>Anda telah mencapai target protein selama 4 hari berturut-turut! Ini secara signifikan meningkatkan pemulihan otot Anda.</p>
+          </div>
+          <div class="insight-stats">
+            <div class="insight-stat"><span>Runtutan</span><span>12 Hari</span></div>
+            <div class="insight-stat"><span>Pemulihan</span><span>Tinggi</span></div>
+            <div class="insight-stat"><span>Protein Avg</span><span>92g/hari</span></div>
+          </div>
+          <div>
+            <button class="btn-solid" onclick="toast('Membuka pengaturan target...')">
+              <i class="ti ti-adjustments-horizontal" aria-hidden="true"></i> Atur Target
+            </button>
+          </div>
+          <div class="insight-progress">
+            <div class="prog-track" style="height:10px"><div class="prog-fill" style="width:78%;background:var(--primary)"></div></div>
+            <div class="insight-progress-label">Progres Target Bulanan (78%)</div>
+          </div>
+        </div>
+      </div>
+      <footer class="footer">
+        <div class="footer-brand"><h3>NutriPlan</h3><p>© 2026 NutriPlan. Nutrisi tepat untuk dunia yang praktis.</p></div>
+        <div class="footer-links">
+          <div class="footer-col"><h4>Produk</h4><a>Cara Kerja</a><a>Fitur</a><a>Harga</a></div>
+          <div class="footer-col"><h4>Hukum</h4><a>Kebijakan Privasi</a><a>Syarat Layanan</a></div>
+          <div class="footer-col"><h4>Dukungan</h4><a>Pusat Bantuan</a><a>Hubungi Kami</a></div>
+        </div>
+      </footer>
+    </div>
+
+    <!-- ===== VIEW: MEAL PLAN ===== -->
+    <div class="view" id="view-mealplan">
+      <div class="content">
+        <div class="page-header">
+          <div class="page-title">
+            <h1>Rencana Makan 7-Hari</h1>
+            <p>Dioptimalkan untuk tinggi protein, rendah karbohidrat — anggaran &lt; Rp 50.000/hari</p>
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <span style="display:flex;align-items:center;gap:6px;background:var(--secondary-container);color:var(--on-secondary-container);padding:6px 14px;border-radius:999px;font-size:11px;font-weight:700"><i class="ti ti-flame" aria-hidden="true"></i>RATA 1.850 kkal</span>
+            <span style="display:flex;align-items:center;gap:6px;background:var(--primary-container);color:var(--on-primary-container);padding:6px 14px;border-radius:999px;font-size:11px;font-weight:700"><i class="ti ti-wallet" aria-hidden="true"></i>TOT Rp 315.000</span>
+          </div>
+        </div>
+        <div class="day-tabs" id="day-tabs">
+          <button class="day-tab active" onclick="switchDay(0,this)">Hari 1</button>
+          <button class="day-tab" onclick="switchDay(1,this)">Hari 2</button>
+          <button class="day-tab" onclick="switchDay(2,this)">Hari 3</button>
+          <button class="day-tab" onclick="switchDay(3,this)">Hari 4</button>
+          <button class="day-tab" onclick="switchDay(4,this)">Hari 5</button>
+          <button class="day-tab" onclick="switchDay(5,this)">Hari 6</button>
+          <button class="day-tab" onclick="switchDay(6,this)">Hari 7</button>
+        </div>
+        <div class="meals-grid">
+          <div class="meal-card">
+            <div style="position:relative">
+              <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=400&auto=format&fit=crop" alt="Breakfast" class="meal-card-img">
+              <div style="position:absolute;top:10px;left:10px"><span class="meal-tag">Sarapan</span></div>
             </div>
-            <div class="flex flex-col items-end gap-1">
-              <span class="bg-secondary text-white font-data-mono text-data-mono px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-xs sm:text-sm">520 kcal</span>
-              <span class="text-[10px] text-on-surface-variant">Belum dimakan</span>
+            <div class="meal-card-body">
+              <div class="meal-card-title">Mangkuk Yogurt Berry Power</div>
+              <div class="pill-row">
+                <span class="pill kcal"><i class="ti ti-flame" aria-hidden="true"></i>380 kkal</span>
+                <span class="pill price"><i class="ti ti-wallet" aria-hidden="true"></i>Rp 15.000</span>
+              </div>
+              <span class="meal-card-link" onclick="openMealModal('Sarapan','Mangkuk Yogurt Berry Power','Yogurt Greek + stroberi + blueberry + granola + madu','380','22g','45g','8g','https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=400&auto=format&fit=crop')">Lihat Detail <i class="ti ti-arrow-right" aria-hidden="true"></i></span>
             </div>
           </div>
-
-          <!-- Dinner -->
-          <div class="meal-item flex items-center justify-between p-sm bg-surface-container-lowest rounded-lg group"
-               data-meal="Makan Malam" data-name="Herb-Crusted Salmon"
-               data-desc="Salmon panggang dengan herbal segar + asparagus kukus + ubi jalar"
-               data-kcal="560" data-protein="42g" data-karbo="38g" data-lemak="22g">
-            <div class="flex items-center gap-md">
-              <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-lg overflow-hidden flex-shrink-0">
-                <img alt="Grilled Salmon" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzk3t7FowYkWT2u_EJ5FxuYT_o9rltIRqNc2rkg327cezgR4pZpNOftOx1YZihzHXawkg-Kz2oqaskPqbBL2lPfwcaRnzisujnWqF39Or82n60cdCq1FlSG53o1Z7dM68BoePr7WZ7klGcDXF9KzqC6jlps3vH2id7Klmyx9fpNf9xLikAV1fzgOYEIoKDNM9HrVplCvBE4si-twd_qWMDzTeouFihRgabhFKPcWjTr9R7fyffH-vRPLUG7Lh2j3TbJGMLT4KhvdzK"/>
+          <div class="meal-card featured">
+            <div style="position:relative">
+              <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=400&auto=format&fit=crop" alt="Lunch" class="meal-card-img">
+              <div style="position:absolute;top:10px;left:10px"><span class="meal-tag">Makan Siang · Rekomendasi</span></div>
+            </div>
+            <div class="meal-card-body">
+              <div class="meal-card-title">Salad Ayam Bakar Alpukat</div>
+              <div class="pill-row">
+                <span class="pill kcal" style="background:rgba(254,151,60,.3)"><i class="ti ti-flame" aria-hidden="true"></i>520 kkal</span>
+                <span class="pill price" style="background:rgba(185,241,173,.5)"><i class="ti ti-wallet" aria-hidden="true"></i>Rp 22.000</span>
               </div>
-              <div>
-                <span class="font-label-caps text-label-caps text-secondary-fixed-dim bg-secondary-container/20 px-2 py-0.5 rounded-full uppercase text-[10px]">Makan Malam</span>
-                <h4 class="font-body-lg text-body-lg font-bold text-sm sm:text-lg">Herb-Crusted Salmon</h4>
-                <p class="text-on-surface-variant text-xs sm:text-sm">Asparagus + Ubi Jalar</p>
+              <span class="meal-card-link" onclick="openMealModal('Makan Siang','Salad Ayam Bakar Alpukat','Ayam panggang + alpukat segar + mix greens + tomat ceri + dressing lemon','520','38g','22g','18g','https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=400&auto=format&fit=crop')">Lihat Detail <i class="ti ti-arrow-right" aria-hidden="true"></i></span>
+            </div>
+          </div>
+          <div class="meal-card">
+            <div style="position:relative">
+              <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?q=80&w=400&auto=format&fit=crop" alt="Dinner" class="meal-card-img">
+              <div style="position:absolute;top:10px;left:10px"><span class="meal-tag">Makan Malam</span></div>
+            </div>
+            <div class="meal-card-body">
+              <div class="meal-card-title">Nila Kukus Jahe Kecap</div>
+              <div class="pill-row">
+                <span class="pill kcal"><i class="ti ti-flame" aria-hidden="true"></i>410 kkal</span>
+                <span class="pill price"><i class="ti ti-wallet" aria-hidden="true"></i>Rp 12.000</span>
+              </div>
+              <span class="meal-card-link" onclick="openMealModal('Makan Malam','Nila Kukus Jahe Kecap','Ikan nila segar + jahe parut + kecap manis + bawang putih + daun bawang','410','35g','18g','10g','https://images.unsplash.com/photo-1467003909585-2f8a72700288?q=80&w=400&auto=format&fit=crop')">Lihat Detail <i class="ti ti-arrow-right" aria-hidden="true"></i></span>
+            </div>
+          </div>
+        </div>
+        <div class="day-summary">
+          <div class="summary-card">
+            <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+              <h4>Progres Harian</h4>
+              <span style="background:rgba(34,82,31,.1);color:var(--primary);padding:4px 12px;border-radius:999px;font-size:10px;font-weight:700;text-transform:uppercase">Hari 1: Sempurna</span>
+            </div>
+            <div class="prog-row">
+              <div class="prog-label"><span>Asupan Kalori</span><span>1.310 / 1.800 kkal</span></div>
+              <div class="prog-track" style="height:10px"><div class="prog-fill" style="width:72%;background:var(--primary-container)"></div></div>
+            </div>
+            <div class="prog-row">
+              <div class="prog-label"><span>Pengeluaran Harian</span><span>Rp 49.000 / Rp 50.000</span></div>
+              <div class="prog-track" style="height:10px"><div class="prog-fill" style="width:98%;background:var(--secondary)"></div></div>
+            </div>
+          </div>
+          <div class="side-summary">
+            <div class="status-card">
+              <i class="ti ti-circle-check" style="font-size:36px" aria-hidden="true"></i>
+              <h5>Sesuai Anggaran</h5>
+              <p>Anda hemat Rp 1.000 hari ini!</p>
+            </div>
+            <button class="btn-save-day" id="save-day-btn" onclick="toast('✓ Rencana Hari 1 disimpan!')">Simpan Rencana Hari 1</button>
+          </div>
+        </div>
+      </div>
+      <footer class="footer">
+        <div class="footer-brand"><h3>NutriPlan</h3><p>© 2026 NutriPlan. Nutrisi tepat untuk dunia yang praktis.</p></div>
+        <div class="footer-links">
+          <div class="footer-col"><h4>Produk</h4><a>Cara Kerja</a><a>Fitur</a><a>Harga</a></div>
+          <div class="footer-col"><h4>Dukungan</h4><a>Pusat Bantuan</a><a>Hubungi Kami</a></div>
+        </div>
+      </footer>
+    </div>
+
+    <!-- ===== VIEW: HISTORY ===== -->
+    <div class="view" id="view-history">
+      <div class="content">
+        <div class="page-header">
+          <div class="page-title">
+            <h1>Riwayat Makan Anda</h1>
+            <p>Tinjau dan gunakan kembali rencana nutrisi Anda sebelumnya.</p>
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <button class="btn-outline" style="padding:9px 18px;font-size:11px">Ekspor CSV</button>
+            <button class="btn-solid" onclick="toast('Membuka filter tanggal...')">Filter Tanggal</button>
+          </div>
+        </div>
+        <div class="history-cards">
+          <div class="history-card">
+            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=200&auto=format&fit=crop" alt="Menu Aktif" class="history-img">
+            <div class="history-info">
+              <div class="meta-row">
+                <span class="status-badge active">Rencana Aktif</span>
+                <span class="date-range">21 Okt – 27 Okt, 2024</span>
+              </div>
+              <div class="history-title">Minggu Pekerja Meja Tinggi Protein</div>
+              <div class="history-focus">Fokus: Kenyang &amp; Kejernihan Mental untuk jadwal 9–5.</div>
+              <div class="history-stats">
+                <span><i class="ti ti-flame" aria-hidden="true"></i>1.850 kcal/rata-rata</span>
+                <span><i class="ti ti-wallet" aria-hidden="true"></i>Rp 450.000 total</span>
               </div>
             </div>
-            <div class="flex flex-col items-end gap-1">
-              <span class="bg-secondary text-white font-data-mono text-data-mono px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-xs sm:text-sm">560 kcal</span>
-              <span class="text-[10px] text-on-surface-variant">Belum dimakan</span>
+            <div class="history-actions">
+              <button class="btn-view" onclick="toast('Membuka detail rencana...')" aria-label="Lihat detail"><i class="ti ti-eye" aria-hidden="true"></i></button>
+              <button class="btn-reuse" onclick="toast('✓ Rencana diaktifkan kembali!')"><i class="ti ti-refresh" aria-hidden="true"></i>Gunakan Lagi</button>
+            </div>
+          </div>
+          <div class="history-card">
+            <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=200&auto=format&fit=crop" alt="Menu Selesai" class="history-img">
+            <div class="history-info">
+              <div class="meta-row">
+                <span class="status-badge done">Selesai</span>
+                <span class="date-range">14 Okt – 20 Okt, 2024</span>
+              </div>
+              <div class="history-title">Mahasiswa Hemat Rendah Karbohidrat</div>
+              <div class="history-focus">Fokus: Bahan lokal ramah keto yang terjangkau.</div>
+              <div class="history-stats">
+                <span><i class="ti ti-flame" aria-hidden="true"></i>1.680 kcal/rata-rata</span>
+                <span><i class="ti ti-wallet" aria-hidden="true"></i>Rp 320.000 total</span>
+              </div>
+            </div>
+            <div class="history-actions">
+              <button class="btn-view" onclick="toast('Membuka detail rencana...')" aria-label="Lihat detail"><i class="ti ti-eye" aria-hidden="true"></i></button>
+              <button class="btn-reuse" onclick="toast('✓ Rencana diaktifkan kembali!')"><i class="ti ti-refresh" aria-hidden="true"></i>Gunakan Lagi</button>
+            </div>
+          </div>
+          <div class="history-card">
+            <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?q=80&w=200&auto=format&fit=crop" alt="Menu 3" class="history-img">
+            <div class="history-info">
+              <div class="meta-row">
+                <span class="status-badge done">Selesai</span>
+                <span class="date-range">7 Okt – 13 Okt, 2024</span>
+              </div>
+              <div class="history-title">Meal Prep Weekend Warrior</div>
+              <div class="history-focus">Fokus: Memasak sekaligus untuk 5 hari kerja efisien.</div>
+              <div class="history-stats">
+                <span><i class="ti ti-flame" aria-hidden="true"></i>1.720 kcal/rata-rata</span>
+                <span><i class="ti ti-wallet" aria-hidden="true"></i>Rp 385.000 total</span>
+              </div>
+            </div>
+            <div class="history-actions">
+              <button class="btn-view" onclick="toast('Membuka detail rencana...')" aria-label="Lihat detail"><i class="ti ti-eye" aria-hidden="true"></i></button>
+              <button class="btn-reuse" onclick="toast('✓ Rencana diaktifkan kembali!')"><i class="ti ti-refresh" aria-hidden="true"></i>Gunakan Lagi</button>
             </div>
           </div>
         </div>
       </div>
-    </section>
+      <footer class="footer">
+        <div class="footer-brand"><h3>NutriPlan</h3><p>© 2026 NutriPlan. Nutrisi tepat untuk dunia yang praktis.</p></div>
+        <div class="footer-links">
+          <div class="footer-col"><h4>Produk</h4><a>Cara Kerja</a><a>Fitur</a><a>Harga</a></div>
+          <div class="footer-col"><h4>Dukungan</h4><a>Pusat Bantuan</a><a>Hubungi Kami</a></div>
+        </div>
+      </footer>
+    </div>
 
-    <!-- INSIGHT -->
-    <section class="bg-primary/5 rounded-2xl p-lg flex flex-col md:flex-row items-center gap-lg border border-primary/10">
-      <div class="flex-1 space-y-sm">
-        <h3 class="font-headline-lg text-headline-lg text-primary">Wawasan Nutrisi</h3>
-        <p class="text-on-surface-variant font-body-lg max-w-xl text-sm sm:text-base">Anda telah mencapai target protein selama 4 hari berturut-turut! Ini secara signifikan meningkatkan pemulihan otot Anda. Pertahankan konsistensi untuk mencapai target bulanan Anda.</p>
-        <div class="flex gap-md pt-sm flex-wrap">
-          <div class="flex flex-col">
-            <span class="font-label-caps text-label-caps text-primary uppercase">Runtutan</span>
-            <span class="font-headline-md text-headline-md">12 Hari</span>
+    <!-- ===== VIEW: PROFILE ===== -->
+    <div class="view" id="view-profile">
+      <div class="content">
+        <div class="page-title" style="margin-bottom:4px"><h1>Profil Akun</h1><p>Kelola informasi dan preferensi pribadi Anda.</p></div>
+        <div class="profile-grid">
+          <div class="profile-left">
+            <div class="profile-card" style="text-align:center">
+              <div class="avatar-wrap">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop" alt="Zaza Arisanti">
+                <button class="avatar-edit" onclick="toast('Ganti foto profil...')" aria-label="Edit foto"><i class="ti ti-edit" style="font-size:13px" aria-hidden="true"></i></button>
+              </div>
+              <div class="profile-name">Zaza Arisanti</div>
+              <div class="profile-sub">Penggemar Nutrisi · Jakarta, ID</div>
+              <div class="badge-row">
+                <span class="badge verified">Terverifikasi</span>
+                <span class="badge premium">Premium</span>
+              </div>
+            </div>
+            <div class="profile-card">
+              <div class="stats-list">
+                <div class="stats-list-item">
+                  <div class="stats-list-left">
+                    <div class="stats-list-icon green"><i class="ti ti-book" aria-hidden="true"></i></div>
+                    <span class="stats-list-label">Rencana Dibuat</span>
+                  </div>
+                  <span class="stats-list-val green">12</span>
+                </div>
+                <div class="stats-list-item">
+                  <div class="stats-list-left">
+                    <div class="stats-list-icon orange"><i class="ti ti-flame" aria-hidden="true"></i></div>
+                    <span class="stats-list-label">Rata-rata Kalori</span>
+                  </div>
+                  <span class="stats-list-val orange">1.720</span>
+                </div>
+              </div>
+              <div class="profile-quote">"Nutrisi praktis adalah kunci fokus harian saya. NutriPlan membuatnya sederhana."</div>
+            </div>
           </div>
-          <div class="flex flex-col">
-            <span class="font-label-caps text-label-caps text-primary uppercase">Pemulihan</span>
-            <span class="font-headline-md text-headline-md">Tinggi</span>
-          </div>
-          <div class="flex flex-col">
-            <span class="font-label-caps text-label-caps text-primary uppercase">Protein Avg</span>
-            <span class="font-headline-md text-headline-md">92g/hari</span>
+          <div class="profile-right">
+            <div class="tabs-nav">
+              <button class="tab-btn active" id="tab-personal" onclick="switchTab('personal')">Info Pribadi</button>
+              <button class="tab-btn" id="tab-preferences" onclick="switchTab('preferences')">Preferensi</button>
+              <button class="tab-btn" id="tab-security" onclick="switchTab('security')">Keamanan</button>
+            </div>
+            <div class="tab-content active" id="form-personal">
+              <div class="form-grid">
+                <div class="form-group"><label>Nama Lengkap</label><input type="text" value="Zaza Arisanti"></div>
+                <div class="form-group"><label>Alamat Email</label><input type="email" value="zaza@example.com"></div>
+                <div class="form-group"><label>Tanggal Lahir</label><input type="date" value="1996-04-12"></div>
+                <div class="form-group"><label>Lokasi</label><input type="text" value="Jakarta, Indonesia"></div>
+              </div>
+              <div class="form-actions">
+                <button class="btn-cancel">Batalkan</button>
+                <button class="btn-solid" onclick="toast('✓ Profil berhasil disimpan!')">Simpan Profil</button>
+              </div>
+            </div>
+            <div class="tab-content" id="form-preferences">
+              <div style="margin-bottom:16px"><div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--primary);margin-bottom:12px">Batasan Diet</div>
+              <div class="diet-grid">
+                <label class="diet-label"><input type="checkbox" checked>Vegetarian</label>
+                <label class="diet-label"><input type="checkbox">Bebas Gluten</label>
+                <label class="diet-label"><input type="checkbox">Bebas Susu</label>
+                <label class="diet-label"><input type="checkbox" checked>Alergi Kacang</label>
+                <label class="diet-label"><input type="checkbox">Halal</label>
+                <label class="diet-label"><input type="checkbox">Vegan</label>
+              </div></div>
+              <div class="form-actions">
+                <button class="btn-solid" onclick="toast('✓ Preferensi disimpan!')">Simpan Preferensi</button>
+              </div>
+            </div>
+            <div class="tab-content" id="form-security">
+              <div style="max-width:360px;display:flex;flex-direction:column;gap:14px">
+                <div class="form-group"><label>Kata Sandi Saat Ini</label><input type="password" placeholder="••••••••"></div>
+                <div class="form-group"><label>Kata Sandi Baru</label><input type="password" placeholder="••••••••"></div>
+                <div class="form-group"><label>Konfirmasi Kata Sandi Baru</label><input type="password" placeholder="••••••••"></div>
+              </div>
+              <div class="form-actions" style="margin-top:14px">
+                <button class="btn-solid" onclick="toast('✓ Kata sandi diperbarui!')">Perbarui Kata Sandi</button>
+              </div>
+              <div class="danger-zone">
+                <h5>Zona Berbahaya</h5>
+                <p>Hapus akun Anda secara permanen beserta semua riwayat rencana makan. Tindakan ini tidak dapat dibatalkan.</p>
+                <button class="btn-danger" onclick="toast('⚠️ Silakan konfirmasi penghapusan akun...')">Hapus Akun</button>
+              </div>
+            </div>
           </div>
         </div>
-        <!-- Adjust target button -->
-        <button id="btn-adjust-target" class="ripple-btn mt-2 inline-flex items-center gap-2 bg-primary text-on-primary px-4 py-2 rounded-lg font-label-caps text-label-caps uppercase hover:bg-primary/90 transition-colors">
-          <span class="material-symbols-outlined text-base">tune</span>
-          Atur Target
-        </button>
       </div>
-      <div class="w-full md:w-1/3">
-        <div class="relative h-4 bg-primary-fixed rounded-full overflow-hidden">
-          <div id="monthly-bar" class="absolute top-0 left-0 h-full bg-primary rounded-full progress-fill" style="width: 78%;"></div>
+      <footer class="footer">
+        <div class="footer-brand"><h3>NutriPlan</h3><p>© 2026 NutriPlan. Nutrisi tepat untuk dunia yang praktis.</p></div>
+        <div class="footer-links">
+          <div class="footer-col"><h4>Produk</h4><a>Cara Kerja</a><a>Fitur</a><a>Harga</a></div>
+          <div class="footer-col"><h4>Dukungan</h4><a>Pusat Bantuan</a><a>Hubungi Kami</a></div>
         </div>
-        <p class="font-label-caps text-label-caps text-center mt-2 uppercase text-primary">Progres Target Bulanan (<span id="monthly-pct">78</span>%)</p>
-      </div>
-    </section>
-  </div>
-
-  <!-- FOOTER -->
-  <footer class="mt-auto w-full bg-inverse-surface text-inverse-on-surface">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-lg px-md py-xl max-w-[1200px] mx-auto">
-      <div class="col-span-2 md:col-span-1">
-        <h4 class="font-headline-md text-headline-md italic text-primary-fixed mb-sm">NutriPlan</h4>
-        <p class="font-body-sm text-body-sm opacity-70">© 2024 NutriPlan. Nutrisi tepat untuk dunia yang praktis.</p>
-      </div>
-      <div class="flex flex-col gap-xs">
-        <span class="font-label-caps text-label-caps mb-base opacity-50">PRODUK</span>
-        <a class="text-inverse-on-surface/70 hover:text-secondary-fixed transition-colors text-sm" href="#">Cara Kerja</a>
-        <a class="text-inverse-on-surface/70 hover:text-secondary-fixed transition-colors text-sm" href="#">Fitur</a>
-        <a class="text-inverse-on-surface/70 hover:text-secondary-fixed transition-colors text-sm" href="#">Harga</a>
-      </div>
-      <div class="flex flex-col gap-xs">
-        <span class="font-label-caps text-label-caps mb-base opacity-50">HUKUM</span>
-        <a class="text-inverse-on-surface/70 hover:text-secondary-fixed transition-colors text-sm" href="#">Kebijakan Privasi</a>
-        <a class="text-inverse-on-surface/70 hover:text-secondary-fixed transition-colors text-sm" href="#">Syarat Layanan</a>
-      </div>
-      <div class="flex flex-col gap-xs">
-        <span class="font-label-caps text-label-caps mb-base opacity-50">DUKUNGAN</span>
-        <a class="text-inverse-on-surface/70 hover:text-secondary-fixed transition-colors text-sm" href="#">Pusat Bantuan</a>
-        <a class="text-inverse-on-surface/70 hover:text-secondary-fixed transition-colors text-sm" href="#">Hubungi Kami</a>
-      </div>
-    </div>
-  </footer>
-</main>
-
-<!-- ===== MODALS ===== -->
-
-<!-- Meal Detail Modal -->
-<div id="meal-modal">
-  <div id="meal-modal-inner">
-    <div class="flex justify-between items-start mb-4">
-      <div>
-        <span id="modal-meal-type" class="text-xs font-bold text-primary bg-primary-fixed/40 px-2 py-0.5 rounded-full uppercase"></span>
-        <h3 id="modal-meal-name" class="font-headline-md text-headline-md mt-1"></h3>
-      </div>
-      <button id="meal-modal-close" class="p-1 hover:bg-surface-container rounded-lg transition-colors">
-        <span class="material-symbols-outlined text-on-surface-variant">close</span>
-      </button>
-    </div>
-    <p id="modal-meal-desc" class="text-on-surface-variant text-sm mb-4"></p>
-    <div class="grid grid-cols-4 gap-3 mb-5">
-      <div class="bg-surface-container rounded-lg p-3 text-center">
-        <p class="text-xs text-on-surface-variant uppercase font-semibold">Kalori</p>
-        <p id="modal-kcal" class="font-bold text-secondary text-lg mt-1"></p>
-      </div>
-      <div class="bg-surface-container rounded-lg p-3 text-center">
-        <p class="text-xs text-on-surface-variant uppercase font-semibold">Protein</p>
-        <p id="modal-protein" class="font-bold text-primary text-lg mt-1"></p>
-      </div>
-      <div class="bg-surface-container rounded-lg p-3 text-center">
-        <p class="text-xs text-on-surface-variant uppercase font-semibold">Karbo</p>
-        <p id="modal-karbo" class="font-bold text-on-surface text-lg mt-1"></p>
-      </div>
-      <div class="bg-surface-container rounded-lg p-3 text-center">
-        <p class="text-xs text-on-surface-variant uppercase font-semibold">Lemak</p>
-        <p id="modal-lemak" class="font-bold text-on-surface text-lg mt-1"></p>
-      </div>
-    </div>
-    <div class="flex gap-3">
-      <button class="ripple-btn flex-1 bg-primary text-on-primary py-2.5 rounded-lg font-label-caps text-label-caps uppercase hover:bg-primary/90 transition-colors" onclick="showToast('✓ Dicatat sebagai sudah dimakan!'); document.getElementById('meal-modal').classList.remove('open')">
-        Tandai Dimakan
-      </button>
-      <button class="ripple-btn flex-1 border border-outline text-on-surface py-2.5 rounded-lg font-label-caps text-label-caps uppercase hover:bg-surface-container transition-colors" onclick="document.getElementById('meal-modal').classList.remove('open')">
-        Tutup
-      </button>
+      </footer>
     </div>
   </div>
 </div>
 
-<!-- Log Makanan Modal -->
-<div id="log-modal">
-  <div id="log-modal-inner">
-    <div class="flex justify-between items-center mb-4">
-      <h3 class="font-headline-md text-headline-md">Catat Makanan</h3>
-      <button id="log-modal-close" class="p-1 hover:bg-surface-container rounded-lg">
-        <span class="material-symbols-outlined text-on-surface-variant">close</span>
-      </button>
-    </div>
-    <div class="space-y-3">
-      <div>
-        <label class="font-label-caps text-label-caps text-on-surface-variant uppercase text-xs mb-1 block">Nama Makanan</label>
-        <input id="log-nama" type="text" placeholder="cth: Nasi goreng ayam" class="w-full border border-outline-variant rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-primary bg-surface-container-low"/>
+<!-- MEAL DETAIL MODAL -->
+<div class="modal-bg" id="meal-modal">
+  <div class="modal modal-rel">
+    <button class="modal-close" onclick="closeModal('meal-modal')" aria-label="Tutup"><i class="ti ti-x" aria-hidden="true"></i></button>
+    <img id="modal-img" src="" alt="" class="modal-img">
+    <div class="modal-body">
+      <div class="modal-meta">
+        <span class="modal-type" id="modal-type"></span>
       </div>
-      <div>
-        <label class="font-label-caps text-label-caps text-on-surface-variant uppercase text-xs mb-1 block">Waktu Makan</label>
-        <select id="log-waktu" class="w-full border border-outline-variant rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-primary bg-surface-container-low">
-          <option>Sarapan</option>
-          <option>Makan Siang</option>
-          <option>Makan Malam</option>
-          <option>Snack</option>
-        </select>
+      <div class="modal-title" id="modal-title"></div>
+      <div class="modal-desc" id="modal-desc"></div>
+      <div class="modal-grid">
+        <div class="modal-stat"><div class="modal-stat-label">Kalori</div><div class="modal-stat-val kcal" id="modal-kcal"></div></div>
+        <div class="modal-stat"><div class="modal-stat-label">Protein</div><div class="modal-stat-val prot" id="modal-prot"></div></div>
+        <div class="modal-stat"><div class="modal-stat-label">Karbo</div><div class="modal-stat-val" id="modal-karbo"></div></div>
+        <div class="modal-stat"><div class="modal-stat-label">Lemak</div><div class="modal-stat-val" id="modal-lemak"></div></div>
       </div>
-      <div>
-        <label class="font-label-caps text-label-caps text-on-surface-variant uppercase text-xs mb-1 block">Perkiraan Kalori (kcal)</label>
-        <input id="log-kcal" type="number" placeholder="cth: 350" class="w-full border border-outline-variant rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-primary bg-surface-container-low"/>
+      <div class="modal-btns">
+        <button class="btn-solid" style="flex:1" onclick="toast('✓ Dicatat sebagai sudah dimakan!');closeModal('meal-modal')">Tandai Dimakan</button>
+        <button class="btn-outline" style="flex:1" onclick="closeModal('meal-modal')">Tutup</button>
       </div>
-    </div>
-    <div class="flex gap-3 mt-5">
-      <button id="btn-log-submit" class="ripple-btn flex-1 bg-secondary-container text-on-secondary-container py-2.5 rounded-lg font-label-caps text-label-caps uppercase hover:bg-secondary-container/90 transition-colors">
-        Simpan
-      </button>
-      <button class="ripple-btn flex-1 border border-outline text-on-surface py-2.5 rounded-lg font-label-caps text-label-caps uppercase" onclick="document.getElementById('log-modal').classList.remove('open')">
-        Batal
-      </button>
     </div>
   </div>
 </div>
 
-<!-- Budget Modal -->
-<div id="budget-modal">
-  <div id="budget-modal-inner">
-    <div class="flex justify-between items-center mb-4">
-      <h3 class="font-headline-md text-headline-md">Atur Anggaran</h3>
-      <button id="budget-modal-close" class="p-1 hover:bg-surface-container rounded-lg">
-        <span class="material-symbols-outlined text-on-surface-variant">close</span>
-      </button>
+<!-- LOG MAKANAN MODAL -->
+<div class="modal-bg" id="log-modal">
+  <div class="log-modal-inner">
+    <div class="log-title">
+      <h3>Catat Makanan</h3>
+      <button onclick="closeModal('log-modal')" style="background:transparent;border:none;font-size:20px;cursor:pointer;color:var(--on-surface-v)" aria-label="Tutup"><i class="ti ti-x" aria-hidden="true"></i></button>
     </div>
-    <div class="space-y-4">
-      <div>
-        <label class="font-label-caps text-label-caps text-on-surface-variant uppercase text-xs mb-2 block">Anggaran Harian (Rp)</label>
-        <div class="flex items-center gap-3">
-          <input id="budget-slider" type="range" min="50000" max="500000" step="5000" value="120000"/>
-          <span id="budget-display" class="font-bold text-primary w-24 text-right">Rp 120k</span>
-        </div>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div class="form-group"><label>Nama Makanan</label><input type="text" id="log-nama" placeholder="cth: Nasi goreng ayam"></div>
+      <div class="form-group"><label>Waktu Makan</label>
+        <select id="log-waktu"><option>Sarapan</option><option>Makan Siang</option><option>Makan Malam</option><option>Snack</option></select>
       </div>
-      <div>
-        <label class="font-label-caps text-label-caps text-on-surface-variant uppercase text-xs mb-2 block">Sudah Terpakai (Rp)</label>
-        <div class="flex items-center gap-3">
-          <input id="spent-slider" type="range" min="0" max="500000" step="5000" value="75000"/>
-          <span id="spent-display" class="font-bold text-secondary w-24 text-right">Rp 75k</span>
-        </div>
-      </div>
+      <div class="form-group"><label>Perkiraan Kalori (kcal)</label><input type="number" id="log-kcal" placeholder="cth: 350"></div>
     </div>
-    <button id="btn-budget-save" class="ripple-btn w-full mt-5 bg-primary text-on-primary py-2.5 rounded-lg font-label-caps text-label-caps uppercase hover:bg-primary/90 transition-colors">
-      Simpan Anggaran
-    </button>
-  </div>
-</div>
-
-<!-- Kalori Modal -->
-<div id="kalori-modal">
-  <div id="kalori-modal-inner">
-    <div class="flex justify-between items-center mb-4">
-      <h3 class="font-headline-md text-headline-md">Atur Target Kalori</h3>
-      <button id="kalori-modal-close" class="p-1 hover:bg-surface-container rounded-lg">
-        <span class="material-symbols-outlined text-on-surface-variant">close</span>
-      </button>
+    <div style="display:flex;gap:10px;margin-top:18px">
+      <button class="btn-solid" style="flex:1" onclick="submitLog()">Simpan</button>
+      <button class="btn-outline" style="flex:1" onclick="closeModal('log-modal')">Batal</button>
     </div>
-    <div class="space-y-4">
-      <div>
-        <label class="font-label-caps text-label-caps text-on-surface-variant uppercase text-xs mb-2 block">Target Harian (kcal): <span id="target-kcal-display" class="text-primary">1800</span></label>
-        <input id="target-kcal-slider" type="range" min="1000" max="3500" step="50" value="1800"/>
-      </div>
-      <div>
-        <label class="font-label-caps text-label-caps text-on-surface-variant uppercase text-xs mb-2 block">Sudah Dikonsumsi (kcal): <span id="current-kcal-display" class="text-secondary">1420</span></label>
-        <input id="current-kcal-slider" type="range" min="0" max="3500" step="10" value="1420"/>
-      </div>
-    </div>
-    <button id="btn-kalori-save" class="ripple-btn w-full mt-5 bg-secondary-container text-on-secondary-container py-2.5 rounded-lg font-label-caps text-label-caps uppercase hover:bg-secondary-container/90 transition-colors">
-      Simpan Target
-    </button>
-  </div>
-</div>
-
-<!-- Adjust Target Modal -->
-<div id="target-modal" style="display:none; position:fixed; inset:0; z-index:200; background:rgba(0,0,0,0.5); align-items:center; justify-content:center;">
-  <div style="background:#fff8f5; border-radius:20px; padding:28px; max-width:380px; width:90%; box-shadow:0 20px 60px rgba(0,0,0,0.2); animation:scaleIn 0.25s ease;">
-    <div class="flex justify-between items-center mb-4">
-      <h3 class="font-headline-md text-headline-md">Atur Target Bulanan</h3>
-      <button onclick="document.getElementById('target-modal').style.display='none'" class="p-1 hover:bg-surface-container rounded-lg">
-        <span class="material-symbols-outlined text-on-surface-variant">close</span>
-      </button>
-    </div>
-    <div class="space-y-4">
-      <div>
-        <label class="font-label-caps text-label-caps text-on-surface-variant uppercase text-xs mb-2 block">Progres Saat Ini (%): <span id="monthly-display" class="text-primary font-bold">78</span>%</label>
-        <input id="monthly-slider" type="range" min="0" max="100" step="1" value="78"/>
-      </div>
-      <div>
-        <label class="font-label-caps text-label-caps text-on-surface-variant uppercase text-xs mb-2 block">Target Protein Harian (g): <span id="protein-target-display" class="text-primary font-bold">90</span>g</label>
-        <input id="protein-slider" type="range" min="40" max="200" step="5" value="90"/>
-      </div>
-    </div>
-    <button onclick="saveMonthly()" class="ripple-btn w-full mt-5 bg-primary text-on-primary py-2.5 rounded-lg font-label-caps text-label-caps uppercase hover:bg-primary/90 transition-colors">
-      Simpan
-    </button>
   </div>
 </div>
 
 <script>
-// === Toast ===
-function showToast(msg = '✓ Berhasil!') {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
+const views = ['dashboard','mealplan','history','profile'];
+const titles = {dashboard:'Selamat pagi, Zaza! 🌿',mealplan:'Rencana Makan 7-Hari',history:'Riwayat Makan Anda',profile:'Profil Akun'};
+
+function goTo(v){
+  views.forEach(id=>{
+    const el=document.getElementById('view-'+id);
+    if(el) el.classList.toggle('active',id===v);
+  });
+  document.querySelectorAll('.nav-item').forEach((btn,i)=>{
+    btn.classList.toggle('active',['dashboard','','mealplan','history','profile'][i]===v);
+  });
+  document.getElementById('topbar-title').textContent=titles[v]||titles.dashboard;
+  if(window.innerWidth<900) closeSidebar();
+  window.scrollTo&&window.scrollTo(0,0);
+}
+
+function openSidebar(){
+  document.getElementById('sidebar').classList.add('open');
+  document.getElementById('overlay').classList.add('show');
+  const cb=document.getElementById('sidebar-close-btn');
+  if(cb) cb.style.display='flex';
+}
+function closeSidebar(){
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('overlay').classList.remove('show');
+}
+
+function toast(msg){
+  const t=document.getElementById('toast-msg');
+  t.textContent=msg||'✓ Berhasil!';
   t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2800);
+  clearTimeout(t._timer);
+  t._timer=setTimeout(()=>t.classList.remove('show'),2600);
 }
 
-// === Ripple Effect ===
-document.querySelectorAll('.ripple-btn').forEach(btn => {
-  btn.addEventListener('click', function(e) {
-    const r = document.createElement('span');
-    r.className = 'ripple';
-    const rect = this.getBoundingClientRect();
-    const size = Math.max(rect.width, rect.height);
-    r.style.cssText = `width:${size}px;height:${size}px;left:${e.clientX-rect.left-size/2}px;top:${e.clientY-rect.top-size/2}px`;
-    this.appendChild(r);
-    setTimeout(() => r.remove(), 600);
-  });
-});
-
-// === Sidebar mobile ===
-const sidebar = document.getElementById('sidebar');
-const overlay = document.getElementById('sidebar-overlay');
-const hamburger = document.getElementById('hamburger');
-const sidebarClose = document.getElementById('sidebar-close');
-
-hamburger.addEventListener('click', () => {
-  sidebar.classList.add('open');
-  overlay.classList.add('active');
-});
-function closeSidebar() {
-  sidebar.classList.remove('open');
-  overlay.classList.remove('active');
+function openMealModal(type,title,desc,kcal,prot,karbo,lemak,img){
+  document.getElementById('modal-type').textContent=type;
+  document.getElementById('modal-title').textContent=title;
+  document.getElementById('modal-desc').textContent=desc;
+  document.getElementById('modal-kcal').textContent=kcal+' kcal';
+  document.getElementById('modal-prot').textContent=prot;
+  document.getElementById('modal-karbo').textContent=karbo;
+  document.getElementById('modal-lemak').textContent=lemak;
+  document.getElementById('modal-img').src=img;
+  document.getElementById('modal-img').alt=title;
+  document.getElementById('meal-modal').classList.add('open');
 }
-overlay.addEventListener('click', closeSidebar);
-sidebarClose.addEventListener('click', closeSidebar);
+function closeModal(id){document.getElementById(id).classList.remove('open')}
+document.getElementById('meal-modal').addEventListener('click',function(e){if(e.target===this)this.classList.remove('open')});
+document.getElementById('log-modal').addEventListener('click',function(e){if(e.target===this)this.classList.remove('open')});
 
-// Close sidebar on nav click (mobile)
-document.querySelectorAll('.nav-item').forEach(item => {
-  item.addEventListener('click', () => {
-    if (window.innerWidth < 768) closeSidebar();
-  });
-});
-
-// === Nav active state ===
-document.querySelectorAll('.nav-item').forEach(item => {
-  item.addEventListener('click', function(e) {
-    document.querySelectorAll('.nav-item').forEach(n => {
-      n.classList.remove('bg-secondary-container','text-on-secondary-container','font-bold','active-nav-shadow');
-      n.classList.add('text-on-primary-container/80');
-    });
-    this.classList.add('bg-secondary-container','text-on-secondary-container','font-bold','active-nav-shadow');
-    this.classList.remove('text-on-primary-container/80');
-  });
-});
-
-// === Notification panel ===
-const notifBtn = document.getElementById('notif-btn');
-const notifPanel = document.getElementById('notif-panel');
-notifBtn.addEventListener('click', (e) => {
-  e.stopPropagation();
-  notifPanel.classList.toggle('open');
-  document.getElementById('search-panel').classList.remove('open');
-});
-
-// === Search panel ===
-const searchBtn = document.getElementById('search-btn');
-const searchPanel = document.getElementById('search-panel');
-const searchInput = document.getElementById('search-input');
-const searchResults = document.getElementById('search-results');
-const foods = ['Protein Avocado Toast','Zesty Chickpea Bowl','Herb-Crusted Salmon','Nasi Goreng Ayam','Smoothie Bowl','Oatmeal Pisang','Tempe Bakar'];
-searchBtn.addEventListener('click', (e) => {
-  e.stopPropagation();
-  searchPanel.classList.toggle('open');
-  notifPanel.classList.remove('open');
-  if (searchPanel.classList.contains('open')) searchInput.focus();
-});
-searchInput.addEventListener('input', function() {
-  const q = this.value.toLowerCase();
-  if (!q) { searchResults.innerHTML = ''; return; }
-  const hits = foods.filter(f => f.toLowerCase().includes(q));
-  searchResults.innerHTML = hits.length
-    ? hits.map(f => `<div class="py-1.5 px-2 hover:bg-surface-container-low rounded cursor-pointer text-on-surface" onclick="showToast('Mencari: ${f}'); searchPanel.classList.remove('open')">${f}</div>`).join('')
-    : '<p class="text-center py-2">Tidak ditemukan</p>';
-});
-
-// Close panels on outside click
-document.addEventListener('click', () => {
-  notifPanel.classList.remove('open');
-  searchPanel.classList.remove('open');
-});
-[notifPanel, searchPanel].forEach(p => p.addEventListener('click', e => e.stopPropagation()));
-
-// === Stat card interactions ===
-document.getElementById('card-kalori').addEventListener('click', () => {
-  document.getElementById('kalori-modal').classList.add('open');
-});
-document.getElementById('card-budget').addEventListener('click', () => {
-  document.getElementById('budget-modal').classList.add('open');
-});
-document.getElementById('card-plan').addEventListener('click', () => {
-  showToast('📋 Menampilkan pilihan rencana...');
-});
-
-// === Meal item → modal ===
-document.querySelectorAll('.meal-item').forEach(item => {
-  item.addEventListener('click', function() {
-    document.getElementById('modal-meal-type').textContent = this.dataset.meal;
-    document.getElementById('modal-meal-name').textContent = this.dataset.name;
-    document.getElementById('modal-meal-desc').textContent = this.dataset.desc;
-    document.getElementById('modal-kcal').textContent = this.dataset.kcal + ' kcal';
-    document.getElementById('modal-protein').textContent = this.dataset.protein;
-    document.getElementById('modal-karbo').textContent = this.dataset.karbo;
-    document.getElementById('modal-lemak').textContent = this.dataset.lemak;
-    document.getElementById('meal-modal').classList.add('open');
-  });
-});
-document.getElementById('meal-modal-close').addEventListener('click', () => {
-  document.getElementById('meal-modal').classList.remove('open');
-});
-document.getElementById('meal-modal').addEventListener('click', function(e) {
-  if (e.target === this) this.classList.remove('open');
-});
-
-// === Generate button ===
-document.getElementById('btn-generate').addEventListener('click', function() {
-  this.innerHTML = `<span class="material-symbols-outlined text-5xl animate-spin" style="font-variation-settings:'FILL' 1; animation: spin 1s linear infinite;">refresh</span><div class="text-center"><h3 class="font-headline-md text-headline-md">Membuat Rencana...</h3><p class="font-body-sm text-body-sm opacity-90 mt-1">AI sedang bekerja untukmu</p></div>`;
-  setTimeout(() => {
-    this.innerHTML = `<span class="material-symbols-outlined text-5xl" style="font-variation-settings:'FILL' 1;">auto_fix_high</span><div class="text-center relative z-10"><h3 class="font-headline-md text-headline-md">Buat Rencana Makan Baru</h3><p class="font-body-sm text-body-sm opacity-90 mt-1">Nutrisi berbasis AI untuk harimu</p></div>`;
-    showToast('🌿 Rencana baru berhasil dibuat!');
-  }, 2000);
-});
-
-// === View last plan ===
-document.getElementById('btn-last-plan').addEventListener('click', () => {
-  showToast('📋 Membuka rencana terakhir...');
-});
-
-// === Log makanan ===
-document.getElementById('btn-log').addEventListener('click', () => {
-  document.getElementById('log-modal').classList.add('open');
-});
-document.getElementById('log-modal-close').addEventListener('click', () => {
-  document.getElementById('log-modal').classList.remove('open');
-});
-document.getElementById('log-modal').addEventListener('click', function(e) {
-  if (e.target === this) this.classList.remove('open');
-});
-document.getElementById('btn-log-submit').addEventListener('click', () => {
-  const nama = document.getElementById('log-nama').value;
-  const kcal = document.getElementById('log-kcal').value;
-  if (!nama) { showToast('⚠️ Masukkan nama makanan'); return; }
-  document.getElementById('log-modal').classList.remove('open');
-  showToast(`✓ "${nama}" (${kcal||'?'} kcal) dicatat!`);
-});
-
-// === Budget modal ===
-document.getElementById('budget-modal-close').addEventListener('click', () => {
-  document.getElementById('budget-modal').classList.remove('open');
-});
-document.getElementById('budget-modal').addEventListener('click', function(e) {
-  if (e.target === this) this.classList.remove('open');
-});
-const budgetSlider = document.getElementById('budget-slider');
-const spentSlider = document.getElementById('spent-slider');
-const budgetDisplay = document.getElementById('budget-display');
-const spentDisplay = document.getElementById('spent-display');
-function formatRibu(val) {
-  if (val >= 1000000) return 'Rp ' + (val/1000000).toFixed(1) + 'jt';
-  return 'Rp ' + (val/1000).toFixed(0) + 'k';
-}
-budgetSlider.addEventListener('input', function() {
-  budgetDisplay.textContent = formatRibu(+this.value);
-});
-spentSlider.addEventListener('input', function() {
-  spentDisplay.textContent = formatRibu(+this.value);
-});
-document.getElementById('btn-budget-save').addEventListener('click', () => {
-  const total = +budgetSlider.value;
-  const spent = +spentSlider.value;
-  const sisa = Math.max(0, total - spent);
-  document.getElementById('budget-sisa').textContent = formatRibu(sisa);
-  document.getElementById('budget-total').textContent = formatRibu(total).replace('Rp ','');
-  const pct = total > 0 ? Math.min(100, (sisa/total*100)).toFixed(0) : 0;
-  document.getElementById('budget-bar').style.width = pct + '%';
-  document.getElementById('budget-modal').classList.remove('open');
-  showToast('💰 Anggaran diperbarui!');
-});
-
-// === Kalori modal ===
-document.getElementById('kalori-modal-close').addEventListener('click', () => {
-  document.getElementById('kalori-modal').classList.remove('open');
-});
-document.getElementById('kalori-modal').addEventListener('click', function(e) {
-  if (e.target === this) this.classList.remove('open');
-});
-const targetKcalSlider = document.getElementById('target-kcal-slider');
-const currentKcalSlider = document.getElementById('current-kcal-slider');
-targetKcalSlider.addEventListener('input', function() {
-  document.getElementById('target-kcal-display').textContent = this.value;
-});
-currentKcalSlider.addEventListener('input', function() {
-  document.getElementById('current-kcal-display').textContent = this.value;
-});
-document.getElementById('btn-kalori-save').addEventListener('click', () => {
-  const target = +targetKcalSlider.value;
-  const current = +currentKcalSlider.value;
-  document.getElementById('kalori-val').textContent = current.toLocaleString('id');
-  document.getElementById('kalori-target').textContent = target.toLocaleString('id');
-  const pct = Math.min(100, (current/target*100)).toFixed(0);
-  document.getElementById('kalori-bar').style.width = pct + '%';
-  document.getElementById('kalori-modal').classList.remove('open');
-  showToast('🔥 Target kalori diperbarui!');
-});
-
-// === Adjust Target (monthly) ===
-document.getElementById('btn-adjust-target').addEventListener('click', () => {
-  document.getElementById('target-modal').style.display = 'flex';
-});
-document.getElementById('monthly-slider').addEventListener('input', function() {
-  document.getElementById('monthly-display').textContent = this.value;
-});
-document.getElementById('protein-slider').addEventListener('input', function() {
-  document.getElementById('protein-target-display').textContent = this.value;
-});
-function saveMonthly() {
-  const pct = document.getElementById('monthly-slider').value;
-  document.getElementById('monthly-pct').textContent = pct;
-  document.getElementById('monthly-bar').style.width = pct + '%';
-  document.getElementById('target-modal').style.display = 'none';
-  showToast('🎯 Target bulanan diperbarui!');
+function openLogModal(){document.getElementById('log-modal').classList.add('open')}
+function submitLog(){
+  const n=document.getElementById('log-nama').value;
+  const k=document.getElementById('log-kcal').value;
+  if(!n){toast('⚠️ Masukkan nama makanan');return}
+  closeModal('log-modal');
+  toast('✓ "'+n+'" ('+(k||'?')+' kcal) dicatat!');
+  document.getElementById('log-nama').value='';
+  document.getElementById('log-kcal').value='';
 }
 
-// === Jadwal lengkap ===
-document.getElementById('btn-jadwal').addEventListener('click', () => {
-  showToast('📅 Membuka jadwal mingguan...');
-});
+function generatePlan(btn){
+  const orig=btn.innerHTML;
+  btn.innerHTML='<i class="ti ti-refresh" style="font-size:40px;animation:spin 1s linear infinite" aria-hidden="true"></i><div><h3>Membuat Rencana...</h3><p>AI sedang bekerja untukmu</p></div>';
+  setTimeout(()=>{btn.innerHTML=orig;toast('🌿 Rencana baru berhasil dibuat!')},2000);
+}
 
-// === Stat card hover ===
-document.querySelectorAll('.tonal-shadow').forEach(card => {
-  card.addEventListener('mouseenter', () => {
-    card.classList.replace('tonal-shadow','active-nav-shadow');
-  });
-  card.addEventListener('mouseleave', () => {
-    card.classList.replace('active-nav-shadow','tonal-shadow');
-  });
-});
+function switchDay(idx,btn){
+  document.querySelectorAll('.day-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  const n=idx+1;
+  document.getElementById('save-day-btn').textContent='Simpan Rencana Hari '+n;
+}
 
-// === Spin animation ===
-const styleEl = document.createElement('style');
-styleEl.textContent = '@keyframes spin { to { transform: rotate(360deg); } }';
-document.head.appendChild(styleEl);
+function switchTab(t){
+  ['personal','preferences','security'].forEach(id=>{
+    document.getElementById('form-'+id).classList.toggle('active',id===t);
+    document.getElementById('tab-'+id).classList.toggle('active',id===t);
+  });
+}
+
+const style=document.createElement('style');
+style.textContent='@keyframes spin{to{transform:rotate(360deg)}}';
+document.head.appendChild(style);
+
+document.querySelector('.nav-item').classList.add('active');
 </script>
-</body>
-</html>
