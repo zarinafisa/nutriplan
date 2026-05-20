@@ -294,12 +294,12 @@
                 <input
                   id="calorieInput"
                   type="number"
-                  placeholder="1800"
-                  class="w-full rounded-2xl border border-border px-5 py-4 focus:ring-4 focus:ring-green-100 focus:border-primary outline-none"
+                  placeholder="2000"
+                  class="w-full rounded-2xl border border-[#E5DED8] bg-[#F9F5F1] px-5 py-5 text-2xl font-mono text-primary focus:ring-4 focus:ring-green-100 focus:border-primary outline-none"
                 />
 
-                <span class="absolute right-5 top-1/2 -translate-y-1/2 text-gray-400">
-                  kkal/hari
+                <span class="absolute right-5 top-1/2 -translate-y-1/2 text-[#7C746E] font-medium">
+                  kkal / hari
                 </span>
 
               </div>
@@ -307,66 +307,123 @@
 
               <div class="flex flex-wrap gap-3">
 
-                <button type="button" class="calorie-chip px-4 py-2 rounded-full border border-border hover:border-primary transition-all">
-                  1200
+                <button type="button" class="calorie-chip px-5 py-2.5 rounded-full border border-[#D8D2CC] bg-white hover:border-primary hover:text-primary transition-all text-sm font-mono text-[#5F5A55]">
+                  1,200 kkal
                 </button>
 
-                <button type="button" class="calorie-chip px-4 py-2 rounded-full border border-border hover:border-primary transition-all">
-                  1500
+                <button type="button" class="calorie-chip px-5 py-2.5 rounded-full border border-[#D8D2CC] bg-white hover:border-primary hover:text-primary transition-all text-sm font-mono text-[#5F5A55]">
+                  1,500 kkal
                 </button>
 
-                <button type="button" class="calorie-chip active bg-primary text-white px-4 py-2 rounded-full shadow-md">
-                  1800
-                </button>
+                <button type="button" class="calorie-chip active bg-[#E6F4E2] border border-primary text-primary px-5 py-2.5 rounded-full shadow-sm font-semibold text-sm font-mono">
+                  1,800 kkal<!-- PREFERENSI -->
+            <div>
 
-                <button type="button" class="calorie-chip px-4 py-2 rounded-full border border-border hover:border-primary transition-all">
-                  2200
-                </button>
+              <label class="block mb-4 text-sm uppercase tracking-wider text-gray-500 font-semibold">
+                Batasan Diet
+              </label>
+
+              <div class="grid grid-cols-2 lg:grid-cols-3 gap-4">
+
+                <label class="group cursor-pointer">
+                  <input type="checkbox" hidden>
+
+                  <div class="flex items-center gap-3 rounded-2xl border border-[#DDD6CF] bg-white px-4 py-5 hover:border-primary transition-all min-h-[84px]">
+
+                    <div class="w-5 h-5 rounded bg-primary"></div>
+
+                    <span class="text-lg text-[#2B2118] font-medium">
+                      Tidak Pedas
+                    </span>
+
+                  </div>
+                </label>
+
+
+                <label class="group cursor-pointer">
+                  <input type="checkbox" checked hidden>
+
+                  <div class="flex items-center gap-3 rounded-2xl border border-primary bg-primary px-4 py-5 min-h-[84px] shadow-md">
+
+                    <div class="w-5 h-5 rounded bg-white flex items-center justify-center">
+                      <span class="material-symbols-outlined text-[14px] text-primary font-bold">
+                        check
+                      </span>
+                    </div>
+
+                    <span class="text-lg text-white font-semibold">
+                      Halal
+                    </span>
+
+                  </div>
+                </label>
+
+
+                <label class="group cursor-pointer">
+                  <input type="checkbox" hidden>
+
+                  <div class="flex items-center gap-3 rounded-2xl border border-[#DDD6CF] bg-white px-4 py-5 hover:border-primary transition-all min-h-[84px]">
+
+                    <div class="w-5 h-5 rounded border-2 border-[#8D857E]"></div>
+
+                    <span class="text-lg text-[#2B2118] font-medium">
+                      Vegan
+                    </span>
+
+                  </div>
+                </label>
+
+
+                <label class="group cursor-pointer">
+                  <input type="checkbox" hidden>
+
+                  <div class="flex items-center gap-3 rounded-2xl border border-[#DDD6CF] bg-white px-4 py-5 hover:border-primary transition-all min-h-[84px]">
+
+                    <div class="w-5 h-5 rounded bg-primary"></div>
+
+                    <span class="text-lg text-[#2B2118] font-medium leading-snug">
+                      Tanpa Seafood
+                    </span>
+
+                  </div>
+                </label>
+
+
+                <label class="group cursor-pointer">
+                  <input type="checkbox" hidden>
+
+                  <div class="flex items-center gap-3 rounded-2xl border border-[#DDD6CF] bg-white px-4 py-5 hover:border-primary transition-all min-h-[84px]">
+
+                    <div class="w-5 h-5 rounded border-2 border-[#8D857E]"></div>
+
+                    <span class="text-lg text-[#2B2118] font-medium">
+                      Bebas Gluten
+                    </span>
+
+                  </div>
+                </label>
+
+
+                <label class="group cursor-pointer">
+                  <input type="checkbox" hidden>
+
+                  <div class="flex items-center gap-3 rounded-2xl border border-[#DDD6CF] bg-white px-4 py-5 hover:border-primary transition-all min-h-[84px]">
+
+                    <div class="w-5 h-5 rounded border-2 border-[#8D857E]"></div>
+
+                    <span class="text-lg text-[#2B2118] font-medium leading-snug">
+                      Rendah Karbohidrat
+                    </span>
+
+                  </div>
+                </label>
 
               </div>
 
             </div>
 
 
-            <!-- PREFERENSI -->
-            <div>
-
-              <label class="block mb-4 text-sm uppercase tracking-wider text-gray-500 font-semibold">
-                Preferensi Diet
-              </label>
-
-              <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-
-                <label class="food-card">
-                  <input type="checkbox" hidden>
-                  <div class="p-4 border border-border rounded-2xl hover:border-primary cursor-pointer transition-all">
-                    Tidak Pedas
-                  </div>
-                </label>
-
-                <label class="food-card">
-                  <input type="checkbox" checked hidden>
-                  <div class="p-4 border-2 border-primary bg-green-50 rounded-2xl cursor-pointer font-semibold text-primary">
-                    Halal
-                  </div>
-                </label>
-
-                <label class="food-card">
-                  <input type="checkbox" hidden>
-                  <div class="p-4 border border-border rounded-2xl hover:border-primary cursor-pointer transition-all">
-                    Vegan
-                  </div>
-                </label>
-
-                <label class="food-card">
-                  <input type="checkbox" hidden>
-                  <div class="p-4 border border-border rounded-2xl hover:border-primary cursor-pointer transition-all">
-                    Rendah Karbohidrat
-                  </div>
-                </label>
-
-                <label class="food-card">
-                  <input type="checkbox" hidden>
+            <!-- SUBMIT -->            <input type="checkbox" hidden>
                   <div class="p-4 border border-border rounded-2xl hover:border-primary cursor-pointer transition-all">
                     Bebas Gluten
                   </div>
