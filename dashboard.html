@@ -1,345 +1,1002 @@
 <!DOCTYPE html>
-
-<html class="light" lang="id"><head>
+<html class="light" lang="id">
+<head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>NutriPlan Dashboard</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            "colors": {
-                    "primary-fixed": "#b9f1ad",
-                    "primary-container": "#3a6b35",
-                    "on-tertiary-container": "#cae2c0",
-                    "surface-tint": "#386933",
-                    "inverse-on-surface": "#ffeee1",
-                    "on-primary-fixed": "#002202",
-                    "outline": "#72796e",
-                    "secondary": "#924c00",
-                    "on-primary-container": "#b2eaa6",
-                    "inverse-surface": "#3e2d1d",
-                    "tertiary-fixed-dim": "#b5cdac",
-                    "surface-variant": "#fbddc5",
-                    "outline-variant": "#c1c9bb",
-                    "error-container": "#ffdad6",
-                    "on-secondary-fixed": "#2f1500",
-                    "inverse-primary": "#9ed493",
-                    "error": "#ba1a1a",
-                    "primary-fixed-dim": "#9ed493",
-                    "surface-container-lowest": "#ffffff",
-                    "surface-dim": "#f2d5bd",
-                    "on-tertiary-fixed-variant": "#374c32",
-                    "surface-bright": "#fff8f5",
-                    "surface-container-highest": "#fbddc5",
-                    "on-primary": "#ffffff",
-                    "surface-container": "#ffeada",
-                    "secondary-fixed-dim": "#ffb77f",
-                    "on-tertiary-fixed": "#0d200a",
-                    "surface-container-low": "#fff1e8",
-                    "on-primary-fixed-variant": "#20511e",
-                    "on-secondary-container": "#6a3600",
-                    "on-error": "#ffffff",
-                    "tertiary": "#394e34",
-                    "surface-container-high": "#ffe3cd",
-                    "on-secondary": "#ffffff",
-                    "secondary-container": "#fe973c",
-                    "tertiary-fixed": "#d1eac7",
-                    "on-surface-variant": "#42493f",
-                    "secondary-fixed": "#ffdcc4",
-                    "tertiary-container": "#50664a",
-                    "on-background": "#27180a",
-                    "background": "#fff8f5",
-                    "on-surface": "#27180a",
-                    "surface": "#fff8f5",
-                    "on-tertiary": "#ffffff",
-                    "on-secondary-fixed-variant": "#6f3800",
-                    "on-error-container": "#93000a",
-                    "primary": "#22521f"
-            },
-            "borderRadius": {
-                    "DEFAULT": "0.25rem",
-                    "lg": "0.5rem",
-                    "xl": "0.75rem",
-                    "full": "9999px"
-            },
-            "spacing": {
-                    "sm": "12px",
-                    "xl": "80px",
-                    "md": "24px",
-                    "xs": "4px",
-                    "container-max": "1200px",
-                    "lg": "48px",
-                    "base": "8px",
-                    "gutter": "24px"
-            },
-            "fontFamily": {
-                    "headline-lg": ["Playfair Display"],
-                    "data-mono": ["JetBrains Mono"],
-                    "label-caps": ["Plus Jakarta Sans"],
-                    "body-sm": ["Plus Jakarta Sans"],
-                    "body-md": ["Plus Jakarta Sans"],
-                    "body-lg": ["Plus Jakarta Sans"],
-                    "headline-md": ["Playfair Display"],
-                    "display-lg": ["Playfair Display"]
-            },
-            "fontSize": {
-                    "headline-lg": ["32px", {"lineHeight": "1.3", "fontWeight": "700"}],
-                    "data-mono": ["14px", {"lineHeight": "1", "fontWeight": "500"}],
-                    "label-caps": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "700"}],
-                    "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
-                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
-                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
-                    "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
-                    "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}]
-            }
-          },
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "primary-fixed": "#b9f1ad",
+          "primary-container": "#3a6b35",
+          "on-tertiary-container": "#cae2c0",
+          "surface-tint": "#386933",
+          "inverse-on-surface": "#ffeee1",
+          "on-primary-fixed": "#002202",
+          "outline": "#72796e",
+          "secondary": "#924c00",
+          "on-primary-container": "#b2eaa6",
+          "inverse-surface": "#3e2d1d",
+          "tertiary-fixed-dim": "#b5cdac",
+          "surface-variant": "#fbddc5",
+          "outline-variant": "#c1c9bb",
+          "error-container": "#ffdad6",
+          "on-secondary-fixed": "#2f1500",
+          "inverse-primary": "#9ed493",
+          "error": "#ba1a1a",
+          "primary-fixed-dim": "#9ed493",
+          "surface-container-lowest": "#ffffff",
+          "surface-dim": "#f2d5bd",
+          "on-tertiary-fixed-variant": "#374c32",
+          "surface-bright": "#fff8f5",
+          "surface-container-highest": "#fbddc5",
+          "on-primary": "#ffffff",
+          "surface-container": "#ffeada",
+          "secondary-fixed-dim": "#ffb77f",
+          "on-tertiary-fixed": "#0d200a",
+          "surface-container-low": "#fff1e8",
+          "on-primary-fixed-variant": "#20511e",
+          "on-secondary-container": "#6a3600",
+          "on-error": "#ffffff",
+          "tertiary": "#394e34",
+          "surface-container-high": "#ffe3cd",
+          "on-secondary": "#ffffff",
+          "secondary-container": "#fe973c",
+          "tertiary-fixed": "#d1eac7",
+          "on-surface-variant": "#42493f",
+          "secondary-fixed": "#ffdcc4",
+          "tertiary-container": "#50664a",
+          "on-background": "#27180a",
+          "background": "#fff8f5",
+          "on-surface": "#27180a",
+          "surface": "#fff8f5",
+          "on-tertiary": "#ffffff",
+          "on-secondary-fixed-variant": "#6f3800",
+          "on-error-container": "#93000a",
+          "primary": "#22521f"
         },
+        borderRadius: {
+          DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"
+        },
+        spacing: {
+          sm: "12px", xl: "80px", md: "24px", xs: "4px",
+          "container-max": "1200px", lg: "48px", base: "8px", gutter: "24px"
+        },
+        fontFamily: {
+          "headline-lg": ["Playfair Display"],
+          "data-mono": ["JetBrains Mono"],
+          "label-caps": ["Plus Jakarta Sans"],
+          "body-sm": ["Plus Jakarta Sans"],
+          "body-md": ["Plus Jakarta Sans"],
+          "body-lg": ["Plus Jakarta Sans"],
+          "headline-md": ["Playfair Display"],
+          "display-lg": ["Playfair Display"]
+        },
+        fontSize: {
+          "headline-lg": ["32px", {lineHeight: "1.3", fontWeight: "700"}],
+          "data-mono": ["14px", {lineHeight: "1", fontWeight: "500"}],
+          "label-caps": ["12px", {lineHeight: "1.2", letterSpacing: "0.05em", fontWeight: "700"}],
+          "body-sm": ["14px", {lineHeight: "1.5", fontWeight: "400"}],
+          "body-md": ["16px", {lineHeight: "1.6", fontWeight: "400"}],
+          "body-lg": ["18px", {lineHeight: "1.6", fontWeight: "400"}],
+          "headline-md": ["24px", {lineHeight: "1.4", fontWeight: "600"}],
+          "display-lg": ["48px", {lineHeight: "1.2", letterSpacing: "-0.02em", fontWeight: "700"}]
+        }
       }
-    </script>
+    }
+  }
+</script>
 <style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-            vertical-align: middle;
-        }
-        .tonal-shadow {
-            box-shadow: 0 4px 12px rgba(58, 107, 53, 0.08);
-        }
-        .active-nav-shadow {
-            box-shadow: 0 8px 16px rgba(58, 107, 53, 0.12);
-        }
-        .glass-header {
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
-    </style>
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    vertical-align: middle;
+  }
+  .tonal-shadow { box-shadow: 0 4px 12px rgba(58,107,53,0.08); }
+  .active-nav-shadow { box-shadow: 0 8px 16px rgba(58,107,53,0.12); }
+  .glass-header { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+
+  /* Sidebar overlay for mobile */
+  #sidebar-overlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 40;
+  }
+  #sidebar-overlay.active { display: block; }
+
+  /* Sidebar mobile slide */
+  #sidebar {
+    transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+  }
+  @media (max-width: 767px) {
+    #sidebar {
+      transform: translateX(-100%);
+    }
+    #sidebar.open {
+      transform: translateX(0);
+    }
+    #main-content {
+      margin-left: 0 !important;
+    }
+  }
+
+  /* Toast */
+  #toast {
+    position: fixed; bottom: 24px; right: 24px;
+    background: #3a6b35; color: #b2eaa6;
+    padding: 12px 20px; border-radius: 12px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 14px; font-weight: 600;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    z-index: 9999;
+    transform: translateY(80px); opacity: 0;
+    transition: all 0.4s cubic-bezier(.4,0,.2,1);
+    pointer-events: none;
+  }
+  #toast.show { transform: translateY(0); opacity: 1; }
+
+  /* Ripple */
+  .ripple-btn { position: relative; overflow: hidden; }
+  .ripple-btn .ripple {
+    position: absolute; border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+    transform: scale(0); animation: ripple-anim 0.6s linear;
+    pointer-events: none;
+  }
+  @keyframes ripple-anim {
+    to { transform: scale(4); opacity: 0; }
+  }
+
+  /* Progress bar animation */
+  .progress-fill { transition: width 1s ease; }
+
+  /* Notification badge */
+  .notif-badge {
+    position: absolute; top: -4px; right: -4px;
+    width: 10px; height: 10px;
+    background: #924c00; border-radius: 50%;
+    border: 2px solid #fff8f5;
+  }
+
+  /* Meal item hover */
+  .meal-item {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+  }
+  .meal-item:hover {
+    transform: translateX(4px);
+    box-shadow: 0 4px 16px rgba(58,107,53,0.12);
+  }
+
+  /* Nav active indicator */
+  .nav-item { transition: all 0.2s ease; }
+
+  /* Card hover */
+  .stat-card { transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer; }
+  .stat-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(58,107,53,0.14); }
+
+  /* Notification panel */
+  #notif-panel {
+    display: none;
+    position: absolute; right: 0; top: calc(100% + 8px);
+    width: 300px; background: white;
+    border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+    border: 1px solid #c1c9bb; z-index: 100;
+    overflow: hidden;
+  }
+  #notif-panel.open { display: block; animation: fadeDown 0.2s ease; }
+  @keyframes fadeDown { from { opacity:0; transform:translateY(-8px); } to { opacity:1; transform:translateY(0); } }
+
+  /* Search panel */
+  #search-panel {
+    display: none;
+    position: absolute; right: 0; top: calc(100% + 8px);
+    width: 280px; background: white;
+    border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+    border: 1px solid #c1c9bb; z-index: 100;
+    padding: 12px;
+  }
+  #search-panel.open { display: block; animation: fadeDown 0.2s ease; }
+
+  /* Meal detail modal */
+  #meal-modal {
+    display: none;
+    position: fixed; inset: 0; z-index: 200;
+    background: rgba(0,0,0,0.5);
+    align-items: center; justify-content: center;
+  }
+  #meal-modal.open { display: flex; }
+  #meal-modal-inner {
+    background: #fff8f5; border-radius: 20px;
+    padding: 28px; max-width: 420px; width: 90%;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    animation: scaleIn 0.25s ease;
+  }
+  @keyframes scaleIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+  /* Log makanan modal */
+  #log-modal {
+    display: none;
+    position: fixed; inset: 0; z-index: 200;
+    background: rgba(0,0,0,0.5);
+    align-items: center; justify-content: center;
+  }
+  #log-modal.open { display: flex; }
+  #log-modal-inner {
+    background: #fff8f5; border-radius: 20px;
+    padding: 28px; max-width: 380px; width: 90%;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    animation: scaleIn 0.25s ease;
+  }
+
+  /* Budget modal */
+  #budget-modal {
+    display: none;
+    position: fixed; inset: 0; z-index: 200;
+    background: rgba(0,0,0,0.5);
+    align-items: center; justify-content: center;
+  }
+  #budget-modal.open { display: flex; }
+  #budget-modal-inner {
+    background: #fff8f5; border-radius: 20px;
+    padding: 28px; max-width: 360px; width: 90%;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    animation: scaleIn 0.25s ease;
+  }
+
+  /* Kalori modal */
+  #kalori-modal {
+    display: none;
+    position: fixed; inset: 0; z-index: 200;
+    background: rgba(0,0,0,0.5);
+    align-items: center; justify-content: center;
+  }
+  #kalori-modal.open { display: flex; }
+  #kalori-modal-inner {
+    background: #fff8f5; border-radius: 20px;
+    padding: 28px; max-width: 360px; width: 90%;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    animation: scaleIn 0.25s ease;
+  }
+
+  /* Slider style */
+  input[type=range] {
+    -webkit-appearance: none; width: 100%; height: 6px;
+    border-radius: 3px; background: #b9f1ad; outline: none;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none; width: 20px; height: 20px;
+    border-radius: 50%; background: #22521f; cursor: pointer;
+    box-shadow: 0 2px 6px rgba(34,82,31,0.3);
+  }
+</style>
 </head>
 <body class="bg-background text-on-background font-body-md overflow-x-hidden">
-<!-- SideNavBar -->
-<aside class="fixed left-0 top-0 h-full w-[240px] bg-primary-container dark:bg-primary-container flex flex-col p-md gap-base z-50">
-<div class="mb-lg px-xs">
-<h1 class="font-headline-md text-headline-md font-bold text-on-primary-container">NutriPlan</h1>
-<p class="font-label-caps text-label-caps opacity-80 text-on-primary-container uppercase tracking-wider">Nutrisi Praktis</p>
-</div>
-<nav class="flex flex-col gap-xs flex-grow">
-<!-- Active: Dashboard -->
-<a class="bg-secondary-container text-on-secondary-container rounded-lg font-bold flex items-center gap-sm px-sm py-base transition-all duration-200 ease-in-out" href="#">
-<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
-<span class="font-label-caps text-label-caps uppercase">Beranda</span>
-</a>
-<a class="text-on-primary-container/80 hover:bg-primary/20 hover:text-on-primary-container rounded-lg flex items-center gap-sm px-sm py-base transition-colors duration-200" href="#">
-<span class="material-symbols-outlined" data-icon="tune">tune</span>
-<span class="font-label-caps text-label-caps uppercase">Preferensi</span>
-</a>
-<a class="text-on-primary-container/80 hover:bg-primary/20 hover:text-on-primary-container rounded-lg flex items-center gap-sm px-sm py-base transition-colors duration-200" href="#">
-<span class="material-symbols-outlined" data-icon="restaurant_menu">restaurant_menu</span>
-<span class="font-label-caps text-label-caps uppercase">Rencana Makan</span>
-</a>
-<a class="text-on-primary-container/80 hover:bg-primary/20 hover:text-on-primary-container rounded-lg flex items-center gap-sm px-sm py-base transition-colors duration-200" href="#">
-<span class="material-symbols-outlined" data-icon="history">history</span>
-<span class="font-label-caps text-label-caps uppercase">Riwayat</span>
-</a>
-<a class="text-on-primary-container/80 hover:bg-primary/20 hover:text-on-primary-container rounded-lg flex items-center gap-sm px-sm py-base transition-colors duration-200" href="#">
-<span class="material-symbols-outlined" data-icon="person">person</span>
-<span class="font-label-caps text-label-caps uppercase">Profil</span>
-</a>
-</nav>
-<div class="mt-auto pt-md flex items-center gap-sm px-xs border-t border-on-primary-container/10">
-<img alt="Foto Profil Zaza" class="w-10 h-10 rounded-full border-2 border-primary-fixed" data-alt="A professional and friendly portrait of a young woman with a warm smile, set against a soft, sun-drenched outdoor background. She represents a healthy, balanced lifestyle. The lighting is natural and high-key, maintaining the soft cream and green brand palette with an organic, approachable feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBg4f6X8g-Tv6HcmzNuWMy429OloVJzvjWBHyNdHUKeW3gunUSmbh9aLbYpdbSys7jCMA6LgGmXLNi4nUDsny5_WLW2E7Z9xIMCeIIT94f1JPYR9BbvX1R8uTvh7yBtaiEjJwhcOienwCN92haPSnGcvIykO8VxRkPcnzXnorI_nB4JivXpG-zEGAocPrb38Gv4jq9O1lHAwtyd305agRdZTqIZ43qycWSSoN75UhI6_oicGzDGz6cC1NfZedPoGVwutcwMl9OH6I5"/>
-<div class="flex flex-col">
-<span class="text-on-primary-container font-bold text-sm">Zaza Arisanti</span>
-<span class="text-on-primary-container/60 text-xs">Anggota Premium</span>
-</div>
-</div>
-</aside>
-<!-- Main Content Area -->
-<main class="ml-[240px] min-h-screen flex flex-col relative">
-<!-- TopAppBar -->
-<header class="docked full-width top-0 sticky z-40 bg-surface/90 glass-header flex justify-between items-center px-md py-sm border-b border-outline-variant/20">
-<div class="flex items-center gap-sm">
-<span class="material-symbols-outlined text-primary" data-icon="calendar_today">calendar_today</span>
-<h2 class="font-headline-md text-headline-md text-primary">Selamat pagi, Zaza! 🌿</h2>
-</div>
-<div class="flex items-center gap-md">
-<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors" data-icon="notifications">notifications</button>
-<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors" data-icon="search">search</button>
-</div>
-</header>
-<!-- Content Canvas -->
-<div class="p-md lg:p-lg space-y-lg max-w-container-max mx-auto w-full">
-<!-- Stats Row -->
-<section class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
-<!-- Calories Card -->
-<div class="bg-surface-container-lowest p-md rounded-xl tonal-shadow border-l-4 border-secondary-container flex flex-col justify-between h-32 hover:translate-y-[-4px] transition-transform duration-300">
-<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Kalori Hari Ini</span>
-<div class="flex items-baseline gap-xs">
-<span class="font-display-lg text-display-lg text-secondary">1,420</span>
-<span class="font-data-mono text-data-mono text-on-surface-variant">/ 1,800 kcal</span>
-</div>
-</div>
-<!-- Budget Card -->
-<div class="bg-surface-container-lowest p-md rounded-xl tonal-shadow border-l-4 border-primary flex flex-col justify-between h-32 hover:translate-y-[-4px] transition-transform duration-300">
-<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Anggaran Hari Ini</span>
-<div class="flex items-baseline gap-xs">
-<span class="font-display-lg text-display-lg text-primary">Rp 45k</span>
-<span class="font-data-mono text-data-mono text-on-surface-variant">sisa dari 120k</span>
-</div>
-</div>
-<!-- Active Plan Card -->
-<div class="bg-surface-container-lowest p-md rounded-xl tonal-shadow border-b-4 border-secondary-container flex flex-col justify-between h-32 hover:translate-y-[-4px] transition-transform duration-300">
-<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Rencana Aktif</span>
-<div class="flex items-center gap-sm">
-<span class="material-symbols-outlined text-primary" data-icon="psychiatry">psychiatry</span>
-<span class="font-headline-md text-headline-md">High Protein-Eco</span>
-</div>
-</div>
-</section>
-<!-- Quick Actions & Preview Bento -->
-<section class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
-<!-- Action Cluster -->
-<div class="lg:col-span-4 space-y-gutter">
-<!-- Generate New Meal Plan -->
-<button class="w-full bg-secondary-container text-on-secondary-container p-lg rounded-xl tonal-shadow flex flex-col items-center justify-center gap-md active:scale-95 transition-all duration-200 group relative overflow-hidden">
-<div class="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-<span class="material-symbols-outlined text-5xl" data-icon="auto_fix_high" style="font-variation-settings: 'FILL' 1;">auto_fix_high</span>
-<div class="text-center relative z-10">
-<h3 class="font-headline-md text-headline-md">Buat Rencana Makan Baru</h3>
-<p class="font-body-sm text-body-sm opacity-90 mt-1">Nutrisi berbasis AI untuk harimu</p>
-</div>
-</button>
-<!-- View Last Plan -->
-<button class="w-full border-2 border-primary text-primary p-md rounded-xl flex items-center justify-center gap-sm hover:bg-primary/5 transition-colors duration-200">
-<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
-<span class="font-label-caps text-label-caps uppercase">Lihat Rencana Terakhir</span>
-</button>
-</div>
-<!-- Today's Preview -->
-<div class="lg:col-span-8 bg-surface-container-low p-md lg:p-lg rounded-xl tonal-shadow flex flex-col gap-md">
-<div class="flex justify-between items-center mb-base">
-<h3 class="font-headline-md text-headline-md">Menu Hari Ini</h3>
-<a class="text-primary font-label-caps text-label-caps hover:underline" href="#">LIHAT JADWAL LENGKAP</a>
-</div>
-<div class="space-y-sm">
-<!-- Breakfast Item -->
-<div class="flex items-center justify-between p-sm bg-surface-container-lowest rounded-lg group hover:shadow-md transition-shadow">
-<div class="flex items-center gap-md">
-<div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
-<img alt="Avocado Toast" class="w-full h-full object-cover" data-alt="A gourmet avocado toast with a perfectly poached egg on top, sprinkled with red pepper flakes and microgreens. The image is captured in bright morning sunlight on a clean, light-colored ceramic plate. The aesthetic is clean, healthy, and appetizing, following the warm cream and green brand theme." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDskVRuYJLgvyJf6tC26rZNMr151tUfvlMiAsiA19xYM-Va1ZQuvlX-6wWWMTk0ej7hgaRvacrraqdutcEjVhVRVmbRnxPqK4KHOQIMWs3h1ADTaEA_hgwLVHL2h_eXo1Ggvrn_jhlHVBKAC21qSKM9oGM418MogsLxGwKW-Pe9muo6nRtQFeDIni3g70IhK5hbk_9IvcLh_SM0GnFPP_FOnm2viKy0OeyAujoJC1rnPzvbdhkapnpZ6PF4VPogoL1tBFznwg7rcrNb"/>
-</div>
-<div>
-<span class="font-label-caps text-label-caps text-secondary-fixed-dim bg-secondary-container/20 px-2 py-0.5 rounded-full uppercase text-[10px]">Sarapan</span>
-<h4 class="font-body-lg text-body-lg font-bold">Protein Avocado Toast</h4>
-<p class="text-on-surface-variant text-sm">2 iris gandum utuh + 1 telur</p>
-</div>
-</div>
-<span class="bg-secondary text-white font-data-mono text-data-mono px-3 py-1.5 rounded-full">340 kcal</span>
-</div>
-<!-- Lunch Item -->
-<div class="flex items-center justify-between p-sm bg-surface-container-lowest rounded-lg group hover:shadow-md transition-shadow">
-<div class="flex items-center gap-md">
-<div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
-<img alt="Chicken Salad" class="w-full h-full object-cover" data-alt="A vibrant salad bowl featuring grilled chicken strips, fresh spinach, cherry tomatoes, and chickpeas. A light vinaigrette is drizzled over the top. The lighting is crisp and clear, emphasizing the freshness of the organic ingredients. The color palette centers on lush greens and earthy tones to match the NutriPlan identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMIP128RGEG_wAEJSXKaZ-bpZ1ZPNC_aVfYDkSnwK2FxbPNFesKuG4M5fJaiZxKzg8yI6JAKYuAVo4acuIknve3vF6MlHY3WQDOOx822pXxXNw_B5n9mrFZv1z6Q2SBSPZhPCUPCqIX4eb9R4wH6XyyHvV5-5k5aEqTevUAx2SLQKSot-zyXKJy2MSfIirlxHzuihFdASiN7AsJeaFokgLlpy0ZBYSfmDNFoLu06kGUmNJYL5XcBmecV9ovVsKz2MLIIsRZ-TSXl4q"/>
-</div>
-<div>
-<span class="font-label-caps text-label-caps text-primary bg-primary-fixed/30 px-2 py-0.5 rounded-full uppercase text-[10px]">Makan Siang</span>
-<h4 class="font-body-lg text-body-lg font-bold">Zesty Chickpea Bowl</h4>
-<p class="text-on-surface-variant text-sm">Dasar Quinoa + Ayam Panggang</p>
-</div>
-</div>
-<span class="bg-secondary text-white font-data-mono text-data-mono px-3 py-1.5 rounded-full">520 kcal</span>
-</div>
-<!-- Dinner Item -->
-<div class="flex items-center justify-between p-sm bg-surface-container-lowest rounded-lg group hover:shadow-md transition-shadow">
-<div class="flex items-center gap-md">
-<div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
-<img alt="Grilled Salmon" class="w-full h-full object-cover" data-alt="A beautifully grilled salmon fillet served with a side of steamed asparagus and mashed sweet potatoes. The presentation is elegant and minimalist on a rustic cream-colored plate. Soft, warm lighting enhances the rich textures of the food, creating an inviting and wholesome dining atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzk3t7FowYkWT2u_EJ5FxuYT_o9rltIRqNc2rkg327cezgR4pZpNOftOx1YZihzHXawkg-Kz2oqaskPqbBL2lPfwcaRnzisujnWqF39Or82n60cdCq1FlSG53o1Z7dM68BoePr7WZ7klGcDXF9KzqC6jlps3vH2id7Klmyx9fpNf9xLikAV1fzgOYEIoKDNM9HrVplCvBE4si-twd_qWMDzTeouFihRgabhFKPcWjTr9R7fyffH-vRPLUG7Lh2j3TbJGMLT4KhvdzK"/>
-</div>
-<div>
-<span class="font-label-caps text-label-caps text-secondary-fixed-dim bg-secondary-container/20 px-2 py-0.5 rounded-full uppercase text-[10px]">Makan Malam</span>
-<h4 class="font-body-lg text-body-lg font-bold">Herb-Crusted Salmon</h4>
-<p class="text-on-surface-variant text-sm">Sampingan Asparagus + Ubi Jalar</p>
-</div>
-</div>
-<span class="bg-secondary text-white font-data-mono text-data-mono px-3 py-1.5 rounded-full">560 kcal</span>
-</div>
-</div>
-</div>
-</section>
-<!-- Bottom Insight Section -->
-<section class="bg-primary/5 rounded-2xl p-lg flex flex-col md:flex-row items-center gap-lg border border-primary/10">
-<div class="flex-1 space-y-sm">
-<h3 class="font-headline-lg text-headline-lg text-primary">Wawasan Nutrisi</h3>
-<p class="text-on-surface-variant font-body-lg max-w-xl">Anda telah mencapai target protein selama 4 hari berturut-turut! Ini secara signifikan meningkatkan pemulihan otot Anda. Pertahankan konsistensi untuk mencapai target bulanan Anda.</p>
-<div class="flex gap-md pt-sm">
-<div class="flex flex-col">
-<span class="font-label-caps text-label-caps text-primary uppercase">Runtutan</span>
-<span class="font-headline-md text-headline-md">12 Hari</span>
-</div>
-<div class="flex flex-col">
-<span class="font-label-caps text-label-caps text-primary uppercase">Pemulihan</span>
-<span class="font-headline-md text-headline-md">Tinggi</span>
-</div>
-</div>
-</div>
-<div class="w-full md:w-1/3">
-<div class="relative h-4 bg-primary-fixed rounded-full overflow-hidden">
-<div class="absolute top-0 left-0 h-full bg-primary rounded-full" style="width: 78%;"></div>
-</div>
-<p class="font-label-caps text-label-caps text-center mt-2 uppercase text-primary">Progres Target Bulanan (78%)</p>
-</div>
-</section>
-</div>
-<!-- Footer -->
-<footer class="mt-auto w-full bg-inverse-surface text-inverse-on-surface">
-<div class="grid grid-cols-1 md:grid-cols-4 gap-lg px-md py-xl max-w-container-max mx-auto">
-<div class="md:col-span-1">
-<h4 class="font-headline-md text-headline-md italic text-primary-fixed mb-sm">NutriPlan</h4>
-<p class="font-body-sm text-body-sm opacity-70">© 2024 NutriPlan. Nutrisi tepat untuk dunia yang praktis.</p>
-</div>
-<div class="flex flex-col gap-xs">
-<span class="font-label-caps text-label-caps mb-base opacity-50">PRODUK</span>
-<a class="text-inverse-on-surface/70 hover:text-secondary-fixed transition-colors" href="#">Cara Kerja</a>
-<a class="text-inverse-on-surface/70 hover:text-secondary-fixed transition-colors" href="#">Fitur</a>
-<a class="text-inverse-on-surface/70 hover:text-secondary-fixed transition-colors" href="#">Harga</a>
-</div>
-<div class="flex flex-col gap-xs">
-<span class="font-label-caps text-label-caps mb-base opacity-50">HUKUM</span>
-<a class="text-inverse-on-surface/70 hover:text-secondary-fixed transition-colors" href="#">Kebijakan Privasi</a>
-<a class="text-inverse-on-surface/70 hover:text-secondary-fixed transition-colors" href="#">Syarat Layanan</a>
-</div>
-<div class="flex flex-col gap-xs">
-<span class="font-label-caps text-label-caps mb-base opacity-50">DUKUNGAN</span>
-<a class="text-inverse-on-surface/70 hover:text-secondary-fixed transition-colors" href="#">Pusat Bantuan</a>
-<a class="text-inverse-on-surface/70 hover:text-secondary-fixed transition-colors" href="#">Hubungi Kami</a>
-</div>
-</div>
-</footer>
-</main>
-<script>
-    // Simple interactivity for cards
-    document.querySelectorAll('.tonal-shadow').forEach(card => {
-        card.addEventListener('mouseenter', () => {
-            card.classList.remove('tonal-shadow');
-            card.classList.add('active-nav-shadow');
-        });
-        card.addEventListener('mouseleave', () => {
-            card.classList.remove('active-nav-shadow');
-            card.classList.add('tonal-shadow');
-        });
-    });
 
-    // Floating particle effect for the "Generate" card
-    const generateBtn = document.querySelector('button.bg-secondary-container');
-    generateBtn.addEventListener('mousemove', (e) => {
-        const rect = generateBtn.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        generateBtn.style.setProperty('--x', `${x}px`);
-        generateBtn.style.setProperty('--y', `${y}px`);
+<!-- Sidebar Overlay (mobile) -->
+<div id="sidebar-overlay"></div>
+
+<!-- Toast -->
+<div id="toast">✓ Berhasil!</div>
+
+<!-- SIDEBAR -->
+<aside id="sidebar" class="fixed left-0 top-0 h-full w-[240px] bg-primary-container flex flex-col p-md gap-base z-50">
+  <div class="mb-lg px-xs flex items-center justify-between">
+    <div>
+      <h1 class="font-headline-md text-headline-md font-bold text-on-primary-container">NutriPlan</h1>
+      <p class="font-label-caps text-label-caps opacity-80 text-on-primary-container uppercase tracking-wider">Nutrisi Praktis</p>
+    </div>
+    <!-- Close button (mobile only) -->
+    <button id="sidebar-close" class="md:hidden text-on-primary-container/70 hover:text-on-primary-container p-1 rounded-lg" title="Tutup menu">
+      <span class="material-symbols-outlined">close</span>
+    </button>
+  </div>
+
+  <nav class="flex flex-col gap-xs flex-grow">
+    <a id="nav-beranda" class="nav-item bg-secondary-container text-on-secondary-container rounded-lg font-bold flex items-center gap-sm px-sm py-base active-nav-shadow" href="#">
+      <span class="material-symbols-outlined">dashboard</span>
+      <span class="font-label-caps text-label-caps uppercase">Beranda</span>
+    </a>
+    <a id="nav-preferensi" class="nav-item text-on-primary-container/80 hover:bg-primary/20 hover:text-on-primary-container rounded-lg flex items-center gap-sm px-sm py-base" href="#" onclick="showToast('Membuka Preferensi...')">
+      <span class="material-symbols-outlined">tune</span>
+      <span class="font-label-caps text-label-caps uppercase">Preferensi</span>
+    </a>
+    <a id="nav-rencana" class="nav-item text-on-primary-container/80 hover:bg-primary/20 hover:text-on-primary-container rounded-lg flex items-center gap-sm px-sm py-base" href="#" onclick="showToast('Membuka Rencana Makan...')">
+      <span class="material-symbols-outlined">restaurant_menu</span>
+      <span class="font-label-caps text-label-caps uppercase">Rencana Makan</span>
+    </a>
+    <a id="nav-riwayat" class="nav-item text-on-primary-container/80 hover:bg-primary/20 hover:text-on-primary-container rounded-lg flex items-center gap-sm px-sm py-base" href="#" onclick="showToast('Membuka Riwayat...')">
+      <span class="material-symbols-outlined">history</span>
+      <span class="font-label-caps text-label-caps uppercase">Riwayat</span>
+    </a>
+    <a id="nav-profil" class="nav-item text-on-primary-container/80 hover:bg-primary/20 hover:text-on-primary-container rounded-lg flex items-center gap-sm px-sm py-base" href="#" onclick="showToast('Membuka Profil...')">
+      <span class="material-symbols-outlined">person</span>
+      <span class="font-label-caps text-label-caps uppercase">Profil</span>
+    </a>
+  </nav>
+
+  <div class="mt-auto pt-md flex items-center gap-sm px-xs border-t border-on-primary-container/10">
+    <img alt="Foto Profil Zaza" class="w-10 h-10 rounded-full border-2 border-primary-fixed object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBg4f6X8g-Tv6HcmzNuWMy429OloVJzvjWBHyNdHUKeW3gunUSmbh9aLbYpdbSys7jCMA6LgGmXLNi4nUDsny5_WLW2E7Z9xIMCeIIT94f1JPYR9BbvX1R8uTvh7yBtaiEjJwhcOienwCN92haPSnGcvIykO8VxRkPcnzXnorI_nB4JivXpG-zEGAocPrb38Gv4jq9O1lHAwtyd305agRdZTqIZ43qycWSSoN75UhI6_oicGzDGz6cC1NfZedPoGVwutcwMl9OH6I5"/>
+    <div class="flex flex-col">
+      <span class="text-on-primary-container font-bold text-sm">Zaza Arisanti</span>
+      <span class="text-on-primary-container/60 text-xs">Anggota Premium</span>
+    </div>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<main id="main-content" class="md:ml-[240px] min-h-screen flex flex-col relative">
+
+  <!-- TOP APP BAR -->
+  <header class="sticky top-0 z-40 bg-surface/90 glass-header flex justify-between items-center px-md py-sm border-b border-outline-variant/20">
+    <div class="flex items-center gap-sm">
+      <!-- Hamburger (mobile) -->
+      <button id="hamburger" class="md:hidden mr-2 p-1 rounded-lg hover:bg-primary/10 transition-colors" aria-label="Buka menu">
+        <span class="material-symbols-outlined text-primary">menu</span>
+      </button>
+      <span class="material-symbols-outlined text-primary">calendar_today</span>
+      <h2 class="font-headline-md text-headline-md text-primary text-lg md:text-2xl">Selamat pagi, Zaza! 🌿</h2>
+    </div>
+    <div class="flex items-center gap-3 relative">
+      <!-- Notifikasi -->
+      <div class="relative">
+        <button id="notif-btn" class="relative material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors p-2 rounded-full hover:bg-primary/10" title="Notifikasi">
+          notifications
+          <span class="notif-badge"></span>
+        </button>
+        <div id="notif-panel">
+          <div class="px-4 py-3 border-b border-outline-variant/30 flex justify-between items-center">
+            <span class="font-bold text-sm text-on-surface">Notifikasi</span>
+            <button onclick="document.getElementById('notif-panel').classList.remove('open')" class="text-xs text-primary hover:underline">Tutup</button>
+          </div>
+          <div class="py-2">
+            <div class="px-4 py-3 hover:bg-surface-container-low cursor-pointer">
+              <p class="text-sm font-semibold text-on-surface">🎯 Target protein tercapai!</p>
+              <p class="text-xs text-on-surface-variant mt-0.5">Hari ke-4 berturut-turut. Luar biasa!</p>
+            </div>
+            <div class="px-4 py-3 hover:bg-surface-container-low cursor-pointer">
+              <p class="text-sm font-semibold text-on-surface">🍽️ Makan siang belum dicatat</p>
+              <p class="text-xs text-on-surface-variant mt-0.5">Jangan lupa catat Zesty Chickpea Bowl-mu</p>
+            </div>
+            <div class="px-4 py-3 hover:bg-surface-container-low cursor-pointer">
+              <p class="text-sm font-semibold text-on-surface">💧 Minum air: 4/8 gelas</p>
+              <p class="text-xs text-on-surface-variant mt-0.5">Tetap terhidrasi untuk performa optimal</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Search -->
+      <div class="relative">
+        <button id="search-btn" class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors p-2 rounded-full hover:bg-primary/10" title="Cari">search</button>
+        <div id="search-panel">
+          <input id="search-input" type="text" placeholder="Cari makanan, nutrisi..." class="w-full border border-outline-variant rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-primary bg-surface-container-low" />
+          <div id="search-results" class="mt-2 text-xs text-on-surface-variant"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- CONTENT -->
+  <div class="p-md lg:p-lg space-y-lg max-w-[1200px] mx-auto w-full">
+
+    <!-- STATS ROW -->
+    <section class="grid grid-cols-1 sm:grid-cols-3 gap-gutter">
+      <!-- Kalori -->
+      <div id="card-kalori" class="stat-card bg-surface-container-lowest p-md rounded-xl tonal-shadow border-l-4 border-secondary-container flex flex-col justify-between h-32" title="Klik untuk detail kalori">
+        <span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Kalori Hari Ini</span>
+        <div class="flex items-baseline gap-xs">
+          <span id="kalori-val" class="font-display-lg text-display-lg text-secondary">1,420</span>
+          <span class="font-data-mono text-data-mono text-on-surface-variant">/ <span id="kalori-target">1,800</span> kcal</span>
+        </div>
+        <div class="w-full bg-primary-fixed rounded-full h-1.5 mt-1">
+          <div id="kalori-bar" class="h-1.5 bg-secondary rounded-full progress-fill" style="width:78%"></div>
+        </div>
+      </div>
+      <!-- Budget -->
+      <div id="card-budget" class="stat-card bg-surface-container-lowest p-md rounded-xl tonal-shadow border-l-4 border-primary flex flex-col justify-between h-32" title="Klik untuk edit anggaran">
+        <span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Anggaran Hari Ini</span>
+        <div class="flex items-baseline gap-xs">
+          <span id="budget-sisa" class="font-display-lg text-display-lg text-primary">Rp 45k</span>
+          <span class="font-data-mono text-data-mono text-on-surface-variant">sisa dari <span id="budget-total">120k</span></span>
+        </div>
+        <div class="w-full bg-primary-fixed rounded-full h-1.5 mt-1">
+          <div id="budget-bar" class="h-1.5 bg-primary rounded-full progress-fill" style="width:37%"></div>
+        </div>
+      </div>
+      <!-- Active Plan -->
+      <div id="card-plan" class="stat-card bg-surface-container-lowest p-md rounded-xl tonal-shadow border-b-4 border-secondary-container flex flex-col justify-between h-32" title="Klik untuk ganti rencana">
+        <span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Rencana Aktif</span>
+        <div class="flex items-center gap-sm">
+          <span class="material-symbols-outlined text-primary">psychiatry</span>
+          <span id="plan-name" class="font-headline-md text-headline-md">High Protein-Eco</span>
+        </div>
+        <span class="text-xs text-on-surface-variant mt-1">Hari 12 dari 30</span>
+      </div>
+    </section>
+
+    <!-- QUICK ACTIONS & PREVIEW -->
+    <section class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+      <!-- Action Cluster -->
+      <div class="lg:col-span-4 space-y-gutter">
+        <!-- Generate CTA -->
+        <button id="btn-generate" class="ripple-btn w-full bg-secondary-container text-on-secondary-container p-lg rounded-xl tonal-shadow flex flex-col items-center justify-center gap-md active:scale-95 transition-all duration-200 group relative overflow-hidden" title="Buat Rencana Makan Baru dengan AI">
+          <div class="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300 pointer-events-none"></div>
+          <span class="material-symbols-outlined text-5xl" style="font-variation-settings:'FILL' 1;">auto_fix_high</span>
+          <div class="text-center relative z-10">
+            <h3 class="font-headline-md text-headline-md">Buat Rencana Makan Baru</h3>
+            <p class="font-body-sm text-body-sm opacity-90 mt-1">Nutrisi berbasis AI untuk harimu</p>
+          </div>
+        </button>
+        <!-- View Last Plan -->
+        <button id="btn-last-plan" class="ripple-btn w-full border-2 border-primary text-primary p-md rounded-xl flex items-center justify-center gap-sm hover:bg-primary/5 transition-colors duration-200" title="Lihat rencana makan terakhir">
+          <span class="material-symbols-outlined">visibility</span>
+          <span class="font-label-caps text-label-caps uppercase">Lihat Rencana Terakhir</span>
+        </button>
+        <!-- Log Makanan -->
+        <button id="btn-log" class="ripple-btn w-full border-2 border-secondary text-secondary p-md rounded-xl flex items-center justify-center gap-sm hover:bg-secondary/5 transition-colors duration-200" title="Catat makanan yang sudah dimakan">
+          <span class="material-symbols-outlined">add_circle</span>
+          <span class="font-label-caps text-label-caps uppercase">Catat Makanan</span>
+        </button>
+      </div>
+
+      <!-- Today's Menu -->
+      <div class="lg:col-span-8 bg-surface-container-low p-md lg:p-lg rounded-xl tonal-shadow flex flex-col gap-md">
+        <div class="flex justify-between items-center mb-base">
+          <h3 class="font-headline-md text-headline-md">Menu Hari Ini</h3>
+          <a id="btn-jadwal" class="text-primary font-label-caps text-label-caps hover:underline cursor-pointer" title="Lihat jadwal lengkap seminggu">LIHAT JADWAL LENGKAP</a>
+        </div>
+        <div class="space-y-sm">
+          <!-- Breakfast -->
+          <div class="meal-item flex items-center justify-between p-sm bg-surface-container-lowest rounded-lg group"
+               data-meal="Sarapan" data-name="Protein Avocado Toast"
+               data-desc="2 iris roti gandum utuh + 1 telur poached + alpukat segar"
+               data-kcal="340" data-protein="18g" data-karbo="32g" data-lemak="14g">
+            <div class="flex items-center gap-md">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-lg overflow-hidden flex-shrink-0">
+                <img alt="Avocado Toast" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDskVRuYJLgvyJf6tC26rZNMr151tUfvlMiAsiA19xYM-Va1ZQuvlX-6wWWMTk0ej7hgaRvacrraqdutcEjVhVRVmbRnxPqK4KHOQIMWs3h1ADTaEA_hgwLVHL2h_eXo1Ggvrn_jhlHVBKAC21qSKM9oGM418MogsLxGwKW-Pe9muo6nRtQFeDIni3g70IhK5hbk_9IvcLh_SM0GnFPP_FOnm2viKy0OeyAujoJC1rnPzvbdhkapnpZ6PF4VPogoL1tBFznwg7rcrNb"/>
+              </div>
+              <div>
+                <span class="font-label-caps text-label-caps text-secondary-fixed-dim bg-secondary-container/20 px-2 py-0.5 rounded-full uppercase text-[10px]">Sarapan</span>
+                <h4 class="font-body-lg text-body-lg font-bold text-sm sm:text-lg">Protein Avocado Toast</h4>
+                <p class="text-on-surface-variant text-xs sm:text-sm">2 iris gandum utuh + 1 telur</p>
+              </div>
+            </div>
+            <div class="flex flex-col items-end gap-1">
+              <span class="bg-secondary text-white font-data-mono text-data-mono px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-xs sm:text-sm">340 kcal</span>
+              <span class="text-[10px] text-primary font-semibold">✓ Dimakan</span>
+            </div>
+          </div>
+
+          <!-- Lunch -->
+          <div class="meal-item flex items-center justify-between p-sm bg-surface-container-lowest rounded-lg group"
+               data-meal="Makan Siang" data-name="Zesty Chickpea Bowl"
+               data-desc="Dasar quinoa + ayam panggang + kacang arab + sayuran segar"
+               data-kcal="520" data-protein="34g" data-karbo="58g" data-lemak="12g">
+            <div class="flex items-center gap-md">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-lg overflow-hidden flex-shrink-0">
+                <img alt="Chickpea Bowl" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMIP128RGEG_wAEJSXKaZ-bpZ1ZPNC_aVfYDkSnwK2FxbPNFesKuG4M5fJaiZxKzg8yI6JAKYuAVo4acuIknve3vF6MlHY3WQDOOx822pXxXNw_B5n9mrFZv1z6Q2SBSPZhPCUPCqIX4eb9R4wH6XyyHvV5-5k5aEqTevUAx2SLQKSot-zyXKJy2MSfIirlxHzuihFdASiN7AsJeaFokgLlpy0ZBYSfmDNFoLu06kGUmNJYL5XcBmecV9ovVsKz2MLIIsRZ-TSXl4q"/>
+              </div>
+              <div>
+                <span class="font-label-caps text-label-caps text-primary bg-primary-fixed/30 px-2 py-0.5 rounded-full uppercase text-[10px]">Makan Siang</span>
+                <h4 class="font-body-lg text-body-lg font-bold text-sm sm:text-lg">Zesty Chickpea Bowl</h4>
+                <p class="text-on-surface-variant text-xs sm:text-sm">Dasar Quinoa + Ayam Panggang</p>
+              </div>
+            </div>
+            <div class="flex flex-col items-end gap-1">
+              <span class="bg-secondary text-white font-data-mono text-data-mono px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-xs sm:text-sm">520 kcal</span>
+              <span class="text-[10px] text-on-surface-variant">Belum dimakan</span>
+            </div>
+          </div>
+
+          <!-- Dinner -->
+          <div class="meal-item flex items-center justify-between p-sm bg-surface-container-lowest rounded-lg group"
+               data-meal="Makan Malam" data-name="Herb-Crusted Salmon"
+               data-desc="Salmon panggang dengan herbal segar + asparagus kukus + ubi jalar"
+               data-kcal="560" data-protein="42g" data-karbo="38g" data-lemak="22g">
+            <div class="flex items-center gap-md">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-lg overflow-hidden flex-shrink-0">
+                <img alt="Grilled Salmon" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzk3t7FowYkWT2u_EJ5FxuYT_o9rltIRqNc2rkg327cezgR4pZpNOftOx1YZihzHXawkg-Kz2oqaskPqbBL2lPfwcaRnzisujnWqF39Or82n60cdCq1FlSG53o1Z7dM68BoePr7WZ7klGcDXF9KzqC6jlps3vH2id7Klmyx9fpNf9xLikAV1fzgOYEIoKDNM9HrVplCvBE4si-twd_qWMDzTeouFihRgabhFKPcWjTr9R7fyffH-vRPLUG7Lh2j3TbJGMLT4KhvdzK"/>
+              </div>
+              <div>
+                <span class="font-label-caps text-label-caps text-secondary-fixed-dim bg-secondary-container/20 px-2 py-0.5 rounded-full uppercase text-[10px]">Makan Malam</span>
+                <h4 class="font-body-lg text-body-lg font-bold text-sm sm:text-lg">Herb-Crusted Salmon</h4>
+                <p class="text-on-surface-variant text-xs sm:text-sm">Asparagus + Ubi Jalar</p>
+              </div>
+            </div>
+            <div class="flex flex-col items-end gap-1">
+              <span class="bg-secondary text-white font-data-mono text-data-mono px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-xs sm:text-sm">560 kcal</span>
+              <span class="text-[10px] text-on-surface-variant">Belum dimakan</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INSIGHT -->
+    <section class="bg-primary/5 rounded-2xl p-lg flex flex-col md:flex-row items-center gap-lg border border-primary/10">
+      <div class="flex-1 space-y-sm">
+        <h3 class="font-headline-lg text-headline-lg text-primary">Wawasan Nutrisi</h3>
+        <p class="text-on-surface-variant font-body-lg max-w-xl text-sm sm:text-base">Anda telah mencapai target protein selama 4 hari berturut-turut! Ini secara signifikan meningkatkan pemulihan otot Anda. Pertahankan konsistensi untuk mencapai target bulanan Anda.</p>
+        <div class="flex gap-md pt-sm flex-wrap">
+          <div class="flex flex-col">
+            <span class="font-label-caps text-label-caps text-primary uppercase">Runtutan</span>
+            <span class="font-headline-md text-headline-md">12 Hari</span>
+          </div>
+          <div class="flex flex-col">
+            <span class="font-label-caps text-label-caps text-primary uppercase">Pemulihan</span>
+            <span class="font-headline-md text-headline-md">Tinggi</span>
+          </div>
+          <div class="flex flex-col">
+            <span class="font-label-caps text-label-caps text-primary uppercase">Protein Avg</span>
+            <span class="font-headline-md text-headline-md">92g/hari</span>
+          </div>
+        </div>
+        <!-- Adjust target button -->
+        <button id="btn-adjust-target" class="ripple-btn mt-2 inline-flex items-center gap-2 bg-primary text-on-primary px-4 py-2 rounded-lg font-label-caps text-label-caps uppercase hover:bg-primary/90 transition-colors">
+          <span class="material-symbols-outlined text-base">tune</span>
+          Atur Target
+        </button>
+      </div>
+      <div class="w-full md:w-1/3">
+        <div class="relative h-4 bg-primary-fixed rounded-full overflow-hidden">
+          <div id="monthly-bar" class="absolute top-0 left-0 h-full bg-primary rounded-full progress-fill" style="width: 78%;"></div>
+        </div>
+        <p class="font-label-caps text-label-caps text-center mt-2 uppercase text-primary">Progres Target Bulanan (<span id="monthly-pct">78</span>%)</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="mt-auto w-full bg-inverse-surface text-inverse-on-surface">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-lg px-md py-xl max-w-[1200px] mx-auto">
+      <div class="col-span-2 md:col-span-1">
+        <h4 class="font-headline-md text-headline-md italic text-primary-fixed mb-sm">NutriPlan</h4>
+        <p class="font-body-sm text-body-sm opacity-70">© 2024 NutriPlan. Nutrisi tepat untuk dunia yang praktis.</p>
+      </div>
+      <div class="flex flex-col gap-xs">
+        <span class="font-label-caps text-label-caps mb-base opacity-50">PRODUK</span>
+        <a class="text-inverse-on-surface/70 hover:text-secondary-fixed transition-colors text-sm" href="#">Cara Kerja</a>
+        <a class="text-inverse-on-surface/70 hover:text-secondary-fixed transition-colors text-sm" href="#">Fitur</a>
+        <a class="text-inverse-on-surface/70 hover:text-secondary-fixed transition-colors text-sm" href="#">Harga</a>
+      </div>
+      <div class="flex flex-col gap-xs">
+        <span class="font-label-caps text-label-caps mb-base opacity-50">HUKUM</span>
+        <a class="text-inverse-on-surface/70 hover:text-secondary-fixed transition-colors text-sm" href="#">Kebijakan Privasi</a>
+        <a class="text-inverse-on-surface/70 hover:text-secondary-fixed transition-colors text-sm" href="#">Syarat Layanan</a>
+      </div>
+      <div class="flex flex-col gap-xs">
+        <span class="font-label-caps text-label-caps mb-base opacity-50">DUKUNGAN</span>
+        <a class="text-inverse-on-surface/70 hover:text-secondary-fixed transition-colors text-sm" href="#">Pusat Bantuan</a>
+        <a class="text-inverse-on-surface/70 hover:text-secondary-fixed transition-colors text-sm" href="#">Hubungi Kami</a>
+      </div>
+    </div>
+  </footer>
+</main>
+
+<!-- ===== MODALS ===== -->
+
+<!-- Meal Detail Modal -->
+<div id="meal-modal">
+  <div id="meal-modal-inner">
+    <div class="flex justify-between items-start mb-4">
+      <div>
+        <span id="modal-meal-type" class="text-xs font-bold text-primary bg-primary-fixed/40 px-2 py-0.5 rounded-full uppercase"></span>
+        <h3 id="modal-meal-name" class="font-headline-md text-headline-md mt-1"></h3>
+      </div>
+      <button id="meal-modal-close" class="p-1 hover:bg-surface-container rounded-lg transition-colors">
+        <span class="material-symbols-outlined text-on-surface-variant">close</span>
+      </button>
+    </div>
+    <p id="modal-meal-desc" class="text-on-surface-variant text-sm mb-4"></p>
+    <div class="grid grid-cols-4 gap-3 mb-5">
+      <div class="bg-surface-container rounded-lg p-3 text-center">
+        <p class="text-xs text-on-surface-variant uppercase font-semibold">Kalori</p>
+        <p id="modal-kcal" class="font-bold text-secondary text-lg mt-1"></p>
+      </div>
+      <div class="bg-surface-container rounded-lg p-3 text-center">
+        <p class="text-xs text-on-surface-variant uppercase font-semibold">Protein</p>
+        <p id="modal-protein" class="font-bold text-primary text-lg mt-1"></p>
+      </div>
+      <div class="bg-surface-container rounded-lg p-3 text-center">
+        <p class="text-xs text-on-surface-variant uppercase font-semibold">Karbo</p>
+        <p id="modal-karbo" class="font-bold text-on-surface text-lg mt-1"></p>
+      </div>
+      <div class="bg-surface-container rounded-lg p-3 text-center">
+        <p class="text-xs text-on-surface-variant uppercase font-semibold">Lemak</p>
+        <p id="modal-lemak" class="font-bold text-on-surface text-lg mt-1"></p>
+      </div>
+    </div>
+    <div class="flex gap-3">
+      <button class="ripple-btn flex-1 bg-primary text-on-primary py-2.5 rounded-lg font-label-caps text-label-caps uppercase hover:bg-primary/90 transition-colors" onclick="showToast('✓ Dicatat sebagai sudah dimakan!'); document.getElementById('meal-modal').classList.remove('open')">
+        Tandai Dimakan
+      </button>
+      <button class="ripple-btn flex-1 border border-outline text-on-surface py-2.5 rounded-lg font-label-caps text-label-caps uppercase hover:bg-surface-container transition-colors" onclick="document.getElementById('meal-modal').classList.remove('open')">
+        Tutup
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Log Makanan Modal -->
+<div id="log-modal">
+  <div id="log-modal-inner">
+    <div class="flex justify-between items-center mb-4">
+      <h3 class="font-headline-md text-headline-md">Catat Makanan</h3>
+      <button id="log-modal-close" class="p-1 hover:bg-surface-container rounded-lg">
+        <span class="material-symbols-outlined text-on-surface-variant">close</span>
+      </button>
+    </div>
+    <div class="space-y-3">
+      <div>
+        <label class="font-label-caps text-label-caps text-on-surface-variant uppercase text-xs mb-1 block">Nama Makanan</label>
+        <input id="log-nama" type="text" placeholder="cth: Nasi goreng ayam" class="w-full border border-outline-variant rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-primary bg-surface-container-low"/>
+      </div>
+      <div>
+        <label class="font-label-caps text-label-caps text-on-surface-variant uppercase text-xs mb-1 block">Waktu Makan</label>
+        <select id="log-waktu" class="w-full border border-outline-variant rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-primary bg-surface-container-low">
+          <option>Sarapan</option>
+          <option>Makan Siang</option>
+          <option>Makan Malam</option>
+          <option>Snack</option>
+        </select>
+      </div>
+      <div>
+        <label class="font-label-caps text-label-caps text-on-surface-variant uppercase text-xs mb-1 block">Perkiraan Kalori (kcal)</label>
+        <input id="log-kcal" type="number" placeholder="cth: 350" class="w-full border border-outline-variant rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-primary bg-surface-container-low"/>
+      </div>
+    </div>
+    <div class="flex gap-3 mt-5">
+      <button id="btn-log-submit" class="ripple-btn flex-1 bg-secondary-container text-on-secondary-container py-2.5 rounded-lg font-label-caps text-label-caps uppercase hover:bg-secondary-container/90 transition-colors">
+        Simpan
+      </button>
+      <button class="ripple-btn flex-1 border border-outline text-on-surface py-2.5 rounded-lg font-label-caps text-label-caps uppercase" onclick="document.getElementById('log-modal').classList.remove('open')">
+        Batal
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Budget Modal -->
+<div id="budget-modal">
+  <div id="budget-modal-inner">
+    <div class="flex justify-between items-center mb-4">
+      <h3 class="font-headline-md text-headline-md">Atur Anggaran</h3>
+      <button id="budget-modal-close" class="p-1 hover:bg-surface-container rounded-lg">
+        <span class="material-symbols-outlined text-on-surface-variant">close</span>
+      </button>
+    </div>
+    <div class="space-y-4">
+      <div>
+        <label class="font-label-caps text-label-caps text-on-surface-variant uppercase text-xs mb-2 block">Anggaran Harian (Rp)</label>
+        <div class="flex items-center gap-3">
+          <input id="budget-slider" type="range" min="50000" max="500000" step="5000" value="120000"/>
+          <span id="budget-display" class="font-bold text-primary w-24 text-right">Rp 120k</span>
+        </div>
+      </div>
+      <div>
+        <label class="font-label-caps text-label-caps text-on-surface-variant uppercase text-xs mb-2 block">Sudah Terpakai (Rp)</label>
+        <div class="flex items-center gap-3">
+          <input id="spent-slider" type="range" min="0" max="500000" step="5000" value="75000"/>
+          <span id="spent-display" class="font-bold text-secondary w-24 text-right">Rp 75k</span>
+        </div>
+      </div>
+    </div>
+    <button id="btn-budget-save" class="ripple-btn w-full mt-5 bg-primary text-on-primary py-2.5 rounded-lg font-label-caps text-label-caps uppercase hover:bg-primary/90 transition-colors">
+      Simpan Anggaran
+    </button>
+  </div>
+</div>
+
+<!-- Kalori Modal -->
+<div id="kalori-modal">
+  <div id="kalori-modal-inner">
+    <div class="flex justify-between items-center mb-4">
+      <h3 class="font-headline-md text-headline-md">Atur Target Kalori</h3>
+      <button id="kalori-modal-close" class="p-1 hover:bg-surface-container rounded-lg">
+        <span class="material-symbols-outlined text-on-surface-variant">close</span>
+      </button>
+    </div>
+    <div class="space-y-4">
+      <div>
+        <label class="font-label-caps text-label-caps text-on-surface-variant uppercase text-xs mb-2 block">Target Harian (kcal): <span id="target-kcal-display" class="text-primary">1800</span></label>
+        <input id="target-kcal-slider" type="range" min="1000" max="3500" step="50" value="1800"/>
+      </div>
+      <div>
+        <label class="font-label-caps text-label-caps text-on-surface-variant uppercase text-xs mb-2 block">Sudah Dikonsumsi (kcal): <span id="current-kcal-display" class="text-secondary">1420</span></label>
+        <input id="current-kcal-slider" type="range" min="0" max="3500" step="10" value="1420"/>
+      </div>
+    </div>
+    <button id="btn-kalori-save" class="ripple-btn w-full mt-5 bg-secondary-container text-on-secondary-container py-2.5 rounded-lg font-label-caps text-label-caps uppercase hover:bg-secondary-container/90 transition-colors">
+      Simpan Target
+    </button>
+  </div>
+</div>
+
+<!-- Adjust Target Modal -->
+<div id="target-modal" style="display:none; position:fixed; inset:0; z-index:200; background:rgba(0,0,0,0.5); align-items:center; justify-content:center;">
+  <div style="background:#fff8f5; border-radius:20px; padding:28px; max-width:380px; width:90%; box-shadow:0 20px 60px rgba(0,0,0,0.2); animation:scaleIn 0.25s ease;">
+    <div class="flex justify-between items-center mb-4">
+      <h3 class="font-headline-md text-headline-md">Atur Target Bulanan</h3>
+      <button onclick="document.getElementById('target-modal').style.display='none'" class="p-1 hover:bg-surface-container rounded-lg">
+        <span class="material-symbols-outlined text-on-surface-variant">close</span>
+      </button>
+    </div>
+    <div class="space-y-4">
+      <div>
+        <label class="font-label-caps text-label-caps text-on-surface-variant uppercase text-xs mb-2 block">Progres Saat Ini (%): <span id="monthly-display" class="text-primary font-bold">78</span>%</label>
+        <input id="monthly-slider" type="range" min="0" max="100" step="1" value="78"/>
+      </div>
+      <div>
+        <label class="font-label-caps text-label-caps text-on-surface-variant uppercase text-xs mb-2 block">Target Protein Harian (g): <span id="protein-target-display" class="text-primary font-bold">90</span>g</label>
+        <input id="protein-slider" type="range" min="40" max="200" step="5" value="90"/>
+      </div>
+    </div>
+    <button onclick="saveMonthly()" class="ripple-btn w-full mt-5 bg-primary text-on-primary py-2.5 rounded-lg font-label-caps text-label-caps uppercase hover:bg-primary/90 transition-colors">
+      Simpan
+    </button>
+  </div>
+</div>
+
+<script>
+// === Toast ===
+function showToast(msg = '✓ Berhasil!') {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+// === Ripple Effect ===
+document.querySelectorAll('.ripple-btn').forEach(btn => {
+  btn.addEventListener('click', function(e) {
+    const r = document.createElement('span');
+    r.className = 'ripple';
+    const rect = this.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    r.style.cssText = `width:${size}px;height:${size}px;left:${e.clientX-rect.left-size/2}px;top:${e.clientY-rect.top-size/2}px`;
+    this.appendChild(r);
+    setTimeout(() => r.remove(), 600);
+  });
+});
+
+// === Sidebar mobile ===
+const sidebar = document.getElementById('sidebar');
+const overlay = document.getElementById('sidebar-overlay');
+const hamburger = document.getElementById('hamburger');
+const sidebarClose = document.getElementById('sidebar-close');
+
+hamburger.addEventListener('click', () => {
+  sidebar.classList.add('open');
+  overlay.classList.add('active');
+});
+function closeSidebar() {
+  sidebar.classList.remove('open');
+  overlay.classList.remove('active');
+}
+overlay.addEventListener('click', closeSidebar);
+sidebarClose.addEventListener('click', closeSidebar);
+
+// Close sidebar on nav click (mobile)
+document.querySelectorAll('.nav-item').forEach(item => {
+  item.addEventListener('click', () => {
+    if (window.innerWidth < 768) closeSidebar();
+  });
+});
+
+// === Nav active state ===
+document.querySelectorAll('.nav-item').forEach(item => {
+  item.addEventListener('click', function(e) {
+    document.querySelectorAll('.nav-item').forEach(n => {
+      n.classList.remove('bg-secondary-container','text-on-secondary-container','font-bold','active-nav-shadow');
+      n.classList.add('text-on-primary-container/80');
     });
+    this.classList.add('bg-secondary-container','text-on-secondary-container','font-bold','active-nav-shadow');
+    this.classList.remove('text-on-primary-container/80');
+  });
+});
+
+// === Notification panel ===
+const notifBtn = document.getElementById('notif-btn');
+const notifPanel = document.getElementById('notif-panel');
+notifBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  notifPanel.classList.toggle('open');
+  document.getElementById('search-panel').classList.remove('open');
+});
+
+// === Search panel ===
+const searchBtn = document.getElementById('search-btn');
+const searchPanel = document.getElementById('search-panel');
+const searchInput = document.getElementById('search-input');
+const searchResults = document.getElementById('search-results');
+const foods = ['Protein Avocado Toast','Zesty Chickpea Bowl','Herb-Crusted Salmon','Nasi Goreng Ayam','Smoothie Bowl','Oatmeal Pisang','Tempe Bakar'];
+searchBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  searchPanel.classList.toggle('open');
+  notifPanel.classList.remove('open');
+  if (searchPanel.classList.contains('open')) searchInput.focus();
+});
+searchInput.addEventListener('input', function() {
+  const q = this.value.toLowerCase();
+  if (!q) { searchResults.innerHTML = ''; return; }
+  const hits = foods.filter(f => f.toLowerCase().includes(q));
+  searchResults.innerHTML = hits.length
+    ? hits.map(f => `<div class="py-1.5 px-2 hover:bg-surface-container-low rounded cursor-pointer text-on-surface" onclick="showToast('Mencari: ${f}'); searchPanel.classList.remove('open')">${f}</div>`).join('')
+    : '<p class="text-center py-2">Tidak ditemukan</p>';
+});
+
+// Close panels on outside click
+document.addEventListener('click', () => {
+  notifPanel.classList.remove('open');
+  searchPanel.classList.remove('open');
+});
+[notifPanel, searchPanel].forEach(p => p.addEventListener('click', e => e.stopPropagation()));
+
+// === Stat card interactions ===
+document.getElementById('card-kalori').addEventListener('click', () => {
+  document.getElementById('kalori-modal').classList.add('open');
+});
+document.getElementById('card-budget').addEventListener('click', () => {
+  document.getElementById('budget-modal').classList.add('open');
+});
+document.getElementById('card-plan').addEventListener('click', () => {
+  showToast('📋 Menampilkan pilihan rencana...');
+});
+
+// === Meal item → modal ===
+document.querySelectorAll('.meal-item').forEach(item => {
+  item.addEventListener('click', function() {
+    document.getElementById('modal-meal-type').textContent = this.dataset.meal;
+    document.getElementById('modal-meal-name').textContent = this.dataset.name;
+    document.getElementById('modal-meal-desc').textContent = this.dataset.desc;
+    document.getElementById('modal-kcal').textContent = this.dataset.kcal + ' kcal';
+    document.getElementById('modal-protein').textContent = this.dataset.protein;
+    document.getElementById('modal-karbo').textContent = this.dataset.karbo;
+    document.getElementById('modal-lemak').textContent = this.dataset.lemak;
+    document.getElementById('meal-modal').classList.add('open');
+  });
+});
+document.getElementById('meal-modal-close').addEventListener('click', () => {
+  document.getElementById('meal-modal').classList.remove('open');
+});
+document.getElementById('meal-modal').addEventListener('click', function(e) {
+  if (e.target === this) this.classList.remove('open');
+});
+
+// === Generate button ===
+document.getElementById('btn-generate').addEventListener('click', function() {
+  this.innerHTML = `<span class="material-symbols-outlined text-5xl animate-spin" style="font-variation-settings:'FILL' 1; animation: spin 1s linear infinite;">refresh</span><div class="text-center"><h3 class="font-headline-md text-headline-md">Membuat Rencana...</h3><p class="font-body-sm text-body-sm opacity-90 mt-1">AI sedang bekerja untukmu</p></div>`;
+  setTimeout(() => {
+    this.innerHTML = `<span class="material-symbols-outlined text-5xl" style="font-variation-settings:'FILL' 1;">auto_fix_high</span><div class="text-center relative z-10"><h3 class="font-headline-md text-headline-md">Buat Rencana Makan Baru</h3><p class="font-body-sm text-body-sm opacity-90 mt-1">Nutrisi berbasis AI untuk harimu</p></div>`;
+    showToast('🌿 Rencana baru berhasil dibuat!');
+  }, 2000);
+});
+
+// === View last plan ===
+document.getElementById('btn-last-plan').addEventListener('click', () => {
+  showToast('📋 Membuka rencana terakhir...');
+});
+
+// === Log makanan ===
+document.getElementById('btn-log').addEventListener('click', () => {
+  document.getElementById('log-modal').classList.add('open');
+});
+document.getElementById('log-modal-close').addEventListener('click', () => {
+  document.getElementById('log-modal').classList.remove('open');
+});
+document.getElementById('log-modal').addEventListener('click', function(e) {
+  if (e.target === this) this.classList.remove('open');
+});
+document.getElementById('btn-log-submit').addEventListener('click', () => {
+  const nama = document.getElementById('log-nama').value;
+  const kcal = document.getElementById('log-kcal').value;
+  if (!nama) { showToast('⚠️ Masukkan nama makanan'); return; }
+  document.getElementById('log-modal').classList.remove('open');
+  showToast(`✓ "${nama}" (${kcal||'?'} kcal) dicatat!`);
+});
+
+// === Budget modal ===
+document.getElementById('budget-modal-close').addEventListener('click', () => {
+  document.getElementById('budget-modal').classList.remove('open');
+});
+document.getElementById('budget-modal').addEventListener('click', function(e) {
+  if (e.target === this) this.classList.remove('open');
+});
+const budgetSlider = document.getElementById('budget-slider');
+const spentSlider = document.getElementById('spent-slider');
+const budgetDisplay = document.getElementById('budget-display');
+const spentDisplay = document.getElementById('spent-display');
+function formatRibu(val) {
+  if (val >= 1000000) return 'Rp ' + (val/1000000).toFixed(1) + 'jt';
+  return 'Rp ' + (val/1000).toFixed(0) + 'k';
+}
+budgetSlider.addEventListener('input', function() {
+  budgetDisplay.textContent = formatRibu(+this.value);
+});
+spentSlider.addEventListener('input', function() {
+  spentDisplay.textContent = formatRibu(+this.value);
+});
+document.getElementById('btn-budget-save').addEventListener('click', () => {
+  const total = +budgetSlider.value;
+  const spent = +spentSlider.value;
+  const sisa = Math.max(0, total - spent);
+  document.getElementById('budget-sisa').textContent = formatRibu(sisa);
+  document.getElementById('budget-total').textContent = formatRibu(total).replace('Rp ','');
+  const pct = total > 0 ? Math.min(100, (sisa/total*100)).toFixed(0) : 0;
+  document.getElementById('budget-bar').style.width = pct + '%';
+  document.getElementById('budget-modal').classList.remove('open');
+  showToast('💰 Anggaran diperbarui!');
+});
+
+// === Kalori modal ===
+document.getElementById('kalori-modal-close').addEventListener('click', () => {
+  document.getElementById('kalori-modal').classList.remove('open');
+});
+document.getElementById('kalori-modal').addEventListener('click', function(e) {
+  if (e.target === this) this.classList.remove('open');
+});
+const targetKcalSlider = document.getElementById('target-kcal-slider');
+const currentKcalSlider = document.getElementById('current-kcal-slider');
+targetKcalSlider.addEventListener('input', function() {
+  document.getElementById('target-kcal-display').textContent = this.value;
+});
+currentKcalSlider.addEventListener('input', function() {
+  document.getElementById('current-kcal-display').textContent = this.value;
+});
+document.getElementById('btn-kalori-save').addEventListener('click', () => {
+  const target = +targetKcalSlider.value;
+  const current = +currentKcalSlider.value;
+  document.getElementById('kalori-val').textContent = current.toLocaleString('id');
+  document.getElementById('kalori-target').textContent = target.toLocaleString('id');
+  const pct = Math.min(100, (current/target*100)).toFixed(0);
+  document.getElementById('kalori-bar').style.width = pct + '%';
+  document.getElementById('kalori-modal').classList.remove('open');
+  showToast('🔥 Target kalori diperbarui!');
+});
+
+// === Adjust Target (monthly) ===
+document.getElementById('btn-adjust-target').addEventListener('click', () => {
+  document.getElementById('target-modal').style.display = 'flex';
+});
+document.getElementById('monthly-slider').addEventListener('input', function() {
+  document.getElementById('monthly-display').textContent = this.value;
+});
+document.getElementById('protein-slider').addEventListener('input', function() {
+  document.getElementById('protein-target-display').textContent = this.value;
+});
+function saveMonthly() {
+  const pct = document.getElementById('monthly-slider').value;
+  document.getElementById('monthly-pct').textContent = pct;
+  document.getElementById('monthly-bar').style.width = pct + '%';
+  document.getElementById('target-modal').style.display = 'none';
+  showToast('🎯 Target bulanan diperbarui!');
+}
+
+// === Jadwal lengkap ===
+document.getElementById('btn-jadwal').addEventListener('click', () => {
+  showToast('📅 Membuka jadwal mingguan...');
+});
+
+// === Stat card hover ===
+document.querySelectorAll('.tonal-shadow').forEach(card => {
+  card.addEventListener('mouseenter', () => {
+    card.classList.replace('tonal-shadow','active-nav-shadow');
+  });
+  card.addEventListener('mouseleave', () => {
+    card.classList.replace('active-nav-shadow','tonal-shadow');
+  });
+});
+
+// === Spin animation ===
+const styleEl = document.createElement('style');
+styleEl.textContent = '@keyframes spin { to { transform: rotate(360deg); } }';
+document.head.appendChild(styleEl);
 </script>
-</body></html>
+</body>
+</html>
