@@ -128,68 +128,95 @@ const NutriStore = (() => {
   };
 
   // ─── MEAL PLANS — CRUD LENGKAP ───────────────────────────────────────────────
-  const Plans = {
-    getAll: () => get('nutriplan_mealplans') || [],
+const API_URL = 'http://127.0.0.1:8000/api/mealplans';
 
-    getById: (id) => Plans.getAll().find(p => p.id === id) || null,
+const Plans = {
 
-    getActive: () => {
-      const activeId = get('nutriplan_active_plan');
-      if (activeId) return Plans.getById(activeId);
-      // Fallback: plan pertama berstatus aktif
-      return Plans.getAll().find(p => p.status === 'aktif') || null;
-    },
+  // READ ALL
+  getAll: async () => {
+    const response = await fetch(API_URL);
+    return await response.json();
+  },
 
-    // CREATE
-    create: (data) => {
-      const plans = Plans.getAll();
-      const newPlan = {
-        id: uid(),
-        nama: data.nama || 'Rencana Makan',
-        createdAt: today(),
-        status: 'aktif',
-        kalori: data.kalori || 2000,
-        budget: data.budget || 500000,
-        durasi: data.durasi || 7,
-        pantangan: data.pantangan || [],
-        gaya: data.gaya || [],
-        hari: data.hari || _generateDummyHari(data.kalori || 2000, data.durasi || 7)
-      };
-      // Nonaktifkan plan lama
-      plans.forEach(p => { if (p.status === 'aktif') p.status = 'selesai'; });
-      plans.unshift(newPlan);
-      set('nutriplan_mealplans', plans);
-      set('nutriplan_active_plan', newPlan.id);
-      return newPlan;
-    },
+  // READ BY ID
+  getById: async (id) => {
+    const response = await fetch(`${API_URL}/${id}`);
+    return await response.json();
+  },
 
-    // UPDATE
-    update: (id, data) => {
-      const plans = Plans.getAll();
-      const idx = plans.findIndex(p => p.id === id);
-      if (idx === -1) return null;
-      plans[idx] = { ...plans[idx], ...data, id };
-      set('nutriplan_mealplans', plans);
-      return plans[idx];
-    },
+  // GET ACTIVE
+  getActive: async () => {
+    const plans = await Plans.getAll();
+    return plans.find(p => p.status === 'aktif') || null;
+  },
 
-    // DELETE
-    delete: (id) => {
-      let plans = Plans.getAll();
-      plans = plans.filter(p => p.id !== id);
-      set('nutriplan_mealplans', plans);
-      // Reset active jika yang dihapus adalah active
-      if (get('nutriplan_active_plan') === id) {
-        const next = plans.find(p => p.status === 'aktif');
-        set('nutriplan_active_plan', next ? next.id : null);
-      }
-      return true;
-    },
+  // CREATE
+  create: async (data) => {
 
-    setActive: (id) => {
-      set('nutriplan_active_plan', id);
+    const newPlan = {
+      nama: data.nama || 'Rencana Makan',
+      status: 'aktif',
+      kalori: data.kalori || 2000,
+      budget: data.budget || 500000,
+      durasi: data.durasi || 7,
+      pantangan: data.pantangan || [],
+      gaya: data.gaya || [],
+      hari: data.hari || _generateDummyHari(
+        data.kalori || 2000,
+        data.durasi || 7
+      )
+    };
+
+    const response = await fetch(API_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newPlan)
+    });
+
+    return await response.json();
+  },
+
+  // UPDATE
+  update: async (id, data) => {
+
+    const response = await fetch(`${API_URL}/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+
+    return await response.json();
+  },
+
+  // DELETE
+  delete: async (id) => {
+
+    const response = await fetch(`${API_URL}/${id}`, {
+      method: 'DELETE'
+    });
+
+    return await response.json();
+  },
+
+  // SET ACTIVE
+  setActive: async (id) => {
+
+    const plans = await Plans.getAll();
+
+    for (const p of plans) {
+
+      const status = p.id == id ? 'aktif' : 'selesai';
+
+      await Plans.update(p.id, { status });
     }
-  };
+
+    return true;
+  }
+};
 
   // ─── LOG MAKAN — CRUD ────────────────────────────────────────────────────────
   const Log = {
