@@ -241,7 +241,7 @@
 <!-- Footer Link -->
 <p class="text-center mt-xl font-body-md text-on-surface-variant">
                 Sudah punya akun? 
-                <a class="text-primary font-bold hover:underline transition-all" href="#">Masuk</a>
+                <a class="text-primary font-bold hover:underline transition-all" href="masuk.html">Masuk</a>
 </p>
 </div>
 </section>
@@ -266,13 +266,13 @@
         });
     });
 
-    // Simple button active state feedback
+    // Simple button active state feedback + redirect
     const btn = document.querySelector('button[type="submit"]');
     btn.addEventListener('click', () => {
         const originalContent = btn.innerHTML;
         btn.innerHTML = '<span class="material-symbols-outlined animate-spin" data-icon="progress_activity">progress_activity</span> Membuat...';
         setTimeout(() => {
-            btn.innerHTML = originalContent;
+            window.location.href = 'preferensi.html';
         }, 1500);
     });
 </script>
