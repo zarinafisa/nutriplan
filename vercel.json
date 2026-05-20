@@ -1,3 +1,23 @@
 {
-  "cleanUrls": true
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/dashboard", "destination": "/dashboard.html" },
+    { "source": "/masuk", "destination": "/masuk.html" },
+    { "source": "/signup", "destination": "/signup.html" },
+    { "source": "/preferensi", "destination": "/preferensi.html" },
+    { "source": "/rencana-makan", "destination": "/hasilRencanaMakan.html" },
+    { "source": "/riwayat", "destination": "/historydanProfil.html" },
+    { "source": "/profil", "destination": "/historydanProfil.html" },
+    { "source": "/detail-menu", "destination": "/detailMenu.html" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    }
+  ]
 }
