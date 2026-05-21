@@ -296,32 +296,13 @@ a{text-decoration:none;color:inherit}
 <div class="sidebar-overlay" id="overlay" onclick="closeSidebar()"></div>
 
 <div class="app">
-<div class="app">
-  <!-- SIDEBAR (kiri) -->
-  <aside class="sidebar">...</aside>
-  
-  <!-- MAIN (kanan) -->
-  <div class="main">
-    <!-- TOPBAR -->
-    <header class="topbar">...</header>
-    
-    <!-- VIEW: DASHBOARD -->
-    <div class="view active" id="view-dashboard">...</div>
-    
-    <!-- VIEW: MEAL PLAN -->
-    <div class="view" id="view-mealplan">...</div>
-    
-    <!-- VIEW: HISTORY -->
-    <div class="view" id="view-history">...</div>
-    
-    <!-- VIEW: PROFILE -->
-    <div class="view" id="view-profile">...</div>
-    
-    <!-- VIEW: PREFERENCES ← TARUH DI SINI -->
-    <div class="view" id="view-preferences">...</div>
-    
-  </div> <!-- tutup .main -->
-</div> <!-- tutup .app -->
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <h2>NutriPlan</h2>
+      <span>Nutrisi Praktis</span>
+      <button onclick="closeSidebar()" style="position:absolute;top:16px;right:12px;background:transparent;border:none;color:rgba(185,241,173,.5);font-size:20px;cursor:pointer;display:none" id="sidebar-close-btn" aria-label="Tutup"><i class="ti ti-x"></i></button>
+    </div>
     <nav class="sidebar-nav">
       <button class="nav-item" onclick="goTo('dashboard')"><i class="ti ti-layout-dashboard" aria-hidden="true"></i>Beranda</button>
      <button class="nav-item" onclick="goTo('preferences')"><i class="ti ti-adjustments-horizontal" aria-hidden="true"></i>Preferensi</button>
