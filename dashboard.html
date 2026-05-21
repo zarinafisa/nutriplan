@@ -791,148 +791,148 @@ a{text-decoration:none;color:inherit}
   </div>
 </div>
 
-    <!-- ===== VIEW: PREFERENCES ===== -->
-    <div class="view" id="view-preferences">
-      <div class="content">
-        <div class="page-header">
-          <div class="page-title">
-            <h1>Preferensi Nutrisi</h1>
-            <p>Atur target, batasan diet, dan anggaran harian Anda.</p>
-          </div>
-        </div>
+<!-- ===== VIEW: PREFERENCES ===== -->
+<div class="view" id="view-preferences">
+  <div class="content">
+    <div class="page-header">
+      <div class="page-title">
+        <h1>Preferensi Nutrisi</h1>
+        <p>Atur target, batasan diet, dan anggaran harian Anda.</p>
+      </div>
+    </div>
 
-        <!-- Target Nutrisi -->
-        <div class="profile-card" style="margin-bottom:24px">
-          <h3 style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--primary);margin-bottom:20px">
-            <i class="ti ti-target" style="margin-right:8px"></i>Target Harian
-          </h3>
-          <div class="form-grid">
-            <div class="form-group">
-              <label>Target Kalori (kkal)</label>
-              <input type="number" value="1800" id="pref-kcal">
-            </div>
-            <div class="form-group">
-              <label>Target Protein (g)</label>
-              <input type="number" value="90" id="pref-protein">
-            </div>
-            <div class="form-group">
-              <label>Target Karbohidrat (g)</label>
-              <input type="number" value="180" id="pref-carbs">
-            </div>
-            <div class="form-group">
-              <label>Target Lemak (g)</label>
-              <input type="number" value="60" id="pref-fat">
-            </div>
-            <div class="form-group">
-              <label>Anggaran Harian (Rp)</label>
-              <input type="number" value="50000" id="pref-budget">
-            </div>
-            <div class="form-group">
-              <label>Jumlah Makanan per Hari</label>
-              <select id="pref-meals">
-                <option value="3" selected>3 kali (Sarapan, Siang, Malam)</option>
-                <option value="4">4 kali (+ Snack)</option>
-                <option value="5">5 kali (+ 2 Snack)</option>
-              </select>
-            </div>
-          </div>
+    <!-- Target Nutrisi -->
+    <div class="profile-card" style="margin-bottom:24px">
+      <h3 style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--primary);margin-bottom:20px">
+        <i class="ti ti-target" style="margin-right:8px"></i>Target Harian
+      </h3>
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Target Kalori (kkal)</label>
+          <input type="number" value="1800" id="pref-kcal">
         </div>
-
-        <!-- Batasan Diet -->
-        <div class="profile-card" style="margin-bottom:24px">
-          <h3 style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--primary);margin-bottom:20px">
-            <i class="ti ti-ban" style="margin-right:8px"></i>Batasan Diet
-          </h3>
-          <div class="diet-grid" style="margin-bottom:20px">
-            <label class="diet-label"><input type="checkbox" checked> Vegetarian</label>
-            <label class="diet-label"><input type="checkbox"> Bebas Gluten</label>
-            <label class="diet-label"><input type="checkbox"> Bebas Susu</label>
-            <label class="diet-label"><input type="checkbox" checked> Alergi Kacang</label>
-            <label class="diet-label"><input type="checkbox"> Halal</label>
-            <label class="diet-label"><input type="checkbox"> Vegan</label>
-            <label class="diet-label"><input type="checkbox"> Keto</label>
-            <label class="diet-label"><input type="checkbox"> Rendah Garam</label>
-          </div>
-          <div class="form-group">
-            <label>Alergi Lainnya (pisahkan dengan koma)</label>
-            <input type="text" placeholder="cth: Seafood, Udang, Telur" value="">
-          </div>
+        <div class="form-group">
+          <label>Target Protein (g)</label>
+          <input type="number" value="90" id="pref-protein">
         </div>
-
-        <!-- Preferensi Bahan -->
-        <div class="profile-card" style="margin-bottom:24px">
-          <h3 style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--primary);margin-bottom:20px">
-            <i class="ti ti-shopping-cart" style="margin-right:8px"></i>Preferensi Bahan
-          </h3>
-          <div class="form-grid">
-            <div class="form-group">
-              <label>Preferensi Belanja</label>
-              <select>
-                <option selected>Harga Terendah</option>
-                <option>Kualitas Terbaik</option>
-                <option>Seimbang</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label>Sumber Protein Favorit</label>
-              <select>
-                <option selected>Ayam</option>
-                <option>Ikan</option>
-                <option>Tahu & Tempe</option>
-                <option>Daging Sapi</option>
-                <option>Telur</option>
-              </select>
-            </div>
-          </div>
+        <div class="form-group">
+          <label>Target Karbohidrat (g)</label>
+          <input type="number" value="180" id="pref-carbs">
         </div>
-
-        <!-- Notifikasi -->
-        <div class="profile-card" style="margin-bottom:24px">
-          <h3 style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--primary);margin-bottom:20px">
-            <i class="ti ti-bell" style="margin-right:8px"></i>Notifikasi
-          </h3>
-          <div style="display:flex;flex-direction:column;gap:14px">
-            <label class="diet-label" style="justify-content:space-between;width:100%">
-              <span style="display:flex;align-items:center;gap:8px">
-                <i class="ti ti-clock" style="color:var(--primary)"></i>
-                Pengingat Waktu Makan
-              </span>
-              <input type="checkbox" checked>
-            </label>
-            <label class="diet-label" style="justify-content:space-between;width:100%">
-              <span style="display:flex;align-items:center;gap:8px">
-                <i class="ti ti-chart-line" style="color:var(--primary)"></i>
-                Laporan Mingguan
-              </span>
-              <input type="checkbox" checked>
-            </label>
-            <label class="diet-label" style="justify-content:space-between;width:100%">
-              <span style="display:flex;align-items:center;gap:8px">
-                <i class="ti ti-percentage" style="color:var(--primary)"></i>
-                Peringatan Anggaran Hampir Habis
-              </span>
-              <input type="checkbox">
-            </label>
-          </div>
+        <div class="form-group">
+          <label>Target Lemak (g)</label>
+          <input type="number" value="60" id="pref-fat">
         </div>
-
-        <!-- Tombol Simpan -->
-        <div style="display:flex;justify-content:flex-end;gap:12px;margin-top:8px;margin-bottom:32px">
-          <button class="btn-cancel" onclick="goTo('dashboard')">Batal</button>
-          <button class="btn-solid" onclick="savePreferences()">
-            <i class="ti ti-device-floppy"></i> Simpan Preferensi
-          </button>
+        <div class="form-group">
+          <label>Anggaran Harian (Rp)</label>
+          <input type="number" value="50000" id="pref-budget">
+        </div>
+        <div class="form-group">
+          <label>Jumlah Makanan per Hari</label>
+          <select id="pref-meals">
+            <option value="3" selected>3 kali (Sarapan, Siang, Malam)</option>
+            <option value="4">4 kali (+ Snack)</option>
+            <option value="5">5 kali (+ 2 Snack)</option>
+          </select>
         </div>
       </div>
-
-      <footer class="footer">
-        <div class="footer-brand"><h3>NutriPlan</h3><p>© 2026 NutriPlan. Nutrisi tepat untuk dunia yang praktis.</p></div>
-        <div class="footer-links">
-          <div class="footer-col"><h4>Produk</h4><a>Cara Kerja</a><a>Fitur</a><a>Harga</a></div>
-          <div class="footer-col"><h4>Dukungan</h4><a>Pusat Bantuan</a><a>Hubungi Kami</a></div>
-        </div>
-      </footer>
     </div>
+
+    <!-- Batasan Diet -->
+    <div class="profile-card" style="margin-bottom:24px">
+      <h3 style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--primary);margin-bottom:20px">
+        <i class="ti ti-ban" style="margin-right:8px"></i>Batasan Diet
+      </h3>
+      <div class="diet-grid" style="margin-bottom:20px">
+        <label class="diet-label"><input type="checkbox" checked> Vegetarian</label>
+        <label class="diet-label"><input type="checkbox"> Bebas Gluten</label>
+        <label class="diet-label"><input type="checkbox"> Bebas Susu</label>
+        <label class="diet-label"><input type="checkbox" checked> Alergi Kacang</label>
+        <label class="diet-label"><input type="checkbox"> Halal</label>
+        <label class="diet-label"><input type="checkbox"> Vegan</label>
+        <label class="diet-label"><input type="checkbox"> Keto</label>
+        <label class="diet-label"><input type="checkbox"> Rendah Garam</label>
+      </div>
+      <div class="form-group">
+        <label>Alergi Lainnya (pisahkan dengan koma)</label>
+        <input type="text" placeholder="cth: Seafood, Udang, Telur" value="">
+      </div>
+    </div>
+
+    <!-- Preferensi Bahan -->
+    <div class="profile-card" style="margin-bottom:24px">
+      <h3 style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--primary);margin-bottom:20px">
+        <i class="ti ti-shopping-cart" style="margin-right:8px"></i>Preferensi Bahan
+      </h3>
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Preferensi Belanja</label>
+          <select>
+            <option selected>Harga Terendah</option>
+            <option>Kualitas Terbaik</option>
+            <option>Seimbang</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Sumber Protein Favorit</label>
+          <select>
+            <option selected>Ayam</option>
+            <option>Ikan</option>
+            <option>Tahu & Tempe</option>
+            <option>Daging Sapi</option>
+            <option>Telur</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Notifikasi -->
+    <div class="profile-card" style="margin-bottom:24px">
+      <h3 style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--primary);margin-bottom:20px">
+        <i class="ti ti-bell" style="margin-right:8px"></i>Notifikasi
+      </h3>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <label class="diet-label" style="justify-content:space-between;width:100%">
+          <span style="display:flex;align-items:center;gap:8px">
+            <i class="ti ti-clock" style="color:var(--primary)"></i>
+            Pengingat Waktu Makan
+          </span>
+          <input type="checkbox" checked>
+        </label>
+        <label class="diet-label" style="justify-content:space-between;width:100%">
+          <span style="display:flex;align-items:center;gap:8px">
+            <i class="ti ti-chart-line" style="color:var(--primary)"></i>
+            Laporan Mingguan
+          </span>
+          <input type="checkbox" checked>
+        </label>
+        <label class="diet-label" style="justify-content:space-between;width:100%">
+          <span style="display:flex;align-items:center;gap:8px">
+            <i class="ti ti-percentage" style="color:var(--primary)"></i>
+            Peringatan Anggaran Hampir Habis
+          </span>
+          <input type="checkbox">
+        </label>
+      </div>
+    </div>
+
+    <!-- Tombol Simpan -->
+    <div style="display:flex;justify-content:flex-end;gap:12px;margin-top:8px">
+      <button class="btn-cancel" onclick="goTo('dashboard')">Batal</button>
+      <button class="btn-solid" onclick="savePreferences()">
+        <i class="ti ti-device-floppy"></i> Simpan Preferensi
+      </button>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-brand"><h3>NutriPlan</h3><p>© 2026 NutriPlan. Nutrisi tepat untuk dunia yang praktis.</p></div>
+    <div class="footer-links">
+      <div class="footer-col"><h4>Produk</h4><a>Cara Kerja</a><a>Fitur</a><a>Harga</a></div>
+      <div class="footer-col"><h4>Dukungan</h4><a>Pusat Bantuan</a><a>Hubungi Kami</a></div>
+    </div>
+  </footer>
+</div>
 
 <script>
 const views = ['dashboard','mealplan','history','profile','preferences'];
@@ -943,6 +943,7 @@ const titles = {
   profile:'Profil Akun',
   preferences:'Preferensi Nutrisi'
 };
+const titles = {dashboard:'Selamat pagi, Zaza! 🌿',mealplan:'Rencana Makan 7-Hari',history:'Riwayat Makan Anda',profile:'Profil Akun'};
 
 function goTo(v){
   views.forEach(id=>{
