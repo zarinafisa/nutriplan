@@ -1,131 +1,145 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Hasil Rencana Makan | NutriPlan</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<script src="nutriplan-store.js"></script>
-<style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Plus Jakarta Sans', sans-serif; background: #fff8f5; color: #27180a; }
-:root {
-  --primary: #22521f; --primary-container: #3a6b35;
-  --primary-fixed: #b9f1ad; --on-primary-fixed: #002202;
-  --secondary: #924c00; --secondary-container: #fe973c; --on-secondary-container: #6a3600;
-  --surface: #fff8f5; --surface-low: #fff1e8; --surface-card: #fff;
-  --outline-v: #c1c9bb; --on-surface-v: #42493f; --error: #ba1a1a;
-}
-.app { display: grid; grid-template-columns: 240px 1fr; min-height: 100vh; }
-.sidebar { background: var(--primary-container); display: flex; flex-direction: column; padding: 24px 0; position: sticky; top: 0; height: 100vh; overflow-y: auto; }
-.sidebar-brand { padding: 0 24px 24px; border-bottom: 1px solid rgba(255,255,255,.1); }
-.sidebar-brand h2 { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--primary-fixed); font-style: italic; }
-.nav-item { display: flex; align-items: center; gap: 12px; padding: 10px 14px; margin: 0 12px 2px; border-radius: 10px; font-size: 11px; font-weight: 700; letter-spacing: .08em; color: rgba(185,241,173,.65); cursor: pointer; transition: all .18s; text-transform: uppercase; text-decoration: none; }
-.nav-item:hover { background: rgba(255,255,255,.08); color: var(--primary-fixed); }
-.nav-item.active { background: rgba(185,241,173,.15); color: var(--primary-fixed); border-left: 3px solid var(--primary-fixed); padding-left: 11px; }
-.nav-item i { font-size: 18px; }
-.sidebar-user { margin: 16px 12px 0; padding: 14px; background: rgba(255,255,255,.07); border-radius: 12px; display: flex; align-items: center; gap: 10px; }
-.sidebar-user img { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(185,241,173,.3); }
-.sidebar-user .uname { font-size: 13px; font-weight: 600; color: var(--primary-fixed); }
-.sidebar-user .utag { font-size: 10px; color: rgba(185,241,173,.5); text-transform: uppercase; letter-spacing: .06em; }
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Hasil Rencana Makan | NutriPlan</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500&family=DM+Serif+Display&display=swap" rel="stylesheet"/>
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"/>
+  
+  <script src="nutriplan-store.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { 
+      font-family: 'Plus Jakarta Sans', sans-serif; 
+      background: #fff8f5; 
+      color: #27180a; 
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    :root {
+      --primary: #22521f; --primary-container: #22521f;
+      --primary-fixed: #b9f1ad; --on-primary-fixed: #002202;
+      --secondary: #924c00; --secondary-container: #fe973c; --on-secondary-container: #6a3600;
+      --surface: #fff8f5; --surface-low: #fff1e8; --surface-card: #fff;
+      --outline-v: #c1c9bb; --on-surface-v: #42493f; --error: #ba1a1a;
+    }
+    .app { display: grid; grid-template-columns: 240px 1fr; min-height: 100vh; }
 
-.main { display: flex; flex-direction: column; }
-.topbar { position: sticky; top: 0; z-index: 40; background: rgba(255,248,245,.92); backdrop-filter: blur(12px); display: flex; justify-content: space-between; align-items: center; padding: 12px 32px; border-bottom: 1px solid rgba(193,201,187,.2); }
-.topbar h2 { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--primary); }
-.icon-btn { width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--outline-v); background: var(--surface-card); color: var(--on-surface-v); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all .18s; text-decoration: none; }
-.icon-btn:hover { background: #f0faf4; color: var(--primary); }
+    /* Sidebar - 100% KODE ASLI KAMU */
+    .sidebar { background: var(--primary-container); display: flex; flex-direction: column; padding: 24px 0; position: sticky; top: 0; height: 100vh; overflow-y: auto; }
+    .sidebar-brand { padding: 0 24px 24px; border-bottom: 1px solid rgba(255,255,255,.1); }
+    .sidebar-brand h2 { font-family: 'DM Serif Display', serif; font-size: 22px; font-style: italic; color: var(--primary-fixed); letter-spacing: normal; line-height: 1.1; }
 
-.content { padding: 32px; max-width: 1100px; width: 100%; margin: 0 auto; }
+    .nav-item { display: flex; align-items: center; gap: 12px; padding: 10px 14px; margin: 0 12px 2px; border-radius: 10px; font-size: 11px; font-weight: 700; letter-spacing: .08em; color: rgba(185,241,173,.65); cursor: pointer; transition: all .18s; text-transform: uppercase; text-decoration: none; }
+    .nav-item:hover { background: rgba(255,255,255,.08); color: var(--primary-fixed); }
+    .nav-item.active { background: rgba(185,241,173,.15); color: var(--primary-fixed); border-left: 3px solid var(--primary-fixed); padding-left: 11px; }
+    .nav-item i { font-size: 18px; }
 
-/* Plan header */
-.plan-header { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-container) 100%); border-radius: 20px; padding: 28px 32px; color: #fff; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
-.plan-title { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; }
-.plan-meta { display: flex; gap: 16px; flex-wrap: wrap; }
-.meta-chip { background: rgba(255,255,255,.15); padding: 6px 14px; border-radius: 999px; font-size: 12px; font-weight: 600; display: flex; align-items: center; gap: 6px; }
+    .sidebar-profile { margin: auto 12px 8px; padding: 14px; background: rgba(255,255,255,.07); border-radius: 12px; display: flex; align-items: center; gap: 10px; min-width: 0; }
+    .sidebar-profile img { width: 38px; height: 38px; border-radius: 50%; flex-shrink: 0; object-fit: cover; border: 2px solid rgba(185,241,173,.3); }
+    .sidebar-profile .profile-info { min-width: 0; flex: 1; }
+    .sidebar-profile .user-name { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; font-weight: 600; color: var(--primary-fixed); word-wrap: break-word; overflow-wrap: break-word; display: block; }
+    .sidebar-profile .user-email { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 10px; color: rgba(185,241,173,.5); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: block; }
 
-/* Day tabs */
-.day-tabs { display: flex; overflow-x: auto; border-bottom: 1px solid var(--outline-v); gap: 0; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
-.day-tabs::-webkit-scrollbar { display: none; }
-.day-tab { padding: 12px 20px; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--on-surface-v); border: none; background: transparent; border-bottom: 2px solid transparent; cursor: pointer; white-space: nowrap; transition: all .18s; }
-.day-tab.active { color: var(--primary); border-bottom-color: var(--secondary); }
+    /* Main & Topbar */
+    .main { display: flex; flex-direction: column; }
+    .topbar { position: sticky; top: 0; z-index: 40; background: rgba(255,248,245,.92); backdrop-filter: blur(12px); display: flex; justify-content: space-between; align-items: center; padding: 16px 32px; border-bottom: 1px solid rgba(193,201,187,.2); }
+    .topbar h2 { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--primary); }
+    .icon-btn { width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--outline-v); background: var(--surface-card); color: var(--on-surface-v); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all .18s; text-decoration: none; }
+    .icon-btn:hover { background: #f0faf4; color: var(--primary); }
+    .content { padding: 32px; max-width: 1100px; width: 100%; margin: 0 auto; }
 
-/* Meal cards grid */
-.meals-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-@media (max-width: 768px) { .meals-grid { grid-template-columns: 1fr; } .app { grid-template-columns: 1fr; } .sidebar { display: none; } }
+    /* Plan Header */
+    .plan-header { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-container) 100%); border-radius: 20px; padding: 28px 32px; color: #fff; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+    .plan-title { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; }
+    .plan-meta { display: flex; gap: 16px; flex-wrap: wrap; }
+    .meta-chip { font-family: 'Plus Jakarta Sans', sans-serif; background: rgba(255,255,255,.15); padding: 6px 14px; border-radius: 999px; font-size: 12px; font-weight: 600; display: flex; align-items: center; gap: 6px; }
 
-.meal-card { background: var(--surface-card); border-radius: 16px; overflow: hidden; border: 1px solid rgba(193,201,187,.3); box-shadow: 0 2px 10px rgba(45,106,79,.05); transition: all .2s; }
-.meal-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(45,106,79,.1); }
-.meal-img { width: 100%; height: 160px; object-fit: cover; }
-.meal-img-placeholder { width: 100%; height: 160px; background: var(--surface-low); display: flex; align-items: center; justify-content: center; }
-.meal-body { padding: 16px; }
-.meal-badge { font-size: 9px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; padding: 3px 10px; border-radius: 999px; display: inline-block; margin-bottom: 8px; }
-.meal-name { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; margin-bottom: 4px; }
-.meal-stats { display: flex; gap: 12px; font-size: 12px; color: var(--on-surface-v); font-weight: 500; margin-bottom: 12px; }
-.meal-actions { display: flex; gap: 8px; }
-.btn-sm { padding: 6px 12px; border-radius: 8px; font-size: 11px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; cursor: pointer; border: none; transition: all .18s; display: flex; align-items: center; gap: 4px; }
-.btn-eaten { background: rgba(34,82,31,.1); color: var(--primary); flex: 1; justify-content: center; }
-.btn-eaten.done { background: var(--primary); color: #fff; }
-.btn-eaten:hover { opacity: .85; }
-.btn-edit { background: rgba(193,201,187,.3); color: var(--on-surface-v); }
-.btn-edit:hover { background: rgba(193,201,187,.5); }
-.btn-delete { background: rgba(186,26,26,.1); color: var(--error); }
-.btn-delete:hover { background: rgba(186,26,26,.2); }
+    /* Day Tabs */
+    .day-tabs { display: flex; overflow-x: auto; border-bottom: 1px solid var(--outline-v); gap: 0; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+    .day-tabs::-webkit-scrollbar { display: none; }
+    .day-tab { font-family: 'Plus Jakarta Sans', sans-serif; padding: 14px 24px; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--on-surface-v); border: none; background: transparent; border-bottom: 2px solid transparent; cursor: pointer; white-space: nowrap; transition: all .18s; }
+    .day-tab.active { color: var(--primary); border-bottom-color: var(--secondary); }
 
-/* Summary bar */
-.summary-bar { background: var(--surface-low); border-radius: 16px; padding: 20px 24px; display: flex; gap: 32px; flex-wrap: wrap; align-items: center; }
-.summary-item { text-align: center; }
-.summary-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--on-surface-v); }
-.summary-value { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: var(--primary); }
-.summary-sub { font-size: 12px; color: var(--on-surface-v); }
+    /* Meals Grid */
+    .meals-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    @media (max-width: 768px) { .meals-grid { grid-template-columns: 1fr; } .app { grid-template-columns: 1fr; } .sidebar { display: none; } }
+    .meal-card { background: var(--surface-card); border-radius: 16px; overflow: hidden; border: 1px solid rgba(193,201,187,.3); box-shadow: 0 2px 10px rgba(45,106,79,.05); transition: all .2s; }
+    .meal-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(45,106,79,.1); }
+    .meal-img { width: 100%; height: 160px; object-fit: cover; }
+    .meal-body { padding: 18px; }
+    .meal-badge { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; display: inline-block; margin-bottom: 10px; }
+    .meal-name { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 6px; color: #27180a; }
+    .meal-stats { font-family: 'Plus Jakarta Sans', sans-serif; display: flex; gap: 12px; font-size: 12px; color: var(--on-surface-v); font-weight: 600; margin-bottom: 14px; }
+    .meal-actions { display: flex; gap: 8px; }
+    .btn-sm { font-family: 'Plus Jakarta Sans', sans-serif; padding: 8px 12px; border-radius: 8px; font-size: 11px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; cursor: pointer; border: none; transition: all .18s; display: flex; align-items: center; gap: 4px; }
+    .btn-eaten { background: rgba(34,82,31,.1); color: var(--primary); flex: 1; justify-content: center; }
+    .btn-eaten.done { background: var(--primary); color: #fff; }
+    .btn-eaten:hover { opacity: .85; }
+    .btn-edit { background: rgba(193,201,187,.3); color: var(--on-surface-v); }
+    .btn-edit:hover { background: rgba(193,201,187,.5); }
+    .btn-delete { background: rgba(186,26,26,.1); color: var(--error); }
+    .btn-delete:hover { background: rgba(186,26,26,.2); }
 
-/* Empty state */
-.empty-state { text-align: center; padding: 60px 24px; }
-.empty-state i { font-size: 64px; color: var(--outline-v); }
-.empty-state h3 { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; margin: 16px 0 8px; color: var(--primary); }
-.empty-state p { color: var(--on-surface-v); margin-bottom: 24px; }
-.btn-primary { background: var(--primary); color: #fff; padding: 12px 24px; border-radius: 12px; font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; border: none; cursor: pointer; transition: all .18s; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
-.btn-primary:hover { opacity: .9; transform: translateY(-1px); }
+    /* Summary Bar */
+    .summary-bar { background: var(--surface-low); border-radius: 16px; padding: 20px 24px; display: flex; gap: 32px; flex-wrap: wrap; align-items: center; }
+    .summary-item { text-align: center; }
+    .summary-label { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--on-surface-v); }
+    .summary-value { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 30px; font-weight: 700; color: var(--primary); margin: 2px 0; }
+    .summary-sub { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 12px; color: var(--on-surface-v); }
 
-/* Modal */
-.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 100; display: flex; align-items: center; justify-content: center; padding: 24px; }
-.modal { background: #fff; border-radius: 20px; padding: 28px; max-width: 480px; width: 100%; }
-.modal h3 { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--primary); margin-bottom: 20px; }
-.form-group { margin-bottom: 16px; }
-.form-group label { display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--on-surface-v); margin-bottom: 6px; }
-.form-group input, .form-group select { width: 100%; padding: 10px 14px; border: 1.5px solid var(--outline-v); border-radius: 10px; font-size: 14px; font-family: 'Plus Jakarta Sans', sans-serif; transition: border-color .18s; }
-.form-group input:focus, .form-group select:focus { outline: none; border-color: var(--primary); }
-.modal-actions { display: flex; gap: 12px; margin-top: 24px; justify-content: flex-end; }
-</style>
+    /* Empty State */
+    .empty-state { text-align: center; padding: 60px 24px; }
+    .empty-state i { font-size: 64px; color: var(--outline-v); }
+    .empty-state h3 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 24px; font-weight: 700; margin: 16px 0 8px; color: var(--primary); }
+    .empty-state p { font-family: 'Plus Jakarta Sans', sans-serif; color: var(--on-surface-v); margin-bottom: 24px; }
+    
+    /* HANYA BAGIAN INI YANG DIPERBAIKI BIAR TOMBOL KEMBALI NORMAL */
+    .btn-primary { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--primary); color: #fff; padding: 10px 18px; border-radius: 8px; font-size: 12px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; border: none; cursor: pointer; transition: all .18s; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; line-height: 1; }
+    .btn-primary i { font-size: 13px; display: inline-flex; align-items: center; justify-content: center; }
+    .btn-primary:hover { opacity: .9; transform: translateY(-1px); }
+
+    /* Modal */
+    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 100; display: flex; align-items: center; justify-content: center; padding: 24px; }
+    .modal { background: #fff; border-radius: 20px; padding: 28px; max-width: 480px; width: 100%; }
+    .modal h3 { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--primary); margin-bottom: 20px; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--on-surface-v); margin-bottom: 6px; }
+    .form-group input, .form-group select { width: 100%; padding: 10px 14px; border: 1.5px solid var(--outline-v); border-radius: 10px; font-size: 14px; font-family: 'Plus Jakarta Sans', sans-serif; transition: border-color .18s; }
+    .form-group input:focus, .form-group select:focus { outline: none; border-color: var(--primary); }
+    .modal-actions { display: flex; gap: 12px; margin-top: 24px; justify-content: flex-end; }
+    .modal-actions button { font-family: 'Plus Jakarta Sans', sans-serif; }
+  </style>
 </head>
 <body>
 
 <div class="app">
-  <!-- Sidebar -->
   <aside class="sidebar">
     <div class="sidebar-brand">
-      <h2>NutriPlan</h2>
-      <span style="font-size:10px;font-weight:700;letter-spacing:.1em;color:rgba(185,241,173,.5);text-transform:uppercase">Dasbor Nutrisi</span>
+        <h2>NutriPlan</h2>
+        <span style="font-size:10px; font-weight:700; letter-spacing:.1em; color:rgba(185,241,173,.5); text-transform:uppercase; display:inline-block; line-height:1; margin-top:-2px;">NUTRISI PRAKTIS</span>
     </div>
-    <nav style="flex:1;padding:20px 0;display:flex;flex-direction:column;gap:2px">
-      <a href="dashboard.html" class="nav-item"><i class="material-symbols-outlined">dashboard</i> Beranda</a>
-      <a href="preferensi.html" class="nav-item"><i class="material-symbols-outlined">tune</i> Preferensi</a>
-      <a href="hasilRencanaMakan.html" class="nav-item active"><i class="material-symbols-outlined">restaurant_menu</i> Rencana Makan</a>
-      <a href="historydanProfil.html" class="nav-item"><i class="material-symbols-outlined">manage_accounts</i> Profil & Riwayat</a>
+    
+    <nav style="flex:1; padding:20px 0; display:flex; flex-direction:column; gap:2px">
+        <a href="dashboard.html" class="nav-item"><i class="fa-solid fa-table-cells-large"></i> Beranda</a>
+        <a href="preferensi.html" class="nav-item"><i class="fa-solid fa-sliders"></i> Preferensi</a>
+        <a href="hasilRencanaMakan.html" class="nav-item active"><i class="fa-solid fa-utensils"></i> Rencana Makan</a>
+        <a href="historydanProfil.html" class="nav-item"><i class="fa-solid fa-user"></i> Profil & Riwayat</a>
     </nav>
-    <div class="sidebar-user">
-      <img id="sidebarAvatar" src="https://ui-avatars.com/api/?name=P&background=3a6b35&color=b9f1ad" alt="avatar"/>
-      <div>
-        <div class="uname" id="sidebarName">Pengguna</div>
-        <div class="utag" id="sidebarEmail">—</div>
-      </div>
+    
+    <div class="sidebar-profile">
+        <img id="sidebarAvatar" src="" alt="avatar"/>
+        <div class="profile-info">
+          <span class="user-name" id="sidebarName">Pengguna</span>
+          <span class="user-email" id="sidebarEmail">—</span>
+        </div>
     </div>
   </aside>
 
-  <!-- Main -->
   <div class="main">
-    <!-- Topbar -->
     <div class="topbar">
       <div style="display:flex;align-items:center;gap:12px">
         <h2>Rencana Makan</h2>
@@ -133,35 +147,29 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #fff8f5; color:
       </div>
       <div style="display:flex;gap:8px;align-items:center">
         <button onclick="window.location.href='preferensi.html'" class="icon-btn" title="Buat Rencana Baru">
-          <span class="material-symbols-outlined" style="font-size:18px">add</span>
+          <i class="fa-solid fa-plus" style="font-size:15px"></i>
         </button>
         <button onclick="exportPlan()" class="icon-btn" title="Ekspor">
-          <span class="material-symbols-outlined" style="font-size:18px">download</span>
+          <i class="fa-solid fa-download" style="font-size:15px"></i>
         </button>
         <a href="dashboard.html" class="icon-btn" title="Dashboard">
-          <span class="material-symbols-outlined" style="font-size:18px">home</span>
+          <i class="fa-solid fa-house" style="font-size:15px"></i>
         </a>
       </div>
     </div>
 
-    <!-- Content -->
     <div class="content" style="display:flex;flex-direction:column;gap:24px">
-
-      <!-- Empty State (jika tidak ada plan) -->
       <div id="emptyState" class="empty-state" style="display:none">
-        <span class="material-symbols-outlined" style="font-size:64px;color:#c1c9bb">restaurant_menu</span>
+        <i class="fa-solid fa-utensils" style="font-size:64px;color:#c1c9bb;display:block;margin-bottom:16px;"></i>
         <h3>Belum Ada Rencana Makan</h3>
         <p>Buat rencana makan personalmu untuk memulai perjalanan nutrisi yang lebih baik.</p>
         <a href="preferensi.html" class="btn-primary">
-          <span class="material-symbols-outlined">add</span>
+          <i class="fa-solid fa-plus"></i>
           Buat Rencana Sekarang
         </a>
       </div>
 
-      <!-- Plan Content -->
       <div id="planContent" style="display:none;flex-direction:column;gap:24px">
-
-        <!-- Plan Header -->
         <div class="plan-header">
           <div>
             <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.7;margin-bottom:6px">Rencana Aktif</div>
@@ -170,21 +178,20 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #fff8f5; color:
           </div>
           <div class="plan-meta">
             <div class="meta-chip">
-              <span class="material-symbols-outlined" style="font-size:14px">local_fire_department</span>
+              <i class="fa-solid fa-fire-flame-curved" style="font-size:13px"></i>
               <span id="planKalori">—</span> kkal/hari
             </div>
             <div class="meta-chip">
-              <span class="material-symbols-outlined" style="font-size:14px">payments</span>
+              <i class="fa-solid fa-wallet" style="font-size:13px"></i>
               <span id="planBudget">—</span>/minggu
             </div>
             <div class="meta-chip">
-              <span class="material-symbols-outlined" style="font-size:14px">calendar_month</span>
+              <i class="fa-solid fa-calendar-days" style="font-size:13px"></i>
               <span id="planDurasi">—</span> hari
             </div>
           </div>
         </div>
 
-        <!-- Summary Bar -->
         <div class="summary-bar">
           <div class="summary-item">
             <div class="summary-label">Total Kalori Hari Ini</div>
@@ -205,26 +212,23 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #fff8f5; color:
           </div>
           <div style="margin-left:auto">
             <button onclick="saveDayPlan()" class="btn-primary" style="font-size:12px;padding:10px 20px">
-              <span class="material-symbols-outlined" style="font-size:16px">save</span>
+              <i class="fa-solid fa-floppy-disk" style="font-size:14px"></i>
               Simpan Rencana Hari Ini
             </button>
           </div>
         </div>
 
-        <!-- Day Tabs -->
         <div style="background:var(--surface-card);border-radius:16px;overflow:hidden;border:1px solid rgba(193,201,187,.3)">
           <div class="day-tabs" id="dayTabs"></div>
-          <!-- Meals Grid -->
           <div style="padding:20px">
             <div class="meals-grid" id="mealsGrid"></div>
           </div>
         </div>
 
-        <!-- Hapus Plan -->
         <div style="display:flex;justify-content:flex-end">
           <button onclick="deletePlan()" style="display:flex;align-items:center;gap:6px;padding:8px 16px;border-radius:10px;border:1.5px solid rgba(186,26,26,.3);background:transparent;color:var(--error);font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:all .18s"
             onmouseover="this.style.background='rgba(186,26,26,.08)'" onmouseout="this.style.background='transparent'">
-            <span class="material-symbols-outlined" style="font-size:16px">delete</span>
+            <i class="fa-solid fa-trash-can" style="font-size:14px"></i>
             Hapus Rencana Ini
           </button>
         </div>
@@ -233,7 +237,6 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #fff8f5; color:
   </div>
 </div>
 
-<!-- Modal Edit Menu -->
 <div id="editModal" class="modal-overlay" style="display:none">
   <div class="modal">
     <h3>Edit Menu</h3>
@@ -270,202 +273,156 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #fff8f5; color:
 </div>
 
 <script>
-// Auth guard
-NutriStore.UI.requireAuth('masuk.html');
+  NutriStore.UI.requireAuth('masuk.html');
 
-let activePlan = null;
-let activeDayIdx = 0;
+  let activePlan = null;
+  let activeDayIdx = 0;
 
-// ─── INIT ────────────────────────────────────────────────────────────────────
-document.addEventListener('DOMContentLoaded', () => {
-  // Update user info
-  const user = NutriStore.User.get();
-  document.getElementById('sidebarName').textContent = user.name || 'Pengguna';
-  document.getElementById('sidebarEmail').textContent = user.email || '';
-  if (user.avatar) document.getElementById('sidebarAvatar').src = user.avatar;
+  document.addEventListener('DOMContentLoaded', () => {
+    const user = NutriStore.User.get();
+    document.getElementById('sidebarName').textContent = user.name || 'Pengguna';
+    document.getElementById('sidebarEmail').textContent = user.email || '';
+    if (user.avatar) document.getElementById('sidebarAvatar').src = user.avatar;
 
-  loadPlan();
-});
+    loadPlan();
+  });
 
-function loadPlan() {
-  activePlan = NutriStore.Plans.getActive();
+  function loadPlan() {
+    activePlan = NutriStore.Plans.getActive();
 
-  if (!activePlan || !activePlan.hari || activePlan.hari.length === 0) {
-    document.getElementById('emptyState').style.display = 'block';
-    document.getElementById('planContent').style.display = 'none';
-    return;
+    if (!activePlan || !activePlan.hari || activePlan.hari.length === 0) {
+      document.getElementById('emptyState').style.display = 'block';
+      document.getElementById('planContent').style.display = 'none';
+      return;
+    }
+
+    document.getElementById('emptyState').style.display = 'none';
+    document.getElementById('planContent').style.display = 'flex';
+
+    document.getElementById('planTitle').textContent = activePlan.nama || 'Rencana Makan';
+    document.getElementById('planDate').textContent = 'Dibuat ' + NutriStore.UI.tanggal(activePlan.createdAt);
+    document.getElementById('planKalori').textContent = activePlan.kalori?.toLocaleString('id-ID') || '—';
+    document.getElementById('planBudget').textContent = NutriStore.UI.rupiah(activePlan.budget);
+    document.getElementById('planDurasi').textContent = activePlan.hari.length;
+
+    const prefs = NutriStore.Prefs.get();
+    document.getElementById('sumTarget').textContent = (prefs.kaloriTarget || activePlan.kalori || 2000).toLocaleString('id-ID');
+
+    renderDayTabs();
+    renderMenus(0);
   }
 
-  document.getElementById('emptyState').style.display = 'none';
-  document.getElementById('planContent').style.display = 'flex';
+  function renderDayTabs() {
+    const tabsEl = document.getElementById('dayTabs');
+    tabsEl.innerHTML = activePlan.hari.map((h, i) =>
+      `<button class="day-tab ${i === 0 ? 'active' : ''}" onclick="switchDay(${i})">${h.hari}</button>`
+    ).join('');
+  }
 
-  // Header info
-  document.getElementById('planTitle').textContent = activePlan.nama || 'Rencana Makan';
-  document.getElementById('planDate').textContent = 'Dibuat ' + NutriStore.UI.tanggal(activePlan.createdAt);
-  document.getElementById('planKalori').textContent = activePlan.kalori?.toLocaleString('id-ID') || '—';
-  document.getElementById('planBudget').textContent = NutriStore.UI.rupiah(activePlan.budget);
-  document.getElementById('planDurasi').textContent = activePlan.durasi || activePlan.hari.length;
+  function switchDay(idx) {
+    activeDayIdx = idx;
+    document.querySelectorAll('.day-tab').forEach((t, i) => {
+      t.classList.toggle('active', i === idx);
+    });
+    renderMenus(idx);
+  }
 
-  // Target kalori
-  const prefs = NutriStore.Prefs.get();
-  document.getElementById('sumTarget').textContent = (prefs.kaloriTarget || activePlan.kalori || 2000).toLocaleString('id-ID');
+  const MEAL_IMAGES = {
+    'Sarapan': 'https://images.unsplash.com/photo-1493770348161-369560ae357d?w=400&h=200&fit=crop',
+    'Makan Siang': 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=200&fit=crop',
+    'Makan Malam': 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400&h=200&fit=crop',
+    'Snack': 'https://images.unsplash.com/photo-1502741224143-90386d7f8c82?w=400&h=200&fit=crop'
+  };
+  const BADGE_COLORS = {
+    'Sarapan': 'background:rgba(254,151,60,.2);color:#6a3600',
+    'Makan Siang': 'background:rgba(185,241,173,.4);color:#20511e',
+    'Makan Malam': 'background:rgba(34,82,31,.12);color:#22521f',
+    'Snack': 'background:rgba(146,76,0,.1);color:#924c00'
+  };
 
-  // Day tabs
-  renderDayTabs();
-  renderMenus(0);
-}
+  function renderMenus(dayIdx) {
+    const hari = activePlan.hari[dayIdx];
+    const grid = document.getElementById('mealsGrid');
 
-function renderDayTabs() {
-  const tabsEl = document.getElementById('dayTabs');
-  tabsEl.innerHTML = activePlan.hari.map((h, i) =>
-    `<button class="day-tab ${i === 0 ? 'active' : ''}" onclick="switchDay(${i})">${h.hari}</button>`
-  ).join('');
-}
+    const menus = hari.menu || [];
+    const totalKalori = menus.reduce((s, m) => s + (m.kalori || 0), 0);
+    const totalBiaya = menus.reduce((s, m) => s + (m.harga || 0), 0);
+    const eaten = menus.filter(m => m.eaten).length;
 
-function switchDay(idx) {
-  activeDayIdx = idx;
-  document.querySelectorAll('.day-tab').forEach((t, i) => {
-    t.classList.toggle('active', i === idx);
-  });
-  renderMenus(idx);
-}
+    document.getElementById('sumKalori').textContent = totalKalori.toLocaleString('id-ID');
+    document.getElementById('sumBiaya').textContent = NutriStore.UI.rupiah(totalBiaya);
+    document.getElementById('sumEaten').textContent = eaten + '/' + menus.length;
 
-const MEAL_IMAGES = {
-  'Sarapan': 'https://images.unsplash.com/photo-1493770348161-369560ae357d?w=400&h=200&fit=crop',
-  'Makan Siang': 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=200&fit=crop',
-  'Makan Malam': 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400&h=200&fit=crop',
-  'Snack': 'https://images.unsplash.com/photo-1502741224143-90386d7f8c82?w=400&h=200&fit=crop'
-};
-const BADGE_COLORS = {
-  'Sarapan': 'background:rgba(254,151,60,.2);color:#6a3600',
-  'Makan Siang': 'background:rgba(185,241,173,.4);color:#20511e',
-  'Makan Malam': 'background:rgba(34,82,31,.12);color:#22521f',
-  'Snack': 'background:rgba(146,76,0,.1);color:#924c00'
-};
-
-function renderMenus(dayIdx) {
-  const hari = activePlan.hari[dayIdx];
-  const grid = document.getElementById('mealsGrid');
-
-  // Hitung summary hari ini (day 0 = hari ini)
-  const menus = hari.menu || [];
-  const totalKalori = menus.reduce((s, m) => s + (m.kalori || 0), 0);
-  const totalBiaya = menus.reduce((s, m) => s + (m.harga || 0), 0);
-  const eaten = menus.filter(m => m.eaten).length;
-
-  document.getElementById('sumKalori').textContent = totalKalori.toLocaleString('id-ID');
-  document.getElementById('sumBiaya').textContent = NutriStore.UI.rupiah(totalBiaya);
-  document.getElementById('sumEaten').textContent = eaten + '/' + menus.length;
-
-  grid.innerHTML = menus.map((menu, mi) => {
-    const imgUrl = MEAL_IMAGES[menu.tipe] || MEAL_IMAGES['Makan Siang'];
-    const badge = BADGE_COLORS[menu.tipe] || BADGE_COLORS['Makan Siang'];
-    return `
-      <div class="meal-card">
-        <img src="${imgUrl}" class="meal-img" alt="${menu.nama}" onerror="this.style.display='none'"/>
-        <div class="meal-body">
-          <span class="meal-badge" style="${badge}">${menu.tipe}</span>
-          <div class="meal-name">${menu.nama}</div>
-          <div class="meal-stats">
-            <span>🔥 ${menu.kalori} kkal</span>
-            <span>💰 ${NutriStore.UI.rupiah(menu.harga || 0)}</span>
-          </div>
-          <div class="meal-actions">
-            <button class="btn-sm btn-eaten ${menu.eaten ? 'done' : ''}" onclick="toggleEaten(${dayIdx}, ${mi})">
-              <span class="material-symbols-outlined" style="font-size:14px">${menu.eaten ? 'check_circle' : 'radio_button_unchecked'}</span>
-              ${menu.eaten ? 'Dimakan' : 'Tandai Dimakan'}
-            </button>
-            <button class="btn-sm btn-edit" onclick="openEdit(${dayIdx}, ${mi})" title="Edit">
-              <span class="material-symbols-outlined" style="font-size:14px">edit</span>
-            </button>
-            <button class="btn-sm btn-delete" onclick="deleteMenu(${dayIdx}, ${mi})" title="Hapus">
-              <span class="material-symbols-outlined" style="font-size:14px">delete</span>
-            </button>
+    grid.innerHTML = menus.map((menu, mi) => {
+      const imgUrl = MEAL_IMAGES[menu.tipe] || MEAL_IMAGES['Makan Siang'];
+      const badge = BADGE_COLORS[menu.tipe] || BADGE_COLORS['Makan Siang'];
+      return `
+        <div class="meal-card">
+          <img src="${imgUrl}" class="meal-img" alt="${menu.nama}" onerror="this.style.display='none'"/>
+          <div class="meal-body">
+            <span class="meal-badge" style="${badge}">${menu.tipe}</span>
+            <div class="meal-name">${menu.nama}</div>
+            <div class="meal-stats">
+              <span>🔥 ${menu.kalori} kkal</span>
+              <span>💰 ${NutriStore.UI.rupiah(menu.harga || 0)}</span>
+            </div>
+            <div class="meal-actions">
+              <button class="btn-sm btn-eaten ${menu.eaten ? 'done' : ''}" onclick="toggleEaten(${dayIdx}, ${mi})">
+                <i class="${menu.eaten ? 'fa-solid fa-circle-check' : 'fa-regular fa-circle'}" style="font-size:13px"></i>
+                ${menu.eaten ? 'Dimakan' : 'Tandai Dimakan'}
+              </button>
+              <button class="btn-sm btn-edit" onclick="openEdit(${dayIdx}, ${mi})" title="Edit">
+                <i class="fa-solid fa-pen-to-square" style="font-size:13px"></i>
+              </button>
+              <button class="btn-sm btn-delete" onclick="deleteMenu(${dayIdx}, ${mi})" title="Hapus">
+                <i class="fa-solid fa-trash" style="font-size:13px"></i>
+              </button>
+            </div>
           </div>
         </div>
+      `;
+    }).join('') + `
+      <div style="border:2px dashed var(--outline-v);border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:32px;cursor:pointer;transition:all .18s;min-height:200px"
+        onclick="addMenu(${dayIdx})" onmouseover="this.style.background='rgba(34,82,31,.04)'" onmouseout="this.style.background='transparent'">
+        <i class="fa-solid fa-circle-plus" style="font-size:32px;color:var(--outline-v)"></i>
+        <span style="font-family:'Plus Jakarta Sans', sans-serif;font-size:12px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--on-surface-v)">Tambah Menu</span>
       </div>
     `;
-  }).join('') + `
-    <div style="border:2px dashed var(--outline-v);border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:32px;cursor:pointer;transition:all .18s;min-height:200px"
-      onclick="addMenu(${dayIdx})" onmouseover="this.style.background='rgba(34,82,31,.04)'" onmouseout="this.style.background='transparent'">
-      <span class="material-symbols-outlined" style="font-size:32px;color:var(--outline-v)">add_circle</span>
-      <span style="font-size:12px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--on-surface-v)">Tambah Menu</span>
-    </div>
-  `;
-}
+  }
 
-// ─── TOGGLE EATEN ────────────────────────────────────────────────────────────
-function toggleEaten(dayIdx, menuIdx) {
-  activePlan.hari[dayIdx].menu[menuIdx].eaten = !activePlan.hari[dayIdx].menu[menuIdx].eaten;
-  NutriStore.Plans.update(activePlan.id, { hari: activePlan.hari });
-  renderMenus(dayIdx);
-  NutriStore.UI.toast(activePlan.hari[dayIdx].menu[menuIdx].eaten ? 'Menu ditandai dimakan ✓' : 'Tanda dimakan dihapus', 'info');
-}
+  function toggleEaten(dayIdx, menuIdx) {
+    activePlan.hari[dayIdx].menu[menuIdx].eaten = !activePlan.hari[dayIdx].menu[menuIdx].eaten;
+    NutriStore.Plans.update(activePlan.id, { hari: activePlan.hari });
+    renderMenus(dayIdx);
+    NutriStore.UI.toast(activePlan.hari[dayIdx].menu[menuIdx].eaten ? 'Menu ditandai dimakan ✓' : 'Tanda dimakan dihapus', 'info');
+  }
 
-// ─── EDIT MENU ───────────────────────────────────────────────────────────────
-function openEdit(dayIdx, menuIdx) {
-  const menu = activePlan.hari[dayIdx].menu[menuIdx];
-  document.getElementById('editDayIdx').value = dayIdx;
-  document.getElementById('editMenuIdx').value = menuIdx;
-  document.getElementById('editNama').value = menu.nama;
-  document.getElementById('editTipe').value = menu.tipe;
-  document.getElementById('editKalori').value = menu.kalori;
-  document.getElementById('editHarga').value = menu.harga || 0;
-  document.getElementById('editModal').style.display = 'flex';
-}
+  function openEdit(dayIdx, menuIdx) {
+    const menu = activePlan.hari[dayIdx].menu[menuIdx];
+    document.getElementById('editDayIdx').value = dayIdx;
+    document.getElementById('editMenuIdx').value = menuIdx;
+    document.getElementById('editNama').value = menu.nama;
+    document.getElementById('editTipe').value = menu.tipe;
+    document.getElementById('editKalori').value = menu.kalori;
+    document.getElementById('editHarga').value = menu.harga || 0;
+    document.getElementById('editModal').style.display = 'flex';
+  }
 
-function closeModal() {
-  document.getElementById('editModal').style.display = 'none';
-}
+  function closeModal() {
+    document.getElementById('editModal').style.display = 'none';
+  }
 
-function saveEdit() {
-  const dayIdx = parseInt(document.getElementById('editDayIdx').value);
-  const menuIdx = parseInt(document.getElementById('editMenuIdx').value);
-  const nama = document.getElementById('editNama').value.trim();
-  const tipe = document.getElementById('editTipe').value;
-  const kalori = parseInt(document.getElementById('editKalori').value) || 0;
-  const harga = parseInt(document.getElementById('editHarga').value) || 0;
-
-  if (!nama) { NutriStore.UI.toast('Nama menu tidak boleh kosong', 'error'); return; }
-
-  activePlan.hari[dayIdx].menu[menuIdx] = { ...activePlan.hari[dayIdx].menu[menuIdx], nama, tipe, kalori, harga };
-  // Recalc total hari
-  const menus = activePlan.hari[dayIdx].menu;
-  activePlan.hari[dayIdx].totalKalori = menus.reduce((s, m) => s + m.kalori, 0);
-  activePlan.hari[dayIdx].totalHarga = menus.reduce((s, m) => s + (m.harga || 0), 0);
-
-  NutriStore.Plans.update(activePlan.id, { hari: activePlan.hari });
-  closeModal();
-  renderMenus(dayIdx);
-  NutriStore.UI.toast('Menu berhasil diperbarui!', 'success');
-}
-
-// ─── ADD MENU ────────────────────────────────────────────────────────────────
-function addMenu(dayIdx) {
-  document.getElementById('editDayIdx').value = dayIdx;
-  document.getElementById('editMenuIdx').value = -1; // -1 = baru
-  document.getElementById('editNama').value = '';
-  document.getElementById('editTipe').value = 'Snack';
-  document.getElementById('editKalori').value = 200;
-  document.getElementById('editHarga').value = 10000;
-  document.getElementById('editModal').style.display = 'flex';
-
-  // Override saveEdit untuk add
-  window._addMode = true;
-}
-
-// Override saveEdit buat mode add
-const _origSaveEdit = saveEdit;
-window.saveEdit = function() {
-  if (window._addMode) {
+  function saveEdit() {
     const dayIdx = parseInt(document.getElementById('editDayIdx').value);
+    const menuIdx = parseInt(document.getElementById('editMenuIdx').value);
     const nama = document.getElementById('editNama').value.trim();
     const tipe = document.getElementById('editTipe').value;
     const kalori = parseInt(document.getElementById('editKalori').value) || 0;
     const harga = parseInt(document.getElementById('editHarga').value) || 0;
+
     if (!nama) { NutriStore.UI.toast('Nama menu tidak boleh kosong', 'error'); return; }
 
-    activePlan.hari[dayIdx].menu.push({ id: NutriStore.uid(), nama, tipe, kalori, harga, eaten: false });
+    activePlan.hari[dayIdx].menu[menuIdx] = { ...activePlan.hari[dayIdx].menu[menuIdx], nama, tipe, kalori, harga };
     const menus = activePlan.hari[dayIdx].menu;
     activePlan.hari[dayIdx].totalKalori = menus.reduce((s, m) => s + m.kalori, 0);
     activePlan.hari[dayIdx].totalHarga = menus.reduce((s, m) => s + (m.harga || 0), 0);
@@ -473,62 +430,90 @@ window.saveEdit = function() {
     NutriStore.Plans.update(activePlan.id, { hari: activePlan.hari });
     closeModal();
     renderMenus(dayIdx);
-    NutriStore.UI.toast('Menu baru ditambahkan!', 'success');
-    window._addMode = false;
-  } else {
-    _origSaveEdit();
+    NutriStore.UI.toast('Menu berhasil diperbarui!', 'success');
   }
-};
 
-// ─── DELETE MENU ─────────────────────────────────────────────────────────────
-function deleteMenu(dayIdx, menuIdx) {
-  if (!confirm('Hapus menu ini?')) return;
-  activePlan.hari[dayIdx].menu.splice(menuIdx, 1);
-  const menus = activePlan.hari[dayIdx].menu;
-  activePlan.hari[dayIdx].totalKalori = menus.reduce((s, m) => s + m.kalori, 0);
-  activePlan.hari[dayIdx].totalHarga = menus.reduce((s, m) => s + (m.harga || 0), 0);
+  function addMenu(dayIdx) {
+    document.getElementById('editDayIdx').value = dayIdx;
+    document.getElementById('editMenuIdx').value = -1;
+    document.getElementById('editNama').value = '';
+    document.getElementById('editTipe').value = 'Snack';
+    document.getElementById('editKalori').value = 200;
+    document.getElementById('editHarga').value = 10000;
+    document.getElementById('editModal').style.display = 'flex';
 
-  NutriStore.Plans.update(activePlan.id, { hari: activePlan.hari });
-  renderMenus(dayIdx);
-  NutriStore.UI.toast('Menu dihapus', 'info');
-}
+    window._addMode = true;
+  }
 
-// ─── SAVE DAY PLAN ───────────────────────────────────────────────────────────
-function saveDayPlan() {
-  NutriStore.Plans.update(activePlan.id, { hari: activePlan.hari });
-  NutriStore.UI.toast('Rencana hari ' + activePlan.hari[activeDayIdx].hari + ' tersimpan! ✓', 'success');
-}
+  const _origSaveEdit = saveEdit;
+  window.saveEdit = function() {
+    if (window._addMode) {
+      const dayIdx = parseInt(document.getElementById('editDayIdx').value);
+      const nama = document.getElementById('editNama').value.trim();
+      const tipe = document.getElementById('editTipe').value;
+      const kalori = parseInt(document.getElementById('editKalori').value) || 0;
+      const harga = parseInt(document.getElementById('editHarga').value) || 0;
+      if (!nama) { NutriStore.UI.toast('Nama menu tidak boleh kosong', 'error'); return; }
 
-// ─── DELETE PLAN ─────────────────────────────────────────────────────────────
-function deletePlan() {
-  if (!confirm('Hapus seluruh rencana makan ini? Aksi ini tidak bisa dibatalkan.')) return;
-  NutriStore.Plans.delete(activePlan.id);
-  NutriStore.UI.toast('Rencana makan dihapus', 'info');
-  setTimeout(() => loadPlan(), 300);
-}
+      activePlan.hari[dayIdx].menu.push({ id: NutriStore.uid(), nama, tipe, kalori, harga, eaten: false });
+      const menus = activePlan.hari[dayIdx].menu;
+      activePlan.hari[dayIdx].totalKalori = menus.reduce((s, m) => s + m.kalori, 0);
+      activePlan.hari[dayIdx].totalHarga = menus.reduce((s, m) => s + (m.harga || 0), 0);
 
-// ─── EXPORT ──────────────────────────────────────────────────────────────────
-function exportPlan() {
-  if (!activePlan) return;
-  const lines = [`RENCANA MAKAN: ${activePlan.nama}`, `Dibuat: ${activePlan.createdAt}`, `Target Kalori: ${activePlan.kalori} kkal/hari`, `Budget: ${NutriStore.UI.rupiah(activePlan.budget)}`, '', ''];
-  activePlan.hari.forEach(h => {
-    lines.push(`=== ${h.hari.toUpperCase()} (${h.totalKalori} kkal | ${NutriStore.UI.rupiah(h.totalHarga)}) ===`);
-    h.menu.forEach(m => lines.push(`  • [${m.tipe}] ${m.nama} — ${m.kalori} kkal, ${NutriStore.UI.rupiah(m.harga || 0)}`));
-    lines.push('');
+      NutriStore.Plans.update(activePlan.id, { hari: activePlan.hari });
+      closeModal();
+      renderMenus(dayIdx);
+      NutriStore.UI.toast('Menu baru ditambahkan!', 'success');
+      window._addMode = false;
+    } else {
+      _origSaveEdit();
+    }
+  };
+
+  function deleteMenu(dayIdx, menuIdx) {
+    if (!confirm('Hapus menu ini?')) return;
+    activePlan.hari[dayIdx].menu.splice(menuIdx, 1);
+    const menus = activePlan.hari[dayIdx].menu;
+    activePlan.hari[dayIdx].totalKalori = menus.reduce((s, m) => s + m.kalori, 0);
+    activePlan.hari[dayIdx].totalHarga = menus.reduce((s, m) => s + (m.harga || 0), 0);
+
+    NutriStore.Plans.update(activePlan.id, { hari: activePlan.hari });
+    renderMenus(dayIdx);
+    NutriStore.UI.toast('Menu deleted', 'info');
+  }
+
+  function saveDayPlan() {
+    NutriStore.Plans.update(activePlan.id, { hari: activePlan.hari });
+    NutriStore.UI.toast('Rencana hari ' + activePlan.hari[activeDayIdx].hari + ' tersimpan! ✓', 'success');
+  }
+
+  function deletePlan() {
+    if (!confirm('Hapus seluruh rencana makan ini? Aksi ini tidak bisa dibatalkan.')) return;
+    NutriStore.Plans.delete(activePlan.id);
+    NutriStore.UI.toast('Rencana makan dihapus', 'info');
+    setTimeout(() => loadPlan(), 300);
+  }
+
+  function exportPlan() {
+    if (!activePlan) return;
+    const lines = [`ENCANA MAKAN: ${activePlan.nama}`, `Dibuat: ${activePlan.createdAt}`, `Target Kalori: ${activePlan.kalori} kkal/hari`, `Budget: ${NutriStore.UI.rupiah(activePlan.budget)}`, '', ''];
+    activePlan.hari.forEach(h => {
+      lines.push(`=== ${h.hari.toUpperCase()} (${h.totalKalori} kkal | ${NutriStore.UI.rupiah(h.totalHarga)}) ===`);
+      h.menu.forEach(m => lines.push(`  • [${m.tipe}] ${m.nama} — ${m.kalori} kkal, ${NutriStore.UI.rupiah(m.harga || 0)}`));
+      lines.push('');
+    });
+
+    const blob = new Blob([lines.join('\n')], { type: 'text/plain;charset=utf-8' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = `nutriplan-${activePlan.createdAt}.txt`;
+    a.click();
+    NutriStore.UI.toast('Rencana berhasil diekspor!', 'success');
+  }
+
+  document.getElementById('editModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
   });
-
-  const blob = new Blob([lines.join('\n')], { type: 'text/plain;charset=utf-8' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = `nutriplan-${activePlan.createdAt}.txt`;
-  a.click();
-  NutriStore.UI.toast('Rencana berhasil diekspor!', 'success');
-}
-
-// Tutup modal jika klik di luar
-document.getElementById('editModal').addEventListener('click', function(e) {
-  if (e.target === this) closeModal();
-});
 </script>
 </body>
 </html>

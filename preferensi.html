@@ -1,680 +1,262 @@
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
+<html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preferensi Makan - NutriPlan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+    <link rel="stylesheet" href="riwayat.css">
+    
+    <script src="nutriplan-store.js"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
 
-  <title>NutriPlan | Preferensi Makan</title>
-
-  <meta
-    name="description"
-    content="Atur preferensi rencana makan sehat dan personal bersama NutriPlan."
-  />
-
-  <meta name="theme-color" content="#22521f" />
-
-  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap"
-    rel="stylesheet"
-  />
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
-    rel="stylesheet"
-  />
-
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            primary: '#22521f',
-            secondary: '#D4761A',
-            background: '#fff8f5',
-            card: '#ffffff',
-            muted: '#6b7280',
-            border: '#e7e5e4',
-            success: '#16a34a'
-          },
-          fontFamily: {
-            heading: ['Playfair Display'],
-            body: ['Plus Jakarta Sans'],
-            mono: ['JetBrains Mono']
-          },
-          boxShadow: {
-            soft: '0 10px 30px rgba(0,0,0,0.06)'
-          }
+    <style>
+        :root {
+              --primary-container: #22521f; 
+              --primary-fixed: #b9f1ad;     
         }
-      }
-    }
-  </script>
 
-  <style>
-    body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      background: #fff8f5;
-      color: #1f2937;
-    }
+        /* Reset standar agar tidak merusak sidebar master */
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fff8f5; color: #27180a; }
+        a { text-decoration: none; color: inherit; }
 
-    .glass {
-      backdrop-filter: blur(10px);
-      background: rgba(255,255,255,.8);
-    }
+        /* Sidebar Container */
+        .sidebar { background: var(--primary-container); display: flex; flex-direction: column; padding: 24px 0; position: sticky; top: 0; height: 100vh; overflow-y: auto; }
+        .sidebar-brand { padding: 0 24px 24px; border-bottom: 1px solid rgba(255,255,255,.1); }
+        .sidebar-brand h2 { font-family: 'DM Serif Display', serif; font-size: 22px; font-weight: 500; font-style: italic; color: var(--primary-fixed); letter-spacing: normal; line-height: 1.1; }
 
-    .sidebar-link.active {
-      background: #D4761A;
-      color: white;
-    }
+        /* Menu Navigasi */
+        .nav-item { display: flex; align-items: center; gap: 12px; padding: 10px 14px; margin: 0 12px 2px; border-radius: 10px; font-size: 11px; font-weight: 700; letter-spacing: .08em; color: rgba(185,241,173,.65); cursor: pointer; transition: all .18s; text-transform: uppercase; text-decoration: none; }
+        .nav-item:hover { background: rgba(255,255,255,.08); color: var(--primary-fixed); }
+        .nav-item.active { background: rgba(185,241,173,.15); color: var(--primary-fixed); border-left: 3px solid var(--primary-fixed); padding-left: 11px; }
+        .nav-item i { font-size: 18px; }
 
-    .sidebar-link:hover {
-      background: rgba(255,255,255,.08);
-    }
+        /* Gaya Area Profil Baru yang Disesuaikan */
+        .sidebar-profile { margin: auto 12px 8px; padding: 14px; background: rgba(255,255,255,.07); border-radius: 12px; display: flex; align-items: center; gap: 10px; min-width: 0; }
+        .sidebar-profile img { width: 38px; height: 38px; border-radius: 50%; flex-shrink: 0; object-fit: cover; border: 2px solid rgba(185,241,173,.3); }
+        .sidebar-profile .profile-info { min-width: 0; flex: 1; }
+        .sidebar-profile .user-name { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; font-weight: 600; color: var(--primary-fixed); word-wrap: break-word; overflow-wrap: break-word; display: block; }
+        .sidebar-profile .user-email { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 10px; color: rgba(185,241,173,.5); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: block; }
 
-    input[type="range"]::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      width: 20px;
-      height: 20px;
-      border-radius: 999px;
-      background: #22521f;
-      cursor: pointer;
-    }
-
-    input[type="range"]::-webkit-slider-runnable-track {
-      height: 6px;
-      background: #d1fae5;
-      border-radius: 999px;
-    }
-  </style>
-<script src="nutriplan-store.js"></script>
+        /* Custom styling range slider budget */
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none; width: 18px; height: 18px; border-radius: 50%;
+            background: #22521f; cursor: pointer;
+        }
+    </style>
 </head>
-
 <body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+              <h2>NutriPlan</h2>
+              <span style="font-size:10px; font-weight:700; letter-spacing:.1em; color:rgba(185,241,173,.5); text-transform:uppercase; display:inline-block; line-height:1; margin-top:-2px;">NUTRISI PRAKTIS</span>
+            </div>
+            
+            <nav style="flex:1;padding:20px 0;display:flex;flex-direction:column;gap:2px">
+              <a href="dashboard.html" class="nav-item"><i class="fa-solid fa-table-cells-large"></i> Beranda</a>
+              <a href="preferensi.html" class="nav-item active"><i class="fa-solid fa-sliders"></i> Preferensi</a>
+              <a href="hasilRencanaMakan.html" class="nav-item"><i class="fa-solid fa-utensils"></i> Rencana Makan</a>
+              <a href="historydanProfil.html" class="nav-item"><i class="fa-solid fa-user"></i> Profil & Riwayat</a>
+            </nav>
+            
+            <div class="sidebar-profile">
+              <img id="sidebarAvatar" src="" alt="avatar"/>
+              <div class="profile-info">
+                <span class="user-name" id="sidebarName">Pengguna</span>
+                <span class="user-email" id="sidebarEmail">—</span>
+              </div>
+            </div>
+        </aside>
 
-  <!-- MOBILE OVERLAY -->
-  <div
-    id="overlay"
-    class="fixed inset-0 bg-black/40 z-40 hidden md:hidden"
-  ></div>
+        <main class="main-content">
+            
+            <div class="w-full p-6 md:p-10 flex flex-col gap-6">
+                
+                <div class="border-b border-orange-100 pb-4 text-left w-full">
+                    <h1 class="text-3xl font-extrabold tracking-tight font-['Playfair_Display'] text-[#22521f]">Atur Preferensi Makan</h1>
+                    <p class="text-sm text-gray-500 mt-1">Sesuaikan durasi, anggaran belanja, kalori target, dan pantangan alergi Anda.</p>
+                </div>
 
-  <!-- SIDEBAR -->
-  <aside
-    id="sidebar"
-    class="fixed top-0 left-0 z-50 h-full w-[260px] bg-primary text-white p-6 transform -translate-x-full md:translate-x-0 transition-transform duration-300 shadow-2xl"
-  >
+                <div class="bg-white rounded-2xl p-6 md:p-12 shadow-sm border border-orange-100/60 w-full max-w-4xl mx-auto mb-10">
+                    
+                    <form id="prefForm" class="w-full max-w-xl mx-auto space-y-8 text-left">
+                        
+                        <div class="w-full">
+                            <label class="block mb-3 text-xs font-bold uppercase tracking-wider text-gray-400">Durasi Rencana Menu</label>
+                            <div class="grid grid-cols-3 gap-3 w-full">
+                                <button type="button" class="duration-btn border border-gray-300 py-3 rounded-xl hover:border-[#22521f] font-semibold text-gray-700 transition-all text-sm">3 Hari</button>
+                                <button type="button" class="duration-btn bg-[#924c00] text-white py-3 rounded-xl font-semibold shadow-sm transition-all text-sm active">5 Hari</button>
+                                <button type="button" class="duration-btn border border-gray-300 py-3 rounded-xl hover:border-[#22521f] font-semibold text-gray-700 transition-all text-sm">7 Hari</button>
+                            </div>
+                        </div>
 
-    <div class="flex items-center gap-3 mb-10">
-      <img
-        src="https://i.pravatar.cc/100"
-        class="w-12 h-12 rounded-full border-2 border-white"
-        alt="profile"
-      />
+                        <div class="w-full">
+                            <div class="flex items-center justify-between w-full mb-2">
+                                <label class="text-xs font-bold uppercase tracking-wider text-gray-400">Budget Maksimal Harian</label>
+                                <span id="budgetValue" class="text-white px-3 py-1 rounded-full text-xs font-mono font-bold bg-[#22521f]">Rp 115.000</span>
+                            </div>
+                            <input id="budgetRange" type="range" min="30000" max="200000" step="5000" value="115000" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer block" />
+                            <div class="flex justify-between text-xs text-gray-400 w-full mt-1 font-mono">
+                                <span>Rp 30.000</span>
+                                <span>Rp 200.000</span>
+                            </div>
+                        </div>
 
-      <div>
-        <h1 class="font-heading text-2xl">NutriPlan</h1>
-        <p class="text-xs uppercase tracking-widest opacity-70">
-          Nutrisi Praktis
-        </p>
-      </div>
+                        <div class="w-full">
+                            <label class="block mb-3 text-xs font-bold uppercase tracking-wider text-gray-400">Target Kalori Harian</label>
+                            <div class="relative w-full mb-3">
+                                <input id="calorieInput" type="number" value="1800" class="w-full rounded-xl border border-gray-300 px-4 py-3 text-xl font-mono focus:ring-2 focus:ring-green-600 focus:border-green-600 outline-none text-[#22521f]" />
+                                <span class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 text-sm font-medium">kkal</span>
+                            </div>
+                            <div class="flex gap-2 justify-start items-center flex-wrap">
+                                <button type="button" class="calorie-chip px-4 py-2 rounded-full border border-gray-300 bg-white hover:border-[#22521f] transition-all text-xs font-mono text-gray-600">1,200 kkal</button>
+                                <button type="button" class="calorie-chip px-4 py-2 rounded-full border border-gray-300 bg-white hover:border-[#22521f] transition-all text-xs font-mono text-gray-600">1,500 kkal</button>
+                                <button type="button" class="calorie-chip px-4 py-2 rounded-full text-white transition-all text-xs font-mono font-bold bg-[#22521f] active">1,800 kkal</button>
+                            </div>
+                        </div>
+
+                        <div class="w-full">
+                            <label class="block mb-3 text-xs font-bold uppercase tracking-wider text-gray-400">Batasan Konsumsi / Alergi</label>
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 w-full">
+                                <label class="flex items-center gap-3 rounded-xl border border-gray-200 bg-white p-4 hover:border-green-700 cursor-pointer transition-all">
+                                    <input type="checkbox" class="rounded text-emerald-700 focus:ring-emerald-600" value="Tidak Pedas" />
+                                    <span class="text-sm font-medium text-gray-700">Tidak Pedas</span>
+                                </label>
+                                <label class="flex items-center gap-3 rounded-xl border border-gray-200 bg-white p-4 hover:border-green-700 cursor-pointer transition-all">
+                                    <input type="checkbox" class="rounded text-emerald-700 focus:ring-emerald-600" value="Halal" checked />
+                                    <span class="text-sm font-medium text-gray-700">Halal</span>
+                                </label>
+                                <label class="flex items-center gap-3 rounded-xl border border-gray-200 bg-white p-4 hover:border-green-700 cursor-pointer transition-all">
+                                    <input type="checkbox" class="rounded text-emerald-700 focus:ring-emerald-600" value="Vegan" />
+                                    <span class="text-sm font-medium text-gray-700">Vegan</span>
+                                </label>
+                                <label class="flex items-center gap-3 rounded-xl border border-gray-200 bg-white p-4 hover:border-green-700 cursor-pointer transition-all">
+                                    <input type="checkbox" class="rounded text-emerald-700 focus:ring-emerald-600" value="Tanpa Seafood" />
+                                    <span class="text-sm font-medium text-gray-700">Tanpa Seafood</span>
+                                </label>
+                                <label class="flex items-center gap-3 rounded-xl border border-gray-200 bg-white p-4 hover:border-green-700 cursor-pointer transition-all">
+                                    <input type="checkbox" class="rounded text-emerald-700 focus:ring-emerald-600" value="Bebas Gluten" />
+                                    <span class="text-sm font-medium text-gray-700">Bebas Gluten</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 w-full">
+                            <button id="generateBtn" type="button" class="w-full text-white bg-[#924c00] py-4 rounded-xl text-md font-bold shadow-md transition-all hover:opacity-90 active:scale-[0.99]">
+                                Simpan & Buat Rencana Makan Baru ✨
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+            
+        </main>
+
+        <footer class="dashboard-footer">
+            <div class="footer-brand">
+                <h3>NutriPlan</h3>
+                <p>© 2026 NutriPlan. Nutrisi tepat untuk dunia yang praktis.</p>
+            </div>
+            <div class="footer-links-grid">
+                <div class="footer-col">
+                    <h4>PRODUK</h4>
+                    <a href="#">Cara Kerja</a>
+                    <a href="#">Fitur</a>
+                </div>
+                <div class="footer-col">
+                    <h4>HUKUM</h4>
+                    <a href="#">Kebijakan Privasi</a>
+                </div>
+                <div class="footer-col">
+                    <h4>DUKUNGAN</h4>
+                    <a href="#">Pusat Bantuan</a>
+                </div>
+            </div>
+        </footer>
+
     </div>
 
-    <nav class="space-y-2">
-
-      <a href="index.html"
-        class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300">
-        <span class="material-symbols-outlined">dashboard</span>
-        Dashboard
-      </a>
-
-      <a href="preferences.html"
-        class="sidebar-link active flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300">
-        <span class="material-symbols-outlined">tune</span>
-        Preferensi
-      </a>
-
-      <a href="meal-plan.html"
-        class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300">
-        <span class="material-symbols-outlined">restaurant_menu</span>
-        Rencana Makan
-      </a>
-
-      <a href="history.html"
-        class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300">
-        <span class="material-symbols-outlined">history</span>
-        Riwayat
-      </a>
-
-      <a href="profile.html"
-        class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300">
-        <span class="material-symbols-outlined">person</span>
-        Profil
-      </a>
-
-    </nav>
-  </aside>
-
-
-  <!-- MAIN -->
-  <main class="md:ml-[260px] min-h-screen">
-
-    <!-- TOPBAR -->
-    <header class="sticky top-0 z-30 glass border-b border-gray-200">
-
-      <div class="flex items-center justify-between px-5 py-4">
-
-        <div class="flex items-center gap-3">
-
-          <button id="menuBtn" class="md:hidden">
-            <span class="material-symbols-outlined text-3xl text-primary">
-              menu
-            </span>
-          </button>
-
-          <div>
-            <h2 class="font-heading text-2xl text-primary">
-              Preferensi Nutrisi
-            </h2>
-            <p class="text-sm text-gray-500">
-              Sesuaikan rencana makan personal Anda.
-            </p>
-          </div>
-
-        </div>
-
-        <button class="relative">
-          <span class="material-symbols-outlined text-primary">
-            notifications
-          </span>
-
-          <span class="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></span>
-        </button>
-
-      </div>
-
-    </header>
-
-
-    <!-- CONTENT -->
-    <section class="max-w-5xl mx-auto p-5 md:p-10">
-
-      <div class="grid lg:grid-cols-[1fr_320px] gap-8">
-
-        <!-- FORM -->
-        <div class="bg-card rounded-3xl shadow-soft border border-border p-6 md:p-10">
-
-          <div class="mb-10">
-            <h3 class="font-heading text-4xl text-primary mb-3 leading-tight">
-              Buat Rencana Makan Ideal Anda 🍽️
-            </h3>
-
-            <p class="text-gray-500 leading-relaxed">
-              Atur kebutuhan nutrisi, budget, dan preferensi makanan untuk
-              mendapatkan rekomendasi meal plan terbaik.
-            </p>
-          </div>
-
-
-          <form class="space-y-10">
-
-            <!-- DURASI -->
-            <div>
-
-              <label class="block mb-4 text-sm uppercase tracking-wider text-gray-500 font-semibold">
-                Durasi Rencana
-              </label>
-
-              <div class="grid grid-cols-3 gap-3">
-
-                <button type="button"
-                  class="duration-btn border border-border py-4 rounded-2xl hover:border-primary hover:text-primary transition-all">
-                  3 Hari
-                </button>
-
-                <button type="button"
-                  class="duration-btn active bg-secondary text-white py-4 rounded-2xl shadow-lg scale-105 transition-all">
-                  5 Hari
-                </button>
-
-                <button type="button"
-                  class="duration-btn border border-border py-4 rounded-2xl hover:border-primary hover:text-primary transition-all">
-                  7 Hari
-                </button>
-
-              </div>
-
-            </div>
-
-
-            <!-- BUDGET -->
-            <div>
-
-              <div class="flex items-center justify-between mb-4">
-
-                <label class="text-sm uppercase tracking-wider text-gray-500 font-semibold">
-                  Budget Harian
-                </label>
-
-                <span
-                  id="budgetValue"
-                  class="bg-primary text-white px-4 py-2 rounded-full text-sm font-mono"
-                >
-                  Rp 115.000
-                </span>
-
-              </div>
-
-              <input
-                id="budgetRange"
-                type="range"
-                min="30000"
-                max="200000"
-                step="5000"
-                value="115000"
-                class="w-full"
-              />
-
-              <div class="flex justify-between text-xs text-gray-400 mt-2">
-                <span>Rp 30rb</span>
-                <span>Rp 200rb</span>
-              </div>
-
-            </div>
-
-
-            <!-- KALORI -->
-            <div>
-
-              <label class="block mb-4 text-sm uppercase tracking-wider text-gray-500 font-semibold">
-                Target Kalori
-              </label>
-
-              <div class="relative mb-5">
-
-                <input
-                  id="calorieInput"
-                  type="number"
-                  placeholder="2000"
-                  class="w-full rounded-2xl border border-[#E5DED8] bg-[#F9F5F1] px-5 py-5 text-2xl font-mono text-primary focus:ring-4 focus:ring-green-100 focus:border-primary outline-none"
-                />
-
-                <span class="absolute right-5 top-1/2 -translate-y-1/2 text-[#7C746E] font-medium">
-                  kkal / hari
-                </span>
-
-              </div>
-
-
-              <div class="flex flex-wrap gap-3">
-
-                <button type="button" class="calorie-chip px-5 py-2.5 rounded-full border border-[#D8D2CC] bg-white hover:border-primary hover:text-primary transition-all text-sm font-mono text-[#5F5A55]">
-                  1,200 kkal
-                </button>
-
-                <button type="button" class="calorie-chip px-5 py-2.5 rounded-full border border-[#D8D2CC] bg-white hover:border-primary hover:text-primary transition-all text-sm font-mono text-[#5F5A55]">
-                  1,500 kkal
-                </button>
-
-                <button type="button" class="calorie-chip active bg-[#E6F4E2] border border-primary text-primary px-5 py-2.5 rounded-full shadow-sm font-semibold text-sm font-mono">
-                  1,800 kkal<!-- PREFERENSI -->
-            <div>
-
-              <label class="block mb-4 text-sm uppercase tracking-wider text-gray-500 font-semibold">
-                Batasan Diet
-              </label>
-
-              <div class="grid grid-cols-2 lg:grid-cols-3 gap-4">
-
-                <label class="group cursor-pointer">
-                  <input type="checkbox" hidden>
-
-                  <div class="flex items-center gap-3 rounded-2xl border border-[#DDD6CF] bg-white px-4 py-5 hover:border-primary transition-all min-h-[84px]">
-
-                    <div class="w-5 h-5 rounded bg-primary"></div>
-
-                    <span class="text-lg text-[#2B2118] font-medium">
-                      Tidak Pedas
-                    </span>
-
-                  </div>
-                </label>
-
-
-                <label class="group cursor-pointer">
-                  <input type="checkbox" checked hidden>
-
-                  <div class="flex items-center gap-3 rounded-2xl border border-primary bg-primary px-4 py-5 min-h-[84px] shadow-md">
-
-                    <div class="w-5 h-5 rounded bg-white flex items-center justify-center">
-                      <span class="material-symbols-outlined text-[14px] text-primary font-bold">
-                        check
-                      </span>
-                    </div>
-
-                    <span class="text-lg text-white font-semibold">
-                      Halal
-                    </span>
-
-                  </div>
-                </label>
-
-
-                <label class="group cursor-pointer">
-                  <input type="checkbox" hidden>
-
-                  <div class="flex items-center gap-3 rounded-2xl border border-[#DDD6CF] bg-white px-4 py-5 hover:border-primary transition-all min-h-[84px]">
-
-                    <div class="w-5 h-5 rounded border-2 border-[#8D857E]"></div>
-
-                    <span class="text-lg text-[#2B2118] font-medium">
-                      Vegan
-                    </span>
-
-                  </div>
-                </label>
-
-
-                <label class="group cursor-pointer">
-                  <input type="checkbox" hidden>
-
-                  <div class="flex items-center gap-3 rounded-2xl border border-[#DDD6CF] bg-white px-4 py-5 hover:border-primary transition-all min-h-[84px]">
-
-                    <div class="w-5 h-5 rounded bg-primary"></div>
-
-                    <span class="text-lg text-[#2B2118] font-medium leading-snug">
-                      Tanpa Seafood
-                    </span>
-
-                  </div>
-                </label>
-
-
-                <label class="group cursor-pointer">
-                  <input type="checkbox" hidden>
-
-                  <div class="flex items-center gap-3 rounded-2xl border border-[#DDD6CF] bg-white px-4 py-5 hover:border-primary transition-all min-h-[84px]">
-
-                    <div class="w-5 h-5 rounded border-2 border-[#8D857E]"></div>
-
-                    <span class="text-lg text-[#2B2118] font-medium">
-                      Bebas Gluten
-                    </span>
-
-                  </div>
-                </label>
-
-
-                <label class="group cursor-pointer">
-                  <input type="checkbox" hidden>
-
-                  <div class="flex items-center gap-3 rounded-2xl border border-[#DDD6CF] bg-white px-4 py-5 hover:border-primary transition-all min-h-[84px]">
-
-                    <div class="w-5 h-5 rounded border-2 border-[#8D857E]"></div>
-
-                    <span class="text-lg text-[#2B2118] font-medium leading-snug">
-                      Rendah Karbohidrat
-                    </span>
-
-                  </div>
-                </label>
-
-              </div>
-
-            </div>
-
-
-            <!-- SUBMIT -->            <input type="checkbox" hidden>
-                  <div class="p-4 border border-border rounded-2xl hover:border-primary cursor-pointer transition-all">
-                    Bebas Gluten
-                  </div>
-                </label>
-
-                <label class="food-card">
-                  <input type="checkbox" hidden>
-                  <div class="p-4 border border-border rounded-2xl hover:border-primary cursor-pointer transition-all">
-                    Tanpa Seafood
-                  </div>
-                </label>
-
-              </div>
-
-            </div>
-
-
-            <!-- SUBMIT -->
-            <button
-              id="generateBtn"
-              type="button"
-              class="w-full bg-secondary hover:opacity-90 text-white py-5 rounded-2xl text-lg font-semibold shadow-xl transition-all active:scale-[0.98]"
-            >
-              Buat Rencana Makan Saya ✨
-            </button>
-
-          </form>
-
-        </div>
-
-
-        <!-- SIDE INFO -->
-        <div class="space-y-6">
-
-          <div class="bg-card rounded-3xl p-6 shadow-soft border border-border">
-
-            <h4 class="font-heading text-2xl text-primary mb-4">
-              Tips Nutrisi
-            </h4>
-
-            <img
-              src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=1200&auto=format&fit=crop"
-              class="rounded-2xl h-48 w-full object-cover mb-4"
-              alt="food"
-            />
-
-            <p class="text-gray-500 leading-relaxed">
-              Kombinasi protein tinggi dan serat membantu menjaga kenyang lebih lama dan meningkatkan fokus harian.
-            </p>
-
-          </div>
-
-
-          <div class="bg-primary text-white rounded-3xl p-6 shadow-soft">
-
-            <div class="flex items-center gap-3 mb-4">
-              <span class="material-symbols-outlined text-4xl">
-                auto_awesome
-              </span>
-
-              <h4 class="font-heading text-2xl">
-                AI Recommendation
-              </h4>
-            </div>
-
-            <p class="leading-relaxed text-white/80">
-              NutriPlan akan menganalisis kebutuhan kalori, budget, dan preferensi diet untuk membuat meal plan personal terbaik.
-            </p>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-  </main>
-
-
-  <!-- TOAST -->
-  <div
-    id="toast"
-    class="fixed bottom-5 right-5 bg-white border border-green-200 shadow-2xl rounded-2xl px-5 py-4 flex items-center gap-3 translate-y-32 opacity-0 transition-all duration-500 z-[999]"
-  >
-
-    <span class="material-symbols-outlined text-success text-3xl">
-      check_circle
-    </span>
-
-    <div>
-      <p class="font-semibold text-success">
-        Berhasil
-      </p>
-
-      <p class="text-sm text-gray-500">
-        Rencana makan sedang dibuat...
-      </p>
-    </div>
-
-  </div>
-
-
-  <script>
-
-    // MOBILE SIDEBAR
-    const menuBtn = document.getElementById('menuBtn');
-    const sidebar = document.getElementById('sidebar');
-    const overlay = document.getElementById('overlay');
-
-    menuBtn.addEventListener('click', () => {
-      sidebar.classList.toggle('-translate-x-full');
-      overlay.classList.toggle('hidden');
-    });
-
-    overlay.addEventListener('click', () => {
-      sidebar.classList.add('-translate-x-full');
-      overlay.classList.add('hidden');
-    });
-
-
-    // BUDGET RANGE
-    const range = document.getElementById('budgetRange');
-    const budgetValue = document.getElementById('budgetValue');
-
-    range.addEventListener('input', () => {
-      budgetValue.innerText =
-        'Rp ' + Number(range.value).toLocaleString('id-ID');
-    });
-
-
-    // DURATION BUTTONS
-    const durationBtns = document.querySelectorAll('.duration-btn');
-
-    durationBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-
-        durationBtns.forEach(b => {
-          b.classList.remove('bg-secondary', 'text-white', 'scale-105', 'shadow-lg');
-          b.classList.add('border', 'border-border');
+    <script>
+        // Memuat info profil login pengguna secara otomatis (Menggunakan ID Element Baru)
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof NutriStore !== 'undefined' && NutriStore.User.isLoggedIn()) {
+                const user = NutriStore.User.get();
+                document.getElementById('sidebarName').textContent = user.name || 'Pengguna';
+                document.getElementById('sidebarEmail').textContent = user.email || 'user@mail.com';
+                document.getElementById('sidebarAvatar').src = user.avatar || 'https://api.dicebear.com/7.x/fun-emoji/svg?seed=' + encodeURIComponent(user.name || 'user');
+            } else {
+                window.location.href = 'masuk.html';
+            }
         });
 
-        btn.classList.add('bg-secondary', 'text-white', 'scale-105', 'shadow-lg');
-      });
-    });
-
-
-    // CALORIE CHIP
-    const chips = document.querySelectorAll('.calorie-chip');
-    const calorieInput = document.getElementById('calorieInput');
-
-    chips.forEach(chip => {
-      chip.addEventListener('click', () => {
-
-        chips.forEach(c => {
-          c.classList.remove('bg-primary', 'text-white');
-          c.classList.add('border', 'border-border');
-        });
-
-        chip.classList.add('bg-primary', 'text-white');
-
-        calorieInput.value = chip.innerText;
-      });
-    });
-
-
-    // AUTH GUARD
-    if (!NutriStore.User.isLoggedIn()) {
-      window.location.href = 'masuk.html';
-    }
-
-    // LOAD saved prefs
-    (function loadSavedPrefs() {
-      const prefs = NutriStore.Prefs.get();
-      if (prefs.budget && range) {
-        range.value = prefs.budget;
-        if (budgetValue) budgetValue.innerText = 'Rp ' + Number(prefs.budget).toLocaleString('id-ID');
-      }
-      if (prefs.kaloriTarget && calorieInput) {
-        calorieInput.value = prefs.kaloriTarget;
-        chips.forEach(c => {
-          if (parseInt(c.innerText) === prefs.kaloriTarget) {
-            c.classList.add('bg-primary', 'text-white');
-            c.classList.remove('border', 'border-border');
-          }
-        });
-      }
-      if (prefs.durasi) {
-        durationBtns.forEach(b => {
-          if (parseInt(b.textContent) === prefs.durasi) {
-            durationBtns.forEach(x => {
-              x.classList.remove('bg-secondary', 'text-white', 'scale-105', 'shadow-lg');
-              x.classList.add('border', 'border-border');
+        // Budget slider
+        const range = document.getElementById('budgetRange');
+        const budgetValue = document.getElementById('budgetValue');
+        if (range && budgetValue) {
+            range.addEventListener('input', () => {
+                budgetValue.innerText = 'Rp ' + Number(range.value).toLocaleString('id-ID');
             });
-            b.classList.add('bg-secondary', 'text-white', 'scale-105', 'shadow-lg');
-          }
+        }
+
+        // Toggling tombol durasi
+        const durationBtns = document.querySelectorAll('.duration-btn');
+        durationBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                durationBtns.forEach(b => b.className = "duration-btn border border-gray-300 py-3 rounded-xl hover:border-[#22521f] font-semibold text-gray-700 transition-all text-sm");
+                btn.className = "duration-btn bg-[#924c00] text-white py-3 rounded-xl font-semibold shadow-sm transition-all text-sm active";
+            });
         });
-      }
-      // Update nama user di sidebar
-      NutriStore.UI.updateNavUser();
-    })();
 
-    // GENERATE BUTTON
-    const generateBtn = document.getElementById('generateBtn');
-    const toast = document.getElementById('toast');
+        // Toggling kalori cepat
+        const chips = document.querySelectorAll('.calorie-chip');
+        const calorieInput = document.getElementById('calorieInput');
+        chips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                chips.forEach(c => {
+                    c.className = "calorie-chip px-4 py-2 rounded-full border border-gray-300 bg-white hover:border-[#22521f] transition-all text-xs font-mono text-gray-600";
+                    c.style.background = "white";
+                });
+                chip.className = "calorie-chip px-4 py-2 rounded-full text-white transition-all text-xs font-mono font-bold active";
+                chip.style.background = "#22521f";
+                calorieInput.value = parseInt(chip.innerText.replace(/[^0-9]/g, ''));
+            });
+        });
 
-    generateBtn.addEventListener('click', () => {
-      // Kumpulkan semua preferensi dari form
-      const activeDuration = document.querySelector('.duration-btn.bg-secondary');
-      const durasi = activeDuration ? parseInt(activeDuration.textContent) : 7;
-      const kaloriTarget = parseInt(calorieInput.value) || 2000;
-      const budget = parseInt(range.value) || 500000;
+        // Submit Action
+        const generateBtn = document.getElementById('generateBtn');
+        if (generateBtn) {
+            generateBtn.addEventListener('click', () => {
+                const activeDuration = document.querySelector('.duration-btn.active');
+                const durasi = activeDuration ? parseInt(activeDuration.textContent) : 5;
+                const kaloriTarget = parseInt(calorieInput.value) || 2000;
+                const budget = parseInt(range.value) || 115000;
 
-      // Kumpulkan pantangan
-      const pantangan = [];
-      document.querySelectorAll('input[type="checkbox"]:checked').forEach(cb => {
-        if (cb.nextElementSibling) pantangan.push(cb.nextElementSibling.textContent?.trim());
-      });
+                const pantangan = [];
+                document.querySelectorAll('input[type="checkbox"]:checked').forEach(cb => {
+                    pantangan.push(cb.value);
+                });
 
-      // Simpan preferensi
-      NutriStore.Prefs.save({ budget, durasi, kaloriTarget, pantangan });
+                if (typeof NutriStore !== 'undefined') {
+                    NutriStore.Prefs.save({ budget, durasi, kaloriTarget, pantangan });
+                    NutriStore.Plans.create({ kalori: kaloriTarget, budget, durasi, pantangan });
+                    NutriStore.UI.toast('Rencana makan baru berhasil disusun!', 'success');
+                }
 
-      // Buat meal plan baru
-      generateBtn.disabled = true;
-      generateBtn.innerHTML = 
-        <div class="flex items-center justify-center gap-3">
-          <span class="material-symbols-outlined animate-spin">progress_activity</span>
-          Menganalisis Preferensi...
-        </div>
-      ;
+                generateBtn.disabled = true;
+                generateBtn.innerHTML = '<i class="fa-solid fa-spinner animate-spin"></i> Menyusun Menu...';
 
-      setTimeout(() => {
-        // Generate & simpan plan
-        NutriStore.Plans.create({ kalori: kaloriTarget, budget, durasi, pantangan });
-
-        toast.classList.remove('translate-y-32', 'opacity-0');
-        generateBtn.innerHTML = 'Rencana Berhasil Dibuat ✅';
-        generateBtn.classList.remove('bg-secondary');
-        generateBtn.classList.add('bg-primary');
-        NutriStore.UI.toast('Rencana makan ' + durasi + ' hari berhasil dibuat!', 'success');
-
-      }, 1800);
-
-      setTimeout(() => {
-        toast.classList.add('translate-y-32', 'opacity-0');
-        window.location.href = 'hasilRencanaMakan.html';
-      }, 3500);
-    });
-
-  </script>
-
+                setTimeout(() => {
+                    window.location.href = 'hasilRencanaMakan.html';
+                }, 1500);
+            });
+        }
+    </script>
 </body>
 </html>

@@ -5,31 +5,42 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Profil & Riwayat | NutriPlan</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&family=DM+Serif+Display&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 <script src="nutriplan-store.js"></script>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: 'Plus Jakarta Sans', sans-serif; background: #fff8f5; color: #27180a; }
+
 :root {
-  --primary: #22521f; --primary-container: #3a6b35;
-  --primary-fixed: #b9f1ad; --secondary: #924c00;
+  --primary: #22521f; 
+  --primary-container: #22521f;
+  --primary-fixed: #b9f1ad;     
+  --secondary: #924c00;
   --secondary-container: #fe973c; --on-secondary-container: #6a3600;
   --surface: #fff8f5; --surface-low: #fff1e8; --surface-card: #fff;
   --outline-v: #c1c9bb; --on-surface-v: #42493f; --error: #ba1a1a;
 }
+
 .app { display: grid; grid-template-columns: 240px 1fr; min-height: 100vh; }
+
+/* ─── CSS BAR KIRI (SIDEBAR) BARU ────────────────────────────────────────── */
 .sidebar { background: var(--primary-container); display: flex; flex-direction: column; padding: 24px 0; position: sticky; top: 0; height: 100vh; overflow-y: auto; }
 .sidebar-brand { padding: 0 24px 24px; border-bottom: 1px solid rgba(255,255,255,.1); }
-.sidebar-brand h2 { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--primary-fixed); font-style: italic; }
+.sidebar-brand h2 { font-family: 'DM Serif Display', serif; font-size: 22px; font-style: italic; color: var(--primary-fixed); letter-spacing: normal; line-height: 1.1; }
+
 .nav-item { display: flex; align-items: center; gap: 12px; padding: 10px 14px; margin: 0 12px 2px; border-radius: 10px; font-size: 11px; font-weight: 700; letter-spacing: .08em; color: rgba(185,241,173,.65); cursor: pointer; transition: all .18s; text-transform: uppercase; text-decoration: none; }
 .nav-item:hover { background: rgba(255,255,255,.08); color: var(--primary-fixed); }
 .nav-item.active { background: rgba(185,241,173,.15); color: var(--primary-fixed); border-left: 3px solid var(--primary-fixed); padding-left: 11px; }
 .nav-item i { font-size: 18px; }
-.sidebar-user { margin: 16px 12px 0; padding: 14px; background: rgba(255,255,255,.07); border-radius: 12px; display: flex; align-items: center; gap: 10px; }
-.sidebar-user img { width: 38px; height: 38px; border-radius: 50%; border: 2px solid rgba(185,241,173,.3); }
-.sidebar-user .uname { font-size: 13px; font-weight: 600; color: var(--primary-fixed); }
-.sidebar-user .utag { font-size: 10px; color: rgba(185,241,173,.5); text-transform: uppercase; }
+
+.sidebar-profile { margin: auto 12px 8px; padding: 14px; background: rgba(255,255,255,.07); border-radius: 12px; display: flex; align-items: center; gap: 10px; min-width: 0; }
+.sidebar-profile img { width: 38px; height: 38px; border-radius: 50%; flex-shrink: 0; object-fit: cover; border: 2px solid rgba(185,241,173,.3); }
+.sidebar-profile .profile-info { min-width: 0; flex: 1; }
+.sidebar-profile .user-name { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; font-weight: 600; color: var(--primary-fixed); word-wrap: break-word; overflow-wrap: break-word; display: block; }
+.sidebar-profile .user-email { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 10px; color: rgba(185,241,173,.5); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: block; }
+
 .main { display: flex; flex-direction: column; }
 .topbar { position: sticky; top: 0; z-index: 40; background: rgba(255,248,245,.92); backdrop-filter: blur(12px); display: flex; justify-content: space-between; align-items: center; padding: 12px 32px; border-bottom: 1px solid rgba(193,201,187,.2); }
 .topbar h2 { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--primary); }
@@ -81,23 +92,24 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #fff8f5; color:
 </head>
 <body>
 <div class="app">
-  <!-- Sidebar -->
   <aside class="sidebar">
     <div class="sidebar-brand">
       <h2>NutriPlan</h2>
-      <span style="font-size:10px;font-weight:700;letter-spacing:.1em;color:rgba(185,241,173,.5);text-transform:uppercase">Dasbor Nutrisi</span>
+      <span style="font-size:10px; font-weight:700; letter-spacing:.1em; color:rgba(185,241,173,.5); text-transform:uppercase; display:inline-block; line-height:1; margin-top:-2px;">NUTRISI PRAKTIS</span>
     </div>
+     
     <nav style="flex:1;padding:20px 0;display:flex;flex-direction:column;gap:2px">
-      <a href="dashboard.html" class="nav-item"><i class="material-symbols-outlined">dashboard</i> Beranda</a>
-      <a href="preferensi.html" class="nav-item"><i class="material-symbols-outlined">tune</i> Preferensi</a>
-      <a href="hasilRencanaMakan.html" class="nav-item"><i class="material-symbols-outlined">restaurant_menu</i> Rencana Makan</a>
-      <a href="historydanProfil.html" class="nav-item active"><i class="material-symbols-outlined">manage_accounts</i> Profil & Riwayat</a>
+      <a href="dashboard.html" class="nav-item"><i class="fa-solid fa-table-cells-large"></i> Beranda</a>
+      <a href="preferensi.html" class="nav-item"><i class="fa-solid fa-sliders"></i> Preferensi</a>
+      <a href="hasilRencanaMakan.html" class="nav-item"><i class="fa-solid fa-utensils"></i> Rencana Makan</a>
+      <a href="historydanProfil.html" class="nav-item active"><i class="fa-solid fa-user"></i> Profil & Riwayat</a>
     </nav>
-    <div class="sidebar-user">
+     
+    <div class="sidebar-profile">
       <img id="sidebarAvatar" src="" alt="avatar"/>
-      <div>
-        <div class="uname" id="sidebarName">Pengguna</div>
-        <div class="utag" id="sidebarEmail">—</div>
+      <div class="profile-info">
+        <span class="user-name" id="sidebarName">Pengguna</span>
+        <span class="user-email" id="sidebarEmail">—</span>
       </div>
     </div>
   </aside>
@@ -113,7 +125,6 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #fff8f5; color:
 
     <div class="content">
 
-      <!-- Profil User -->
       <div class="card">
         <div class="avatar-area">
           <img id="profileAvatar" src="" alt="avatar"/>
@@ -183,7 +194,6 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #fff8f5; color:
             </div>
           </div>
 
-          <!-- Kalori auto-hitung -->
           <div id="kaloriInfo" style="margin-top:20px;padding:16px;background:rgba(34,82,31,.06);border-radius:12px;border-left:4px solid var(--primary);display:flex;align-items:center;gap:12px">
             <span class="material-symbols-outlined" style="color:var(--primary);font-size:20px" style="font-variation-settings:'FILL' 1">local_fire_department</span>
             <div>
@@ -201,7 +211,6 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #fff8f5; color:
         </form>
       </div>
 
-      <!-- Riwayat Rencana Makan -->
       <div class="card">
         <div class="card-title">
           <span class="material-symbols-outlined" style="font-size:20px">history</span>
@@ -215,7 +224,6 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #fff8f5; color:
         </div>
       </div>
 
-      <!-- Hapus Semua Data -->
       <div class="card" style="border-left:4px solid rgba(186,26,26,.3)">
         <div class="card-title" style="color:var(--error)">
           <span class="material-symbols-outlined" style="font-size:20px">warning</span>
@@ -247,7 +255,7 @@ function loadProfile() {
   const user = NutriStore.User.get();
   const profile = NutriStore.Profile.get();
 
-  // Sidebar
+  // Sidebar (disesuaikan dengan ID baru yang tetap sama)
   document.getElementById('sidebarName').textContent = user.name || 'Pengguna';
   document.getElementById('sidebarEmail').textContent = user.email || '';
   if (user.avatar) {
@@ -398,7 +406,6 @@ function loadHistory() {
 
 function activatePlan(id) {
   NutriStore.Plans.setActive(id);
-  // Update status
   const plans = NutriStore.Plans.getAll();
   plans.forEach(p => { p.status = p.id === id ? 'aktif' : 'selesai'; });
   localStorage.setItem('nutriplan_mealplans', JSON.stringify(plans));
